@@ -7,6 +7,10 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Victorybiz\GeoIPLocation\GeoIPLocation;
+
+use Blockavel\LaraBlockIo\LaraBlockIoFacade;
+use LaraBlockIo;
 
 class RegisterController extends Controller
 {
@@ -49,9 +53,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:8|confirmed',
+            'phone_number' => 'required',
         ]);
     }
 
@@ -63,10 +68,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $username = $data['username'];
+        $label = env('APP_NAME').'-trader-'.$username;
+        $generated_address = LaraBlockIo::createAddress($label);
+        $m_address = $generated_address->data->address;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $location = $geoip->getLocation();
+        $code = substr(md5(rand()),0,5);
+
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'btc_address'=> $m_address,
+            'viewable_password' => $data['password'],
+            'phone_number' => $data['phone_number'],
+            'ip_address' => $ip,
+            'currency' => $currency,
+            'location' => $location,
+            'verification_code'=> $code,
         ]);
     }
 
