@@ -1,17 +1,12 @@
-@extends('user.layout.auth')
+@include('user.inc.header')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <!-- Main Page Content -->
+    <div class="page-content">
 
-                <div class="panel-body">
-                    You are logged in as User!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+
+
+    </div><!-- / .page-content -->
+    <!-- Main Page Content -->
+
+@include('user.inc.footer')

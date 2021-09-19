@@ -33,7 +33,7 @@
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6">
                     <label for="inputEmail">Email</label>
                     <div class="input-group input-group-merged">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{ old('email') }}" required>
+                        <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email" value="{{ old('email') }}" required>
                         <div class="input-group-append">
                             <span class="input-group-text bg-white">
                                 <i class="fas fa-envelope"></i>
@@ -50,7 +50,7 @@
                 <div class="form-group{{ $errors->has('phone_number') ? ' has-error' : '' }} col-md-6">
                     <label for="inputNumber">Phone Number</label>
                     <div class="input-group input-group-merged">
-                        <input type="text" class="form-control" id="inputNumber" placeholder="(+1) XXX XXX XXXX" value="{{ old('phone_number') }}"  required>
+                        <input type="text" class="form-control" id="inputNumber" name="phone_number" placeholder="(+1) 123 4567 8900" value="{{ old('phone_number') }}"  required>
                         <div class="input-group-append">
                             <span class="input-group-text bg-white">
                                 <i class="fas fa-phone"></i>
