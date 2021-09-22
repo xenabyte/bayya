@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user.profile');
+    return view('welcome');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -43,4 +43,9 @@ Route::group(['prefix' => 'user'], function () {
   Route::post('/password/reset', 'User\Auth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'User\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'User\Auth\ResetPasswordController@showResetForm');
+
+
+  Route::get('/home', 'User\HomeController@index');
+  Route::get('/sales', 'User\HomeController@sales');
+
 });

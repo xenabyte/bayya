@@ -25,7 +25,7 @@ use App\Models\Conversation;
 use App\Models\Review;
 use App\Models\Deposit;
 use App\Models\Status;
-use App\Models\Payment_method as Payment;
+use App\Models\PaymentMethod as Payment;
 
 use App\Mail\BuyerNotificationMail;
 use App\Mail\SellerNotificationMail;
@@ -53,7 +53,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:user', '2fa']);
+        $this->middleware(['auth:user']); //, '2fa'
     }
 
      /**
@@ -111,29 +111,29 @@ class HomeController extends Controller
     }
 
     public function index(){
-        if(empty(Auth::guard('user')->user()->loginSecurity)){
-            return redirect('/2fa');
-        }
+        // if(empty(Auth::guard('user')->user()->loginSecurity)){
+        //     return redirect('/2fa');
+        // }
 
-        if(empty(Auth::guard('user')->user()->email_verified_at)){
-            return view('/user/auth/verify', [
-               'email' => Auth::guard('user')->user()->email,
-           ]);
-        }
+        // if(empty(Auth::guard('user')->user()->email_verified_at)){
+        //     return view('/user/auth/verify', [
+        //        'email' => Auth::guard('user')->user()->email,
+        //    ]);
+        // }
 
-        if(Auth::guard('user')->user()->status == 'blocked'){
-            return view('/user/auth/blocked', [
-               'email' => Auth::guard('user')->user()->email,
-           ]);
-        }
+        // if(Auth::guard('user')->user()->status == 'blocked'){
+        //     return view('/user/auth/blocked', [
+        //        'email' => Auth::guard('user')->user()->email,
+        //    ]);
+        // }
 
-        if(empty(Auth::guard('user')->user()->status)){
-            return view('/user/kyc');
-        }
+        // if(empty(Auth::guard('user')->user()->status)){
+        //     return view('/user/kyc');
+        // }
 
-        if(Auth::guard('user')->user()->status == 'pending'){
-            return view('/user/pending');
-        }
+        // if(Auth::guard('user')->user()->status == 'pending'){
+        //     return view('/user/pending');
+        // }
 
         //packages
         $geoip = new GeoIPLocation();
@@ -177,11 +177,11 @@ class HomeController extends Controller
 
     public function sales()
     {
-        if(Auth::guard('user')->user()->status == 'blocked'){
-            return view('/user/auth/blocked', [
-               'email' => Auth::guard('user')->user()->email,
-           ]);
-        }
+        // if(Auth::guard('user')->user()->status == 'blocked'){
+        //     return view('/user/auth/blocked', [
+        //        'email' => Auth::guard('user')->user()->email,
+        //    ]);
+        // }
 
         $user = Auth::guard('user')->user();
         $user_id = $user->id;

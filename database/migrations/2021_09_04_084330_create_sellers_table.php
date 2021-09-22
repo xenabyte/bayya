@@ -14,7 +14,17 @@ class CreateSellersTable extends Migration
     public function up()
     {
         Schema::create('sellers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('seller_user_id')->nullable();
+            $table->string('seller_payment_mode')->nullable();
+            $table->float('selling_amount')->nullable();
+            $table->float('selling_rate')->nullable();
+            $table->string('currency')->nullable();
+            $table->integer('buyer_id')->nullable();
+            $table->integer('buyer_user_id')->nullable();
+            $table->string('merge_status')->nullable();
+            $table->datetime('merge_at')->nullable();
+            $table->string('trade_minutes')->nullable();
             $table->timestamps();
         });
     }

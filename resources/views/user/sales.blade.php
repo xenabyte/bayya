@@ -1,4 +1,5 @@
 @include('user.inc.header')
+@inject('controller', 'App\Http\Controllers\Controller')
 
     <!-- Main Page Content -->
     <div class="page-content">
@@ -28,19 +29,19 @@
                         <div class="widget widget-file">
 
                             <span class="widget-icon-bg">
-                                <i class="fas fa-server"></i>
+                                <i class="fas fa-money-check-alt"></i>
                             </span>
 
                             <div class="widget-header">
                                 <span class="widget-icon bg-info-light">
-                                    <i class="fas fa-server"></i>
+                                    <i class="fas fa-money-check-alt"></i>
                                 </span>
                                 <h6 class="widget-label">Wallet Balance</h6>
                             </div>
                             <div class="widget-body px-4 pb-4">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="used text-left">40 GB</h4>
+                                        <h4 class="used text-left">{{ $currency }} {{ number_format($wallet_balance, 2) }} / {{ round($controller::getBtcBalance(Auth::guard('user')->user()->usd_wallet), 8)}} BTC</h4>
                                     </div>
                                 </div>
                                 <div class="progress" style="height: 2px;">
@@ -53,12 +54,12 @@
                         <div class="widget widget-file">
 
                             <span class="widget-icon-bg">
-                                <i class="fab fa-dropbox"></i>
+                                <i class="fas fa-people-arrows"></i>
                             </span>
 
                             <div class="widget-header">
                                 <span class="widget-icon bg-primary-light">
-                                    <i class="fab fa-dropbox"></i>
+                                    <i class="fas fa-people-arrows"></i>
                                 </span>
                                 <h6 class="widget-label">Total Exchange</h6>
                             </div>
@@ -78,22 +79,19 @@
                         <div class="widget widget-file">
 
                             <span class="widget-icon-bg">
-                                <i class="fab fa-google-drive"></i>
+                                <i class="fas fa-star-half-alt"></i>
                             </span>
 
                             <div class="widget-header">
                                 <span class="widget-icon bg-warning-light">
-                                    <i class="fab fa-"></i>
+                                    <i class="fas fa-star-half-alt"></i>
                                 </span>
                                 <h6 class="widget-label">Star Rating</h6>
                             </div>
                             <div class="widget-body px-4 pb-4">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="used text-left">3 GB</h4>
-                                    </div>
-                                    <div class="col">
-                                        <h4 class="capacity text-right">15 GB</h4>
+                                        <h4 class="used text-left">3 Star(s)</h4>
                                     </div>
                                 </div>
                                 <div class="progress" style="height: 2px;">
@@ -374,72 +372,55 @@
                         <div class="modal-content">
                             <div class="modal-body">
                                 <div class="icon-box bg-info-light">
-                                    <i class="fas fa-file"></i>
+                                    <i class="fas fa-people-arrows"></i>
                                 </div>
-                                <h4 class="modal-title text-center">Upload A New File</h4>
+                                <h4 class="modal-title text-center">Start a trade</h4>
 
-                                <form action="#" class="modal-form new-folder-form mt-3 px-4">
+                                <form action="#" class="modal-form new-folder-form mt-3 px-4" action="{{ url('/user/sellbtc') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Wallet Balance</label>
+                                        <input type="text" disabled class="form-control" value=" {{$currency}} {{ number_format($wallet_balance) }} / {{ round($controller::getBtcBalance(Auth::guard('user')->user()->usd_wallet), 8)}} BTC">
+                                    </div>
 
                                     <div class="form-group">
-                                        <label>Storage</label>
-                                        <select name="storage" id="storage-selector" class="selectpicker">
+                                        <label>Rate</label>
+                                        <input type="number" class="form-control" name="selling_rate" placeholder="%" required>
+                                    </div>
 
-                                            <option value="local" data-icon="fas fa-server" selected>Local</option>
-                                            <option value="dropbox" data-icon="fab fa-dropbox">Dropbox</option>
-                                            <option value="google-drive" data-icon="fab fa-google-drive">Google Drive</option>
+                                    <div class="form-group">
+                                        <label>Trade Minutes</label>
+                                        <input type="number" class="form-control" name="trade_minutes" placeholder="Minutes" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Payment Method</label>
+                                        <select name="seller_payment_mode" id="storage-selector" class="selectpicker">
+
+                                            <option selected value="">Select Payment Method</option>
+                                            @foreach($payment_methods as $payment)
+                                                <option value="{{ $payment->payment_name }}">{{ $payment->payment_name }}</option>
+                                            @endforeach
 
                                         </select>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Path</label>
-                                        <input type="text" class="form-control" name="path" value="/Projects/" placeholder="/Path/">
+                                        <label>Amount in {{ $currency }}</label>
+                                        <input type="number" class="form-control" name="usd_amount" min="0" max="{{ number_format($wallet_balance) }}" value="{{ number_format($wallet_balance) }}"required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>File</label>
-                                        <div class="custom-file">
-                                            <input type="file" name="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                        </div>
+                                        <button type="submit" class="btn btn-success btn-block">Save</button>
                                     </div>
 
-                                    <div class="accordion accordion-sm">
-                                        <div class="card">
-                                            <div class="card-header" id="headingOne">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        Additional Info
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path class="heroicon-ui" d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"></path></svg>
-                                                    </button>
-                                                </h2>
-                                            </div>
-
-                                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label>Title</label>
-                                                        <input type="text" class="form-control" name="title" placeholder="File Title">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea name="description" rows="2" class="form-control" placeholder="File Description"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-secondary btn-block" data-dismiss="modal">Cancel</button>
                                     </div>
-
 
                                 </form>
                             </div>
                             <div class="modal-footer row">
-                                <div class="col-md-6 px-2">
-                                    <button class="btn btn-success btn-block">Save</button>
-                                </div>
-                                <div class="col-md-6 px-2">
-                                    <button class="btn btn-secondary btn-block" data-dismiss="modal">Cancel</button>
-                                </div>
                             </div>
                         </div>
                     </div>
