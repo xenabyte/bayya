@@ -374,7 +374,7 @@
                 </div>
 
                 <div class="modal fade" tabindex="-1" role="dialog" id="newFileModal">
-                    <div class="modal-dialog modal-mini modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
                                 <div class="icon-box bg-info-light">
@@ -416,6 +416,12 @@
                                         <input type="number" class="form-control" name="usd_amount" min="0" max="{{ number_format($wallet_balance) }}" value="{{ number_format($wallet_balance) }}" arequired>
                                     </div>
 
+
+                                    <div class="form-group">
+                                        <label>Trade Terms</label>
+                                        <textarea name="trade_terms" id="classic-editor" cols="30" rows="10"></textarea>
+                                    </div>
+
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success btn-block">Save</button>
                                     </div>
@@ -440,3 +446,4 @@
     <!-- Main Page Content -->
 
 @include('user.inc.footer')
+

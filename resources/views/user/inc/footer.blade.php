@@ -30,6 +30,18 @@
 <script src="{{asset('assets/js/pages/applications/file-manager.js')}}"></script>
 <script src="{{asset('assets/vendor/bootstrap-table/bootstrap-table.js')}}"></script>
 <script src="{{asset('assets/vendor/switchery/switchery.js')}}"></script>
+<script src="{{ asset('assets/vendor/ckeditor/ckeditor-classic.js') }}"></script>
+
+
+<script>
+    ClassicEditor.create(document.querySelector("#classic-editor"), {
+    }).then( (editor) => {
+        window.editor = editor ;
+    }
+    ).catch((error) => {
+        console.error( error ) ;
+    }) ;
+</script>
 
 <!-- / Scripts -->
 </body>

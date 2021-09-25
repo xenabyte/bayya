@@ -21,6 +21,7 @@ class Seller extends Model
         'merge_at',
         'trade_minutes',
         'hash',
+        'trade_terms',
     ];
 
     /**
@@ -30,7 +31,7 @@ class Seller extends Model
      */
     public function buyer()
     {
-        return $this->belongsTo(Buyer::class, 'buyer_id');
+        return $this->belongsTo(User::class, 'buyer_user_id');
     }
 
     /**

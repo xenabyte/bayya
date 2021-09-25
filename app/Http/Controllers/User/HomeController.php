@@ -393,6 +393,7 @@ class HomeController extends Controller
                 'currency' => $currency,
                 'trade_minutes' => $request->trade_minutes,
                 'hash' => $hash,
+                'trade_terms' => $request->trade_terms
             ]);
 
             Seller::create($newSeller);
@@ -405,6 +406,42 @@ class HomeController extends Controller
             alert()->error('Summation of pending trade is greater than available balance in your wallet, consider deleting some trades.', 'Oops')->persistent('Close');
             return redirect()->back();
         }
+    }
+
+    public function getTrade($hash)
+    {
+        //User data
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+
+
+        $trade = Seller::with(['seller', 'seller.reviewee'])->where('hash', $hash)->first();
+
+        $genTrades = Seller::where([
+            ['id', '=', $trade->id],
+            ['merge_status', '=', 'pending'],
+            ['seller_user_id', '!=', $user_id],
+            ['currency', '=', $currency]
+        ])->inRandomOrder()->take(20)->get();
+
+
+        return view('user.trade', [
+            'trade' => $trade,
+            'currency' => $currency,
+            'genTrades' => $genTrades
+        ]);
+
+
     }
 
 }
