@@ -41,7 +41,7 @@
                             <div class="widget-body px-4 pb-4">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="used text-left">{{ $currency }} {{ number_format($wallet_balance, 2) }} / {{ round($controller::getBtcBalance(Auth::guard('user')->user()->usd_wallet), 8)}} BTC</h4>
+                                        <h4 class="used text-left">{{ $currency }} {{ number_format($controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet), 2) }} / {{ Auth::guard('user')->user()->btc_wallet}} BTC</h4>
                                     </div>
                                 </div>
                                 <div class="progress" style="height: 2px;">
@@ -241,19 +241,21 @@
 
 
                             <ul class="directory-list row">
+                                @foreach($genTrades as $genTrade)
                                 <li class="col-lg-4 col-md-6">
-                                    <div>
-                                        <a href="#">
+                                    <div class="">
+                                        <a href="{{ url('/user/trade/'.$genTrade->hash) }}">
                                             <div class="directory-header">
                                                 <i class="fa fa-usd"></i>
                                             </div>
                                             <div class="directory-size">
-                                                BTC Amount
+                                               {{ $genTrade->selling_amount }} BTC
                                             </div>
 
                                             <div class="directory-info">
-                                                <span class="name">Rate</span>
-                                                <span class="size">Time</span>
+                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrency($currency, $genTrade->selling_amount), 2)}}</span>
+                                                <span class="name">{{ $genTrade->selling_rate }}%</span>
+                                                <span class="size">{{ $genTrade->trade_minutes }} Minutes(Trade Minutes)</span>
                                             </div>
                                         </a>
                                         <div class="dropdown">
@@ -261,15 +263,16 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#"><i class="fas fa-arrows-alt"></i> Open Trade</a>
+                                                <a class="dropdown-item" href="{{ url('/user/trade/'.$genTrade->hash) }}"><i class="fas fa-link"></i> Get Shareable Link</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> Get Shareable Link</a>
+                                                <a class="dropdown-item" href="{{ url('/user/trade/'.$genTrade->hash) }}"><i class="fas fa-info-circle"></i> Details</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#"><i class="fas fa-info-circle"></i> Details</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-trash"></i> Remove</a>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
 
                             <div class="row">
@@ -282,19 +285,21 @@
                             </div>
 
                             <ul class="directory-list row">
+                                @foreach($userTrades as $userTrade)
                                 <li class="col-lg-4 col-md-6">
-                                    <div>
-                                        <a href="#">
+                                    <div class="">
+                                        <a href="{{ url('/user/trade/'.$userTrade->hash) }}">
                                             <div class="directory-header">
                                                 <i class="fa fa-usd"></i>
                                             </div>
                                             <div class="directory-size">
-                                                BTC Amount
+                                               {{ $userTrade->selling_amount }} BTC
                                             </div>
 
                                             <div class="directory-info">
-                                                <span class="name">Rate</span>
-                                                <span class="size">Time</span>
+                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrency($currency, $userTrade->selling_amount), 2)}}</span>
+                                                <span class="name">{{ $userTrade->selling_rate }}%</span>
+                                                <span class="size">{{ $userTrade->trade_minutes }} Minutes(Trade Minutes)</span>
                                             </div>
                                         </a>
                                         <div class="dropdown">
@@ -302,15 +307,16 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> Get Shareable Link</a>
+                                                <a class="dropdown-item" href="{{ url('/user/trade/'.$userTrade->hash) }}"><i class="fas fa-link"></i> Get Shareable Link</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#"><i class="fas fa-info-circle"></i> Details</a>
+                                                <a class="dropdown-item" href="{{ url('/user/trade/'.$userTrade->hash) }}"><i class="fas fa-info-circle"></i> Details</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="#"><i class="fas fa-trash"></i> Remove</a>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
 
                         </div>
@@ -376,11 +382,11 @@
                                 </div>
                                 <h4 class="modal-title text-center">Start a trade</h4>
 
-                                <form action="#" class="modal-form new-folder-form mt-3 px-4" action="{{ url('/user/sellbtc') }}">
+                                <form class="modal-form new-folder-form mt-3 px-4" action="{{ url('/user/createTrade') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <label>Wallet Balance</label>
-                                        <input type="text" disabled class="form-control" value=" {{$currency}} {{ number_format($wallet_balance) }} / {{ round($controller::getBtcBalance(Auth::guard('user')->user()->usd_wallet), 8)}} BTC">
+                                        <input type="text" disabled class="form-control" value=" {{$currency}} {{ number_format($controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet)) }} / {{ Auth::guard('user')->user()->btc_wallet}} BTC">
                                     </div>
 
                                     <div class="form-group">
@@ -407,7 +413,7 @@
 
                                     <div class="form-group">
                                         <label>Amount in {{ $currency }}</label>
-                                        <input type="number" class="form-control" name="usd_amount" min="0" max="{{ number_format($wallet_balance) }}" value="{{ number_format($wallet_balance) }}"required>
+                                        <input type="number" class="form-control" name="usd_amount" min="0" max="{{ number_format($wallet_balance) }}" value="{{ number_format($wallet_balance) }}" arequired>
                                     </div>
 
                                     <div class="form-group">

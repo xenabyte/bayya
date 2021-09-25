@@ -197,9 +197,16 @@ class HomeController extends Controller
         $wallet_balance = $this->getCurrencyBalance($currency, $balance_usd);
 
 
-        $sellers = Seller::where([
+        $genTrades = Seller::where([
             ['merge_status', '=', 'pending'],
             ['seller_user_id', '!=', $user_id],
+            ['currency', '=', $currency]
+        ])->inRandomOrder()->take(20)->get();
+
+
+        $userTrades = Seller::where([
+            ['merge_status', '=', 'pending'],
+            ['seller_user_id', '=', $user_id],
             ['currency', '=', $currency]
         ])->inRandomOrder()->take(20)->get();
 
@@ -208,7 +215,8 @@ class HomeController extends Controller
             'payment_methods'=> Payment::all(),
             'wallet_balance' => $wallet_balance,
             'currency' => $currency,
-            'sellers' => $sellers
+            'genTrades' => $genTrades,
+            'userTrades' => $userTrades
         ]);
 
     }
@@ -328,6 +336,73 @@ class HomeController extends Controller
             Mail::to(env('ADMIN_EMAIL'))->send(new PendingUserMail($user->username));
 
             alert()->success('Kindly wait, Your document is been processed.', 'KYC Document Upload Successfully')->persistent('Close');
+            return redirect()->back();
+        }
+    }
+
+    public function createTrade(Request $request)
+    {
+        //User data
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+
+        $this->validate($request, [
+            'usd_amount' => 'required|min:1',
+        ]);
+
+        $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
+
+        $dispute_count = count($dispute);
+        if($dispute_count > 0) {
+            alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
+        }
+
+        //SUMMING UP PENDING ADS
+        $seller_info = Seller::where('seller_user_id', $user_id)->where('merge_status', 'pending')->get();
+        $usd_selling_amount = intval($this->toUsd($currency, $request->usd_amount));
+        $btc_selling_amount = $this->getBtcBalance($usd_selling_amount);
+
+        $hash = md5($username.$email.time());
+
+        $selling_rate = $request->selling_rate;
+        $btc_selling_balance = $seller_info->sum('selling_amount'); //selling amount will always be in btc
+        //--------------------CURRENT TIME--------------------------------
+        $current_time = \Carbon\Carbon::now()->toDateTimeString();
+        //-------------------------SAVE RECORDS----------------------------
+
+        if(($btc_selling_balance + $btc_selling_amount) <= $balance_btc){
+            //create selling ADS
+            $newSeller = ([
+                'seller_user_id' => $user_id,
+                'seller_username' => $username,
+                'seller_email' => $email,
+                'seller_payment_mode' => $request->seller_payment_mode,
+                'selling_amount' => $btc_selling_amount,
+                'merge_status' => 'pending',
+                'selling_rate' => $selling_rate,
+                'currency' => $currency,
+                'trade_minutes' => $request->trade_minutes,
+                'hash' => $hash,
+            ]);
+
+            Seller::create($newSeller);
+
+        //------------------------------------------------------------------
+            alert()->success('Your trade have been created successfully.', 'Success')->persistent('Close');
+            return redirect()->back();
+        }else{
+        //------------------------------------------------------------------
+            alert()->error('Summation of pending trade is greater than available balance in your wallet, consider deleting some trades.', 'Oops')->persistent('Close');
             return redirect()->back();
         }
     }

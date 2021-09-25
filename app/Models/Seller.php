@@ -20,6 +20,7 @@ class Seller extends Model
         'merge_status',
         'merge_at',
         'trade_minutes',
+        'hash',
     ];
 
     /**

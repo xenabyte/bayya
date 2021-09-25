@@ -28,7 +28,7 @@ class Controller extends BaseController
         $bitcoinUSDPrice = Coindesk::toFiatCurrency('USD', 1);
         $bitcoinCurrencyPrice =  $balanceUSD / $bitcoinUSDPrice;
 
-        return $bitcoinCurrencyPrice;
+        return round($bitcoinCurrencyPrice, 8);
     }
 
 
@@ -71,5 +71,25 @@ class Controller extends BaseController
         catch(\Exception $e){
             \Log::info("error");
         }
+    }
+
+    public static function toUsd($currency, $amount){
+        try {
+            $client = new Client();
+            $body = $client->get('https://api.coindesk.com/v1/bpi/currentprice/'.$currency.'.json')->getBody();
+            $obj = json_decode($body);
+            $price = intval($obj->bpi->$currency->rate_float);
+            //convert amount to btc
+            $btc = $amount / $price;
+
+            //convert btc to usd
+            $usdAmount = self::toCurrency('USD', $btc);
+
+            return $usdAmount;
+        }
+        catch(\Exception $e){
+            \Log::info("error");
+        }
+
     }
 }
