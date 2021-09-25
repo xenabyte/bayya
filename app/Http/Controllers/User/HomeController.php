@@ -183,18 +183,14 @@ class HomeController extends Controller
         //    ]);
         // }
 
-        $user = Auth::guard('user')->user();
-        $user_id = $user->id;
-        $username = $user->username;
-
         $geoip = new GeoIPLocation();
         $ip = $geoip->getIP();
         $set_ip = $geoip->setIP($ip);
         $currency = $geoip->getCurrencyCode();
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
-        $balance_usd = $user->usd_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_usd);
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
 
 
         $genTrades = Seller::where([
@@ -441,6 +437,125 @@ class HomeController extends Controller
             'genTrades' => $genTrades
         ]);
 
+
+    }
+
+    public function joinTrade(Request $request)
+    {
+        $this->validate($request, [
+            'selling_id' => 'required|min:1',
+        ]);
+
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+        $user_status = $user->status;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+
+        $selling_id = $request->selling_id;
+        //--------------------CURRENT TIME--------------------------------
+        $current_time = \Carbon\Carbon::now()->toDateTimeString();
+
+        //user_status approved means kyc document have been uploaded and approved by admin
+        // if($user_status != 'approved'){
+        //     alert()->error('Kindly go to your profile and upload KYC document for approval', 'Oops')->persistent('Close');
+        //     return redirect()->back();
+        // }
+
+        //RETRIEVING SELLING INFORMATION
+        $seller_info = Seller::where('id', $selling_id)->where('merge_status', 'pending')->first();
+
+        $selling_user_id = $seller_info->seller_user_id;
+        if($selling_user_id == $user_id){
+            alert()->error('You cant purchases your own selling ads', 'Oops')->persistent('Close');
+            return redirect()->back();
+        }
+
+        $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
+
+        $dispute_count = count($dispute);
+        if($dispute_count > 0) {
+            alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
+        }
+
+        if(exist($seller_info)){
+
+            //INSERTING BUYER INFORMATION
+            $newbuyer = ([
+                'buyer_user_id' => $user_id,
+            ]);
+
+            Buyer::create($newbuyer);
+
+            //RETRIEVING buyer_info RECORDS
+            $buyer_info =  Buyer::where('buyer_user_id', $user_id)->where('seller_id', '=', NULL)->first();
+            $buying_id = $buyer_info->id;
+            $buyer_user_id = $buyer_info->buyer_user_id;
+            $buyer_username = $buyer_info->buyer_username;
+            $buyer_email = $buyer_info->buyer_email;
+
+
+            $seller_username = $seller_info->seller_username;
+            $seller_user_id = $seller_info->seller_user_id;
+            $seller_email = $seller_info->seller_email;
+            $seller_payment_mode = $seller_info->seller_payment_mode;
+            $selling_amount = $seller_info->selling_amount;
+            $selling_rate = $seller_info->selling_rate;
+            $selling_currency = $seller_info->currency;
+            $selling_trade_minutes = $seller_info->trade_minutes;
+
+
+            $newmerging = ([
+                'buyer_id' => $buying_id,
+                'buyer_user_id' => $buyer_user_id,
+                'seller_id' => $selling_id,
+                'seller_user_id' => $seller_user_id,
+                'merge_at' => $current_time,
+
+            ]);
+
+            Merging::create($newmerging);
+
+            //UPDATE BUYER TABLE
+            $updatebuyer = Buyer::find($buying_id);
+            $updatebuyer->seller_id = $selling_id;
+            $updatebuyer->seller_user_id = $seller_user_id;
+            $updatebuyer->merge_status = 'merged';
+            $updatebuyer->merge_at = $current_time;
+            $updatebuyer->update();
+
+
+            //UPDATE SELLER TABLE
+            $updateseller = Seller::find($selling_id);
+            $updateseller->buyer_id = $buying_id;
+            $updateseller->buyer_user_id = $buyer_user_id;
+            $updateseller->merge_status = 'merged';
+            $updateseller->merge_at = $current_time;
+            $updateseller->update();
+
+            // //Seller Email SellerNotificationMail
+            // Mail::to($seller_email)->send(new SellerNotificationMail($seller_username, $seller_email, $selling_amount, $selling_rate, $buyer_username, $buyer_email, $currency));
+
+            // //Seller Email BuyerNotificationMail
+            // Mail::to($buyer_email)->send(new BuyerNotificationMail($seller_username, $seller_email, $selling_amount, $selling_rate, $buyer_username, $buyer_email, $currency));
+
+            alert()->success('Your interest have been made known to the seller', 'Order Successfully Placed')->persistent('Close');
+            return redirect()->back();
+
+        }else{
+            alert()->error('Offer is already off the market', 'Oops')->persistent('Close');
+            return redirect()->back();
+
+        }
 
     }
 

@@ -82,11 +82,18 @@
 										</div>
 									</div>
                                     <hr>
-                                    <form action="#" method="POST">
-                                        @csrf
-                                        <input type="hidden" value="{{ $trade->id }}">
-                                        <button type="submit" class="btn btn-xl btn-primary"> Join Trade</button>
-                                    </form>
+                                    @if(Auth::guard('user')->user()->status != 'approved')
+                                        You need to verify your identity before you can make a purchase from this advertisement. <br>
+                                        <a href="{{ url('/user/profile') }}" class="btn btn-primary">Verify Account</a>
+                                    @else
+                                        @if($trade->merge_status == 'pending')
+                                            <form action="{{ url('/user/joinTrade') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="selling_id"  value="{{ $trade->id }}">
+                                                <button type="submit" class="btn btn-xl btn-primary"> Join Trade</button>
+                                            </form>
+                                        @endif
+                                    @endif
                                     </p>
                                 </div>
                             </div>

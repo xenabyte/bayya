@@ -50,6 +50,7 @@ Route::group(['prefix' => 'user'], function () {
 
   Route::post('/createTrade', [App\Http\Controllers\User\HomeController::class, 'createTrade']);
   Route::get('/trade/{hash}', [App\Http\Controllers\User\HomeController::class, 'getTrade']);
+  Route::post('/joinTrade', [App\Http\Controllers\User\HomeController::class, 'joinTrade']);
 
 
 
