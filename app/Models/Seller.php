@@ -19,6 +19,7 @@ class Seller extends Model
         'buyer_user_id',
         'merge_status',
         'merge_at',
+        'merging_id',
         'trade_minutes',
         'hash',
         'trade_terms',

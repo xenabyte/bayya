@@ -32,6 +32,6 @@ class Conversation extends Model
      */
     public function merging()
     {
-        return $this->belongsTo(Merging::class, 'seller_user_id');
+        return $this->belongsTo(Merging::class, 'merging_id');
     }
 }

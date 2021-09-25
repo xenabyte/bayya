@@ -31,6 +31,7 @@
 <script src="{{asset('assets/vendor/bootstrap-table/bootstrap-table.js')}}"></script>
 <script src="{{asset('assets/vendor/switchery/switchery.js')}}"></script>
 <script src="{{ asset('assets/vendor/ckeditor/ckeditor-classic.js') }}"></script>
+<script src="{{ asset('assets/js/pages/applications/chat/chat-3.js') }}"></script>
 
 
 <script>

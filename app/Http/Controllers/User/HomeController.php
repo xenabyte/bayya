@@ -183,6 +183,10 @@ class HomeController extends Controller
         //    ]);
         // }
 
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+
         $geoip = new GeoIPLocation();
         $ip = $geoip->getIP();
         $set_ip = $geoip->setIP($ip);
@@ -487,7 +491,10 @@ class HomeController extends Controller
             alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
         }
 
-        if(exist($seller_info)){
+        if(empty($seller_info)){
+            alert()->error('Offer is already off the market', 'Oops')->persistent('Close');
+            return redirect()->back();
+        }
 
             //INSERTING BUYER INFORMATION
             $newbuyer = ([
@@ -523,7 +530,7 @@ class HomeController extends Controller
 
             ]);
 
-            Merging::create($newmerging);
+            $merging_id = Merging::create($newmerging)->id;
 
             //UPDATE BUYER TABLE
             $updatebuyer = Buyer::find($buying_id);
@@ -540,6 +547,7 @@ class HomeController extends Controller
             $updateseller->buyer_user_id = $buyer_user_id;
             $updateseller->merge_status = 'merged';
             $updateseller->merge_at = $current_time;
+            $updateseller->merging_id = $merging_id;
             $updateseller->update();
 
             // //Seller Email SellerNotificationMail
@@ -551,12 +559,51 @@ class HomeController extends Controller
             alert()->success('Your interest have been made known to the seller', 'Order Successfully Placed')->persistent('Close');
             return redirect()->back();
 
-        }else{
-            alert()->error('Offer is already off the market', 'Oops')->persistent('Close');
-            return redirect()->back();
 
+    }
+
+    public function chatRoom($id)
+    {
+        //User data
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+
+        if(!$merging = Merging::with(['associated_buyer', 'associated_seller'])->where('id', $id)->first()){
+            alert()->error('Invalid Order', 'Oops')->persistent('Close');
+            return redirect()->back();
         }
 
+        log::info($merging);
+
+        $chats = Conversation::with(['user', 'merging'])->where('merging_id', $id)->orderBy('created_at', 'ASC')->get();
+
+        return view('user.chatroom', [
+            'chats' => $chats,
+            'merging' => $merging
+        ]);
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $newconversation = ([
+            'merging_id' => $request->merging_id,
+            'sender_user_id' => $request->sender_user_id,
+            'message' => $request->message
+        ]);
+
+        $conversation = Conversation::create($newconversation);
+        alert()->success('Message sent', 'Success');
+        return redirect()->back();
     }
 
 }

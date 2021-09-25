@@ -57,8 +57,8 @@
 											</div>
 											<div class="card-body">
 												<div class="col-avatar">
-													<div class="user-avatar">
-                                                        <div class="header-icon"><i class="fas fa-user-circle"></i></div>
+													<div class="user-avatar" style="margin: 10px">
+                                                        <i class="fas fa-user avatar rounded-circle"></i>
 													</div>
 												</div>
 												<div class="col-info">
@@ -67,8 +67,8 @@
 													<p>
 														@foreach($trade->seller->reviewee as $review)
                                                             <div class="col-avatar">
-                                                                <div class="user-avatar">
-                                                                    <div class="header-icon"><i class="fas fa-user-circle"></i></div>
+                                                                <div class="user-avatar" style="margin: 10px">
+                                                                    <i class="fas fa-user avatar rounded-circle"></i>
                                                                 </div>
                                                             </div>
                                                             <div class="col-info">
@@ -92,6 +92,10 @@
                                                 <input type="hidden" name="selling_id"  value="{{ $trade->id }}">
                                                 <button type="submit" class="btn btn-xl btn-primary"> Join Trade</button>
                                             </form>
+                                        @else
+                                            @if($trade->seller_user_id != Auth::guard('user')->user()->id || $trade->buyer_user_id != Auth::guard('user')->user()->id)
+                                                <a href="{{ url('/user/chatroom/'.$trade->merging_id) }}/ " class="btn btn-primary">Enter Chatroom</a>
+                                            @endif
                                         @endif
                                     @endif
                                     </p>
