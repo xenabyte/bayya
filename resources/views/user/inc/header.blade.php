@@ -13,7 +13,11 @@
         <link rel="stylesheet" href="{{asset('assets/css/vendor.css')}}">
 
         <!-- Fontawesome -->
-		<link rel="stylesheet" href="{{asset('assets/css/font-awesome/5.13.1/css/all.min.css')}}"/>
+		{{-- <link rel="stylesheet" href="{{asset('assets/css/font-awesome/5.13.1/css/all.min.css')}}"/> --}}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.9.55/css/materialdesignicons.css" integrity="sha512-cQpRsNnonGHFzzAZzZdR05ndKsRXZ5MVcuq+RMKiEbRYmQlLevgdtPjvSI1uGYjqEgio3uQurahmcUde6mMUJQ==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg==" crossorigin="anonymous" />
         <!-- Dosis & Poppins Fonts -->
         <link href="{{asset('assets/css/fonts.googleapis.com/css2df2a.css?family=Dosis:wght@200;300;400;500;523;600;700;800&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap')}}" rel="stylesheet">
 
@@ -179,8 +183,8 @@
 
                                 <li class="nav-item nav-user-dropdown dropdown">
                                     <a href="#" class="nav-link dropdown-toggle dropdown-nocaret" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Ari Davar
-                                        <img src="assets/avatars/1.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
+                                        {{ Auth::guard('user')->user()->username }}
+                                        <i class="fa fa-user avatar avatar-1 rounded-circle"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-sm dropdown-menu-start">
                                         <div class="dropdown-header pt-0">
@@ -190,10 +194,11 @@
                                             <i class="fas fa-users"></i>
                                             <span>Profile</span>
                                         </a>
-                                        <a href="#" class="dropdown-item">
+                                        <a href="{{ url('/user/logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="fas fa-power-off"></i>
                                             <span>Logout</span>
                                         </a>
+                                        <form id="logout-form" action="{{ url('/user/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                                     </div>
                                 </li>
                             </ul>

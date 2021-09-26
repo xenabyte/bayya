@@ -66,7 +66,7 @@
                             <div class="widget-body px-4 pb-4">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="used text-left">108 GB</h4>
+                                        <h4 class="used text-left">{{ $currency }} {{ number_format($controller::toCurrency($currency, $userDoneTrades->sum('selling_amount')), 2) }} / {{ $userDoneTrades->sum('selling_amount') }} BTC</h4>
                                     </div>
                                 </div>
                                 <div class="progress" style="height: 2px;">
@@ -91,7 +91,7 @@
                             <div class="widget-body px-4 pb-4">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="used text-left">3 Star(s)</h4>
+                                        <h4 class="used text-left">{{ $reviews->avg('star_rating') }} Star(s)</h4>
                                     </div>
                                 </div>
                                 <div class="progress" style="height: 2px;">
@@ -140,8 +140,8 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <span class="lister-item-title"> Total Active Exchange </span>
-                                            <span class="lister-item-subtitle">1,503 Files, 12 GB</span>
+                                            <span class="lister-item-title"> Total Active Trade </span>
+                                            <span class="lister-item-subtitle">{{ $userTrades->count() }}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -154,7 +154,7 @@
                                         </div>
                                         <div class="col">
                                             <span class="lister-item-title"> Total Ongoing Exchange </span>
-                                            <span class="lister-item-subtitle">14 Files, 1.2 GB</span>
+                                            <span class="lister-item-subtitle">{{ $mergings->where('payment_status', null)->where('pay_received_status',  null)->count() }}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -167,20 +167,7 @@
                                         </div>
                                         <div class="col">
                                             <span class="lister-item-title"> Total Pending Exchange </span>
-                                            <span class="lister-item-subtitle">200 Files, 51 GB</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col" style="max-width: 50px;">
-                                            <div class="icon-box bg-info-light">
-                                                <i class="fas fa-times"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <span class="lister-item-title"> Total Cancelled Exchange </span>
-                                            <span class="lister-item-subtitle">200 Files, 140 MB</span>
+                                            <span class="lister-item-subtitle">{{ $mergings->where('payment_status', 'Paid')->where('pay_received_status', null)->count() }}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -193,7 +180,7 @@
                                         </div>
                                         <div class="col">
                                             <span class="lister-item-title"> Total Successful Exchange </span>
-                                            <span class="lister-item-subtitle">200 Files, 140 MB</span>
+                                            <span class="lister-item-subtitle">{{ $mergings->where('pay_received_status', 'Received')->count() }}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -266,8 +253,6 @@
                                                 <a class="dropdown-item" href="{{ url('/user/trade/'.$genTrade->hash) }}"><i class="fas fa-link"></i> Get Shareable Link</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="{{ url('/user/trade/'.$genTrade->hash) }}"><i class="fas fa-info-circle"></i> Details</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#"><i class="fas fa-trash"></i> Remove</a>
                                             </div>
                                         </div>
                                     </div>
@@ -275,6 +260,7 @@
                                 @endforeach
                             </ul>
 
+                            <hr>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 class="pt-2 m-0">Your Trades</h4>
@@ -319,6 +305,77 @@
                                 @endforeach
                             </ul>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body pb-2">
+
+                            <div class="file-nav">
+                                <span class="px-1">
+                                    <i class="fas fa-folder"></i>
+                                </span>
+                                <a href="#" class="btn">
+                                    Sales Market
+                                </a>
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <a href="#" class="btn">
+                                    Trades
+                                </a>
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="pt-2 m-0">Your Ongoing Trade</h4>
+                                </div>
+                            </div>
+
+
+                            <ul class="directory-list row">
+                                @foreach($ongoingTrades as $ongoingTrade)
+                                <li class="col-lg-4 col-md-6">
+                                    <div class="">
+                                        <a href="{{ url('/user/trade/'.$ongoingTrade->hash) }}">
+                                            <div class="directory-header">
+                                                <i class="fa fa-usd"></i>
+                                            </div>
+                                            <div class="directory-size">
+                                               {{ $ongoingTrade->selling_amount }} BTC
+                                            </div>
+
+                                            <div class="directory-info">
+                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrency($currency, $ongoingTrade->selling_amount), 2)}}</span>
+                                                <span class="name">{{ $ongoingTrade->selling_rate }}%</span>
+                                                <span class="size">{{ $ongoingTrade->trade_minutes }} Minutes(Trade Minutes)</span>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown">
+                                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="{{ url('/user/trade/'.$ongoingTrade->hash) }}"><i class="fas fa-link"></i> Get Shareable Link</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{{ url('/user/trade/'.$ongoingTrade->hash) }}"><i class="fas fa-info-circle"></i> Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>

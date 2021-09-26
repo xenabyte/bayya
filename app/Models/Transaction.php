@@ -11,6 +11,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'transaction_label',
+        'merging_id',
         'seller_user_id',
         'buyer_user_id',
         'transaction_status',

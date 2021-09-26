@@ -57,6 +57,6 @@ class Merging extends Model
      */
     public function seller()
     {
-        return $this->belongsTo(Seller::class, 'seller_id');
+        return $this->hasOne(Seller::class);
     }
 }

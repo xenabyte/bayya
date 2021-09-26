@@ -44,4 +44,14 @@ class Seller extends Model
     {
         return $this->belongsTo(User::class, 'seller_user_id');
     }
+
+    /**
+     * Get the merging associated with the Seller
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function merging(): HasOne
+    {
+        return $this->hasOne(Merging::class, 'merging_id');
+    }
 }

@@ -53,6 +53,16 @@ Route::group(['prefix' => 'user'], function () {
   Route::post('/joinTrade', [App\Http\Controllers\User\HomeController::class, 'joinTrade']);
   Route::get('/chatroom/{id}', [App\Http\Controllers\User\HomeController::class, 'chatRoom']);
   Route::post('/sendMessage', [App\Http\Controllers\User\HomeController::class, 'sendMessage']);
+  Route::post('/deal', [App\Http\Controllers\User\HomeController::class, 'deal']);
+  Route::post('/cancelTrade', [App\Http\Controllers\User\HomeController::class, 'cancelTrade']);
+  Route::post('/acceptPayment', [App\Http\Controllers\User\HomeController::class, 'acceptPayment']);
+  Route::post('/raiseDispute', [App\Http\Controllers\User\HomeController::class, 'raiseDispute']);
+  Route::post('/confirmPayment', [App\Http\Controllers\User\HomeController::class, 'confirmPayment']);
+  Route::post('/createReview', [App\Http\Controllers\User\HomeController::class, 'createReview']);
+
+
+
+
 
 
 

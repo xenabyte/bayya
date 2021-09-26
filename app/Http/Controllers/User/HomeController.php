@@ -208,7 +208,19 @@ class HomeController extends Controller
             ['merge_status', '=', 'pending'],
             ['seller_user_id', '=', $user_id],
             ['currency', '=', $currency]
-        ])->inRandomOrder()->take(20)->get();
+        ])->inRandomOrder()->get();
+
+        $mergings  = Merging::where('seller_user_id', $user_id)->orWhere('buyer_user_id', $user_id)->get();
+        $doneTradesId = $mergings->where('pay_received_satus', 'Received')->pluck('id')->toArray();
+        $userDoneTrades = Seller::whereIn('merging_id', $doneTradesId)->get();
+
+
+        $ongoingTrades = Seller::where([
+            ['merge_status', '=', 'merged'],
+            ['currency', '=', $currency]
+        ])->where('seller_user_id', $user_id)->orWhere('buyer_user_id', $user_id)->get();
+
+        $reviews = Review::where('reviewee_user_id', $user_id)->get();
 
 
         return view('user.sales', [
@@ -216,7 +228,11 @@ class HomeController extends Controller
             'wallet_balance' => $wallet_balance,
             'currency' => $currency,
             'genTrades' => $genTrades,
-            'userTrades' => $userTrades
+            'userTrades' => $userTrades,
+            'ongoingTrades' => $ongoingTrades,
+            'reviews' => $reviews,
+            'userDoneTrades' => $userDoneTrades,
+            'mergings' => $mergings
         ]);
 
     }
@@ -425,7 +441,10 @@ class HomeController extends Controller
         $balance_btc = $user->btc_wallet;
 
 
-        $trade = Seller::with(['seller', 'seller.reviewee'])->where('hash', $hash)->first();
+        $trade = Seller::with(['seller', 'seller.reviewee', 'buyer.reviewee'])->where('hash', $hash)->first();
+
+        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $trade->merging_id)->first();
+        $reviews = Review::where('merging_id', $trade->merging_id)->get();
 
         $genTrades = Seller::where([
             ['id', '=', $trade->id],
@@ -438,7 +457,9 @@ class HomeController extends Controller
         return view('user.trade', [
             'trade' => $trade,
             'currency' => $currency,
-            'genTrades' => $genTrades
+            'genTrades' => $genTrades,
+            'order' => $merging,
+            'reviews' => $reviews
         ]);
 
 
@@ -604,6 +625,268 @@ class HomeController extends Controller
         $conversation = Conversation::create($newconversation);
         alert()->success('Message sent', 'Success');
         return redirect()->back();
+    }
+
+    public function deal(Request $request){
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+
+        $merging_id = $request->merging_id;
+        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        $buyer_username = $merging->associated_buyer->username;
+        $seller_username = $merging->associated_seller->username;
+        $buyer_email = $merging->associated_buyer->email;
+        $seller_email = $merging->associated_seller->email;
+
+        $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
+
+        $dispute_count = count($dispute);
+        if($dispute_count > 0) {
+            alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
+        }
+
+        $accept = DB::table('mergings')->where('id', '=', $merging_id)->update(['seller_consent' => 'Deal']);
+
+        if($accept){
+            //Seller Email BuyerAgreementMail
+            // Mail::to($buyer_email)->send(new BuyerAgreementMail($buyer_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+
+            alert()->success('You have agreed to have a trade with the buyer.', 'Nice Job')->persistent('Close');
+            return redirect()->back();
+        }
+    }
+
+    public function cancelTrade(Request $request){
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+
+        $merging_id = $request->merging_id;
+        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        $buyer_username = $merging->associated_buyer->username;
+        $seller_username = $merging->associated_seller->username;
+        $buyer_email = $merging->associated_buyer->email;
+        $seller_email = $merging->associated_seller->email;
+
+        $buying_id = $merging->buyer_id;
+
+        $deletebuyer = Buyer::where('id', '=', $buying_id)->delete();
+        $deletemerging = Merging::where('id', '=', $merging_id)->delete();
+
+        $sellers = Seller::find($selling_id);
+        $sellers->buyer_id = NULL;
+        $sellers->buyer_user_id = NULL;
+        $sellers->merge_at = NULL;
+        $sellers->merge_status = 'pending';
+        $sellers->update();
+
+        if($deletemerging){
+            //Seller Email BuyerRejectMail
+            // /Mail::to($buyer_email)->send(new BuyerRejectMail($buyer_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+
+            alert()->success('You have refused to have a transaction with the buyer.', 'Oops')->persistent('Close');
+            return redirect()->back();
+        }
+    }
+
+    public function acceptPayment(Request $request){
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        //--------------------CURRENT TIME--------------------------------
+        $current_time = \Carbon\Carbon::now()->toDateTimeString();
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+
+        $merging_id = $request->merging_id;
+        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        $buyer_username = $merging->associated_buyer->username;
+        $seller_username = $merging->associated_seller->username;
+        $buyer_email = $merging->associated_buyer->email;
+        $seller_email = $merging->associated_seller->email;
+
+        $buying_id = $merging->buyer_id;
+        $order = Seller::where('merging_id', $merging_id)->first();
+
+        $newTransaction = ([
+            'merging_id' => $merging_id,
+            'buyer_user_id' => $merging->buyer_user_id,
+            'seller_user_id' => $merging->seller_user_id,
+            'transaction_label' => env('APP_NAME').'-transaction-'.$buyer_username.'-'.$seller_username.'-'.time(),
+            'transaction_status' => 'Completed',
+            'verified_at' => $current_time,
+        ]);
+
+        if($wallet_balance < $order->selling_amount){
+            alert()->error('Kindly topup to proceed with your transaction, and we advice you explain the delay to your buyer', 'Insufficient funds')->persistent('Close');
+            return redirect()->back();
+        }
+
+        $transaction = Transaction::create($newTransaction);
+
+
+        if($transaction){
+            $buyer = User::find($merging->buyer_user_id);
+            $buyer_old_wallet_balance = $buyer->btc_wallet;
+            $buyer_balance = $buyer_old_wallet_balance + $order->selling_amount;
+            $buyer->btc_wallet = $buyer_balance;
+            $buyer->save();
+
+            $seller = User::find($merging->seller_user_id);
+            $seller_old_wallet_balance = $seller->btc_wallet;
+            $seller_balance = $seller_old_wallet_balance - $order->selling_amount;
+            $seller->btc_wallet = $seller_balance;
+            $seller->save();
+
+            $merging->pay_received_status = 'Received';
+            $merging->update();
+
+            // //Buyer Email BuyerApproveMail
+            // Mail::to($buyer_email)->send(new BuyerApproveMail($buyer_email, $seller_username, $buyer_username, sprintf('%06d', $merging_id)));
+            // //Seller Email SellerApproveMail
+            // Mail::to($seller_email)->send(new SellerApproveMail($seller_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+
+            alert()->success('You have confirm payment made by buyer, buyer will be credited and you will be deducted', 'Good Job')->persistent('Close');
+            return redirect()->back();
+        }
+    }
+
+    public function raisedispute(Request $request)
+    {
+        $merging_id = $reques->merging_id;
+        $dispute_reason = $request->dispute_reason;
+
+        $merging_id = $request->merging_id;
+        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        $buyer_username = $merging->associated_buyer->username;
+        $seller_username = $merging->associated_seller->username;
+        $buyer_email = $merging->associated_buyer->email;
+        $seller_email = $merging->associated_seller->email;
+        $buying_id = $merging->buyer_id;
+        $order = Seller::where('merging_id', $merging_id)->first();
+
+        $newdispute = ([
+            'merging_id' => $merging_id,
+            'buyer_id' => $buyer_id,
+            'buyer_user_id' => $buyer_user_id,
+            'seller_id' => $seller_id,
+            'seller_user_id' => $seller_user_id,
+            'dispute_reason' => $dispute_reason,
+        ]);
+
+        $order_count = Dispute::where('merging_id', $merging_id)->count();
+
+        if($order_count >= 1){
+            alert()->error('A dispute have been raised on this order, our dispute manager will contact you to resolve this amicably', 'Success')->persistent('Close');;
+            return redirect()->back();
+        }
+
+        $dispute = Dispute::create($newdispute);
+
+        // //Buyer Email BuyerDisputeMail
+        // Mail::to($seller_email)->send(new BuyerDisputeMail($buyer_email, $buyer_username, $dispute_reason, sprintf('%06d', $merging_id)));
+        // //Seller Email SellerDisputeMail
+        // Mail::to($seller_email)->send(new SellerDisputeMail($seller_email, $seller_username, $dispute_reason, sprintf('%06d', $merging_id)));
+
+        alert()->success('Dispute created successfully, our dispute manager will contact you to resolve the dispute', 'Success')->persistent('Close');;
+        return redirect()->back();
+    }
+
+    public function confirmPayment(Request $request){
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+
+        $merging_id = $request->merging_id;
+        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        $buyer_username = $merging->associated_buyer->username;
+        $seller_username = $merging->associated_seller->username;
+        $buyer_email = $merging->associated_buyer->email;
+        $seller_email = $merging->associated_seller->email;
+
+        $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
+
+        $dispute_count = count($dispute);
+        if($dispute_count > 0) {
+            alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
+        }
+
+        DB::table('mergings')->where('id', '=', $merging_id)->update(['payment_status' => 'Paid']);
+
+        //Buyer Email BuyerPaymentMail
+        //Mail::to($seller_email)->send(new BuyerPaymentMail($seller_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+        alert()->success('You have confirm payment made by you. Kindly wait for seller to acknowledge you payment.', 'Yeah')->persistent('Close');
+        return redirect()->back();
+
+    }
+
+    public function createReview(Request $request)
+    {
+        $user_id = Auth::guard('user')->user()->id;
+        $newreview = ([
+            'merging_id' => $request->merging_id,
+            'reviewer_user_id' => $request->reviewer_user_id,
+            'reviewer_username' => $request->reviewer_username,
+            'reviewee_user_id' => $request->reviewee_user_id,
+            'star_rating' => $request->star,
+            'review' => $request->review
+        ]);
+
+        $review = Review::where('merging_id', $request->merging_id)
+            ->where('reviewer_user_id', $user_id)
+            ->get();
+
+        $review_count = count($review);
+
+        if($review_count > 0){
+            alert()->error('Thank you, you have already review this transaction', 'Oops');
+            return redirect()->back();
+        }
+
+        $addreview = Review::create($newreview);
+        alert()->success('Thank you for reviewing this transaction', 'Success');
+        return redirect()->back();
+
     }
 
 }
