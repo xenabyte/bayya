@@ -33,16 +33,6 @@
 
                                 <form class="card-body">
                                     <h5 class="card-title">Search Through Discussions</h5>
-                                    <div class="form-group search-form-group">
-                                        <div class="input-group input-group-merged">
-                                            <input type="search" class="form-control" placeholder="Type your question and hit enter...">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-light btn-merge btn-icon" type="button">
-                                                    <svg id="lnr-magnifier" viewBox="0 0 1024 1024"><path class="path1" d="M966.070 981.101l-304.302-331.965c68.573-71.754 106.232-165.549 106.232-265.136 0-102.57-39.942-199-112.47-271.53s-168.96-112.47-271.53-112.47-199 39.942-271.53 112.47-112.47 168.96-112.47 271.53 39.942 199.002 112.47 271.53 168.96 112.47 271.53 112.47c88.362 0 172.152-29.667 240.043-84.248l304.285 331.947c5.050 5.507 11.954 8.301 18.878 8.301 6.179 0 12.378-2.226 17.293-6.728 10.421-9.555 11.126-25.749 1.571-36.171zM51.2 384c0-183.506 149.294-332.8 332.8-332.8s332.8 149.294 332.8 332.8-149.294 332.8-332.8 332.8-332.8-149.294-332.8-332.8z"></path></svg>
-                                                </button>
-                                            </div>
-                                       </div>
-                                    </div>
 
                                     <div class="form-group search-form-group mb-0">
 
@@ -51,7 +41,7 @@
                                             <span class="text-info">OR</span>
                                         </div>
 
-                                        <a href="#contact-form" class="btn btn-primary  btn-block smooth-link">Ask Us Directly</a>
+                                        <a href="{{ url('/user/contact') }}" class="btn btn-primary  btn-block smooth-link">Ask Us Directly</a>
                                     </div>
 
                                 </form>
@@ -204,45 +194,6 @@
                 </div>
 
             </div>
-
-            <!-- Contact Form -->
-            <div class="panel panel-light mt-0" id="contact-form">
-                <div class="panel-body">
-
-                    <h4 class="text-center mt-4">Didn't Find What You Were Looking For?</h4>
-
-                    <p class="text-center mb-4">Ask us directly.</p>
-
-                    <div class="container" style="max-width: 500px;">
-
-                        <div class="form-group form-group-vertical">
-                            <label for="form-group-vertical-1">Name</label>
-                            <input type="email" class="form-control" autocomplete="off" id="form-group-vertical-1" placeholder="Enter your full name...">
-                            <span class="border-color"></span>
-                        </div>
-
-                        <div class="form-group form-group-vertical">
-                            <label for="form-group-vertical-2">Email address</label>
-                            <input type="email" class="form-control" autocomplete="off" id="form-group-vertical-2" placeholder="Enter email address...">
-                            <span class="border-color"></span>
-                        </div>
-
-                        <div class="form-group form-group-vertical">
-                            <label for="form-group-vertical-3">Question</label>
-                            <textarea name="textarea" class="form-control" autocomplete="off" id="form-group-vertical-3" placeholder="Tell us what's bothering you..."></textarea>
-                            <span class="border-color"></span>
-                        </div>
-
-                        <div class="form-group text-right">
-                            <a href="#" class="btn btn-secondary mr-2">Back</a>
-                            <button type="submit" class="btn btn-primary px-5">Send</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div><!-- / Contact Form -->
 
     </div><!-- / .page-content -->
     <!-- Main Page Content -->

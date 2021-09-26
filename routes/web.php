@@ -47,6 +47,10 @@ Route::group(['prefix' => 'user'], function () {
 
   Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index']);
   Route::get('/sales', [App\Http\Controllers\User\HomeController::class, 'sales']);
+  Route::get('/profile', [App\Http\Controllers\User\HomeController::class, 'profile']);
+  Route::get('/records', [App\Http\Controllers\User\HomeController::class, 'records']);
+  Route::get('/contact', [App\Http\Controllers\User\HomeController::class, 'contact']);
+  Route::get('/helpCenter', [App\Http\Controllers\User\HomeController::class, 'helpCenter']);
 
   Route::post('/createTrade', [App\Http\Controllers\User\HomeController::class, 'createTrade']);
   Route::get('/trade/{hash}', [App\Http\Controllers\User\HomeController::class, 'getTrade']);

@@ -233,7 +233,7 @@
                                     <div class="">
                                         <a href="{{ url('/user/trade/'.$genTrade->hash) }}">
                                             <div class="directory-header">
-                                                <i class="fa fa-usd"></i>
+                                                <i class="fa fa-btc"></i>
                                             </div>
                                             <div class="directory-size">
                                                {{ $genTrade->selling_amount }} BTC
@@ -276,7 +276,7 @@
                                     <div class="">
                                         <a href="{{ url('/user/trade/'.$userTrade->hash) }}">
                                             <div class="directory-header">
-                                                <i class="fa fa-usd"></i>
+                                                <i class="fa fa-btc"></i>
                                             </div>
                                             <div class="directory-size">
                                                {{ $userTrade->selling_amount }} BTC
@@ -350,7 +350,7 @@
                                     <div class="">
                                         <a href="{{ url('/user/trade/'.$ongoingTrade->hash) }}">
                                             <div class="directory-header">
-                                                <i class="fa fa-usd"></i>
+                                                <i class="fa fa-btc"></i>
                                             </div>
                                             <div class="directory-size">
                                                {{ $ongoingTrade->selling_amount }} BTC

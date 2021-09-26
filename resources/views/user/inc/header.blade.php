@@ -97,7 +97,7 @@
 						<ul class="sidebar-submenu">
 
                             <li>
-								<a href="pages/dashboards/dashboard-2.html">
+								<a href="{{url('/user/profile')}}">
 									User Profile
 								</a>
 							</li>
@@ -125,7 +125,7 @@
 						<ul class="sidebar-submenu">
 
 							<li>
-								<a href="pages/pages/contact/contact.html">
+								<a href="{{ url('/user/contact') }}">
 									Contact
 								</a>
 							</li>
@@ -133,7 +133,7 @@
 
 
 							<li>
-								<a href="{{url('/user/help-center')}}">
+								<a href="{{url('/user/helpCenter')}}">
 									Help Center
 								</a>
 							</li>
@@ -190,7 +190,7 @@
                                         <div class="dropdown-header pt-0">
                                             <small class="text-overflow m-0">Welcome</small>
                                         </div>
-                                        <a href="#" class="dropdown-item">
+                                        <a href="{{ url('user/profile') }}" class="dropdown-item">
                                             <i class="fas fa-users"></i>
                                             <span>Profile</span>
                                         </a>

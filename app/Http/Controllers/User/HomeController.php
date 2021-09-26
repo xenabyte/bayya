@@ -56,6 +56,16 @@ class HomeController extends Controller
         $this->middleware(['auth:user']); //, '2fa'
     }
 
+    public function contact(Request $request)
+    {
+        return view('/user/contact');
+    }
+
+    public function helpCenter(Request $request)
+    {
+        return view('/user/help-center');
+    }
+
      /**
      * Enable 2FA
      */
@@ -211,7 +221,7 @@ class HomeController extends Controller
         ])->inRandomOrder()->get();
 
         $mergings  = Merging::where('seller_user_id', $user_id)->orWhere('buyer_user_id', $user_id)->get();
-        $doneTradesId = $mergings->where('pay_received_satus', 'Received')->pluck('id')->toArray();
+        $doneTradesId = $mergings->where('pay_received_status', 'Received')->pluck('id')->toArray();
         $userDoneTrades = Seller::whereIn('merging_id', $doneTradesId)->get();
 
 
@@ -298,8 +308,8 @@ class HomeController extends Controller
         $currency = $geoip->getCurrencyCode();
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
-        $balance_usd = $user->usd_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_usd);
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
 
         $transactions = Transaction::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->get();
         $payouts = Payout::where('user_id', $user_id)->get();
@@ -313,6 +323,47 @@ class HomeController extends Controller
         }
 
         return view('user.profile', [
+            'payment_methods'=> Payment::all(),
+            'wallet_balance' => $wallet_balance,
+            'transactions' => $transactions,
+            'payouts' => $payouts,
+            'currency' => $currency
+        ]);
+    }
+
+    public function records()
+    {
+        if(Auth::guard('user')->user()->status == 'blocked'){
+            return view('/user/auth/blocked', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+
+        $transactions = Transaction::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->get();
+        $payouts = Payout::where('user_id', $user_id)->get();
+
+        $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
+
+
+        $dispute_count = count($dispute);
+        if($dispute_count > 0) {
+            alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
+        }
+
+        return view('user.records', [
             'payment_methods'=> Payment::all(),
             'wallet_balance' => $wallet_balance,
             'transactions' => $transactions,
