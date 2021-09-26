@@ -31,13 +31,13 @@
                             <div class="col col-avatar py-3 py-md-0">
                                 <div class="user-avatar-inside-svg">
                                     <div class="user-avatar">
-                                        <img src="../../../assets/avatars/8.jpg" class="avatar avatar-4 rounded-circle" alt="Avatar image">
+                                       <i class="fa fa-user avatar avatar-4 rounded-circle"></i>
                                     </div>
                                     <svg viewBox="0 0 36 36" width="100" height="100" class="donut">
-                                        <circle class="donut-ring" cx="18" cy="18" r="15.91549430918952" fill="transparent" stroke="#eeeeee" stroke-width="2"></circle>
-                                        <circle class="donut-segment" cx="18" cy="18" r="15.91549430918952" fill="transparent" stroke="#06c48c" stroke-width="2" stroke-dasharray="70 30" stroke-dashoffset="25"></circle>
+                                        <circle class="donut-ring" cx="20" cy="20" r="15.91549430918952" fill="transparent" stroke="#eeeeee" stroke-width="2"></circle>
+                                        <circle class="donut-segment" cx="20" cy="20" r="15.91549430918952" fill="transparent" stroke="#06c48c" stroke-width="2" stroke-dasharray="70 30" stroke-dashoffset="25"></circle>
                                     </svg>
-                                    <p><strong>70%</strong> of profile information provided.</p>
+                                    <p> @if(empty(Auth::guard('user')->user()->status) )Kindly Upload <strong>KYC</strong> Documents @endif</p>
                                 </div>
                             </div>
                             <div class="col col-info">
@@ -47,20 +47,12 @@
                                     <div class="col">
 
                                         <div class="d-inline-block mr-4">
-                                            <h6 class="user-fullname">Johann Haag</h6>
-                                            <h6 class="user-name">johann-haag</h6>
+                                            <h6 class="user-fullname">{{ Auth::guard('user')->user()->username  }}</h6>
+                                            <h6 class="user-name">{{ Auth::guard('user')->user()->email  }}</h6>
                                         </div>
 
-                                        <span class="badge badge-pill badge-outline-info align-top">Level 5 Author</span>
+                                        <span class="badge badge-pill badge-outline-info align-top">{{ $reviews->avg('star_rating') }} Star Member</span>
 
-                                    </div>
-
-                                    <div class="col col-message-btn">
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-icon btn-secondary-light">
-                                                <i class="fas fa-paper-plane"></i>
-                                            </button>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -70,32 +62,14 @@
                                     <div class="col col-stats">
 
                                         <a href="#">
-                                            <strong>936</strong>
-                                            Posts
+                                            <strong>{{ $transactions->count() }}</strong>
+                                            Completed Transaction
                                         </a>
 
                                         <a href="#">
-                                            <strong>339k</strong>
-                                            Followers
+                                            <strong>{{ $trades->where('merge_status', null)->count() }}</strong>
+                                           Active Trades
                                         </a>
-
-                                        <a href="#">
-                                            <strong>485</strong>
-                                            Following
-                                        </a>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row mt-3">
-
-                                    <div class="col">
-
-                                        <p class="text-muted mb-0">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloremque voluptatibus id ducimus, temporibus magni deleniti incidunt sit rerum ipsa harum expedita amet dolores ea dicta sed est aut quam.
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloremque voluptatibus id ducimus, temporibus magni deleniti incidunt sit rerum ipsa harum expedita amet dolores ea dicta sed est aut quam.
-                                        </p>
 
                                     </div>
 
@@ -135,37 +109,50 @@
                                 <div class="tab-pane fade show active" id="user-profile-tab-1" aria-expanded="true">
 
                                     <div class="mx-auto" style="max-width: 500px;">
+                                        @if(empty(Auth::guard('user')->user()->status) )
+                                        <div class="identity-content">
+                                            <h4>Upload your ID card</h4>
+                                            <span>(Driving License or Government ID card)</span>
 
-                                        <h5 class="mb-3">Personal Information</h5>
-
-                                        <div class="form-group">
-                                            <label for="">First Name</label>
-                                            <input type="text" class="form-control" placeholder="Enter first name here...">
+                                            <p>Uploading your ID helps as ensure the safety and security of your funds</p>
+                                            <p>Upload the right document to avoid been banned and losing your funds.</p>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="">Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Enter last name here...">
-                                        </div>
+                                        <br>
 
-                                        <div class="form-group">
-                                            <label for="">Avatar</label>
-                                            <div class="custom-file custom-image custom-image-avatar">
-                                                <input type="file" name="image" data-placeholder="../../../assets/avatars/user-placeholder.png" class="custom-image-input" id="customImage">
-                                                <label class="custom-image-label" for="customImage">+</label>
+                                        <form action="{{ url('/user/uploadKYC') }}" class="identity-upload" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="">Front ID </label>
+                                                <div class="custom-file custom-image custom-image-avatar">
+                                                    <input type="file" name="front" required name="from" data-placeholder="../../../assets/avatars/user-placeholder.png" class="custom-image-input" id="customImage">
+                                                    <label class="custom-image-label" for="customImage">+</label>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="">Address</label>
-                                            <textarea class="form-control" placeholder="Enter last name here..."></textarea>
-                                        </div>
 
-                                        <div class="form-group text-right">
-                                            <button class="btn btn-wide btn-primary">Save</button>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="">Back ID </label>
+                                                <div class="custom-file custom-image custom-image-avatar">
+                                                    <input type="file" required name="back" data-placeholder="../../../assets/avatars/user-placeholder.png" class="custom-image-input" id="customImage">
+                                                    <label class="custom-image-label" for="customImage">+</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group text-right">
+                                                <button type="submit" class="btn btn-wide btn-primary">Save</button>
+                                            </div>
+                                        </form>
+
+                                        @elseif(Auth::guard('user')->user()->status == 'pending')
+                                            <h4>Kindly wait while your document is been reviewed</h4>
+                                        @else
+                                            <h4>KYC Document is approved</h4>
+                                        @endif
 
                                     </div>
+
+
 
                                 </div>
                                 <div class="tab-pane fade" id="user-profile-tab-2" aria-expanded="true">

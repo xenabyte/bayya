@@ -313,6 +313,8 @@ class HomeController extends Controller
 
         $transactions = Transaction::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->get();
         $payouts = Payout::where('user_id', $user_id)->get();
+        $reviews = Review::where('reviewee_user_id', $user_id)->get();
+        $trades = Seller::with(['seller', 'seller.reviewee', 'buyer.reviewee'])->where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->get();
 
         $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
 
@@ -327,7 +329,9 @@ class HomeController extends Controller
             'wallet_balance' => $wallet_balance,
             'transactions' => $transactions,
             'payouts' => $payouts,
-            'currency' => $currency
+            'currency' => $currency,
+            'reviews' => $reviews,
+            'trades' => $trades
         ]);
     }
 
@@ -400,7 +404,7 @@ class HomeController extends Controller
 
         if($user->update()){
 
-            Mail::to(env('ADMIN_EMAIL'))->send(new PendingUserMail($user->username));
+            //Mail::to(env('ADMIN_EMAIL'))->send(new PendingUserMail($user->username));
 
             alert()->success('Kindly wait, Your document is been processed.', 'KYC Document Upload Successfully')->persistent('Close');
             return redirect()->back();
@@ -409,6 +413,11 @@ class HomeController extends Controller
 
     public function createTrade(Request $request)
     {
+        if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending' ){
+            alert()->success('Kindly upload KYC Document and wait till you are verified', 'KYC document is needed')->persistent('Close');
+            return view('/user/profile');
+        }
+
         //User data
         $user = Auth::guard('user')->user();
         $user_id = $user->id;
