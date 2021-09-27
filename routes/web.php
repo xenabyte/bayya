@@ -29,6 +29,25 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/password/reset', [App\Http\Controllers\Admin\Auth\ResetPasswordController::class, 'reset'])->name('password.email');
     Route::get('/password/reset', [App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.reset');
     Route::get('/password/reset/{token}', [App\Http\Controllers\Admin\Auth\ResetPasswordController::class, 'showResetForm']);
+
+    Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index']);
+    Route::get('/allUser', [App\Http\Controllers\Admin\HomeController::class, 'allUser']);
+    Route::get('/disputes', [App\Http\Controllers\Admin\HomeController::class, 'disputes']);
+    Route::get('/payouts', [App\Http\Controllers\Admin\HomeController::class, 'payouts']);
+    Route::get('/tickets', [App\Http\Controllers\Admin\HomeController::class, 'tickets']);
+    Route::get('/trades', [App\Http\Controllers\Admin\HomeController::class, 'trades']);
+    Route::get('/profile', [App\Http\Controllers\Admin\HomeController::class, 'profile']);
+
+    Route::post('/saveProfile', [App\Http\Controllers\User\HomeController::class, 'saveProfile']);
+    Route::post('/blockUser', [App\Http\Controllers\User\HomeController::class, 'blockUser']);
+    Route::post('/approveKYC', [App\Http\Controllers\User\HomeController::class, 'approveKYC']);
+    Route::post('/rejectKYC', [App\Http\Controllers\User\HomeController::class, 'rejectKYC']);
+    Route::post('/unblockUser', [App\Http\Controllers\User\HomeController::class, 'unblockUser']);
+    Route::post('/approvePayout', [App\Http\Controllers\User\HomeController::class, 'approvePayout']);
+    Route::post('/payBuyer', [App\Http\Controllers\User\HomeController::class, 'payBuyer']);
+    Route::post('/paySeller', [App\Http\Controllers\User\HomeController::class, 'paySeller']);
+
+
 });
 
 Route::group(['prefix' => 'user'], function () {
@@ -45,33 +64,26 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/password/reset/{token}', [App\Http\Controllers\User\Auth\ResetPasswordController::class, 'showResetForm']);
 
 
-  Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index']);
-  Route::get('/sales', [App\Http\Controllers\User\HomeController::class, 'sales']);
-  Route::get('/profile', [App\Http\Controllers\User\HomeController::class, 'profile']);
-  Route::get('/records', [App\Http\Controllers\User\HomeController::class, 'records']);
-  Route::get('/contact', [App\Http\Controllers\User\HomeController::class, 'contact']);
-  Route::get('/helpCenter', [App\Http\Controllers\User\HomeController::class, 'helpCenter']);
+    Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index']);
+    Route::get('/sales', [App\Http\Controllers\User\HomeController::class, 'sales']);
+    Route::get('/profile', [App\Http\Controllers\User\HomeController::class, 'profile']);
+    Route::get('/records', [App\Http\Controllers\User\HomeController::class, 'records']);
+    Route::get('/contact', [App\Http\Controllers\User\HomeController::class, 'contact']);
+    Route::get('/helpCenter', [App\Http\Controllers\User\HomeController::class, 'helpCenter']);
 
-  Route::post('/createTrade', [App\Http\Controllers\User\HomeController::class, 'createTrade']);
-  Route::get('/trade/{hash}', [App\Http\Controllers\User\HomeController::class, 'getTrade']);
-  Route::post('/joinTrade', [App\Http\Controllers\User\HomeController::class, 'joinTrade']);
-  Route::get('/chatroom/{id}', [App\Http\Controllers\User\HomeController::class, 'chatRoom']);
-  Route::post('/sendMessage', [App\Http\Controllers\User\HomeController::class, 'sendMessage']);
-  Route::post('/deal', [App\Http\Controllers\User\HomeController::class, 'deal']);
-  Route::post('/cancelTrade', [App\Http\Controllers\User\HomeController::class, 'cancelTrade']);
-  Route::post('/acceptPayment', [App\Http\Controllers\User\HomeController::class, 'acceptPayment']);
-  Route::post('/raiseDispute', [App\Http\Controllers\User\HomeController::class, 'raiseDispute']);
-  Route::post('/confirmPayment', [App\Http\Controllers\User\HomeController::class, 'confirmPayment']);
-  Route::post('/createReview', [App\Http\Controllers\User\HomeController::class, 'createReview']);
+    Route::post('/createTrade', [App\Http\Controllers\User\HomeController::class, 'createTrade']);
+    Route::get('/trade/{hash}', [App\Http\Controllers\User\HomeController::class, 'getTrade']);
+    Route::post('/joinTrade', [App\Http\Controllers\User\HomeController::class, 'joinTrade']);
+    Route::get('/chatroom/{id}', [App\Http\Controllers\User\HomeController::class, 'chatRoom']);
+    Route::post('/sendMessage', [App\Http\Controllers\User\HomeController::class, 'sendMessage']);
+    Route::post('/deal', [App\Http\Controllers\User\HomeController::class, 'deal']);
+    Route::post('/cancelTrade', [App\Http\Controllers\User\HomeController::class, 'cancelTrade']);
+    Route::post('/acceptPayment', [App\Http\Controllers\User\HomeController::class, 'acceptPayment']);
+    Route::post('/raiseDispute', [App\Http\Controllers\User\HomeController::class, 'raiseDispute']);
+    Route::post('/confirmPayment', [App\Http\Controllers\User\HomeController::class, 'confirmPayment']);
+    Route::post('/createReview', [App\Http\Controllers\User\HomeController::class, 'createReview']);
 
-  Route::post('/uploadKYC', [App\Http\Controllers\User\HomeController::class, 'uploadKYC']);
-  Route::post('/withdraw', [App\Http\Controllers\User\HomeController::class, 'withdraw']);
-
-
-
-
-
-
-
+    Route::post('/uploadKYC', [App\Http\Controllers\User\HomeController::class, 'uploadKYC']);
+    Route::post('/withdraw', [App\Http\Controllers\User\HomeController::class, 'withdraw']);
 
 });

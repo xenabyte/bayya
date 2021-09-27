@@ -1,81 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ env('APP_NAME') }}</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="icon" type="image/png" href="{{asset('assets/favicon.png')}}">
+        <link rel="apple-touch-icon" href="{{asset('assets/apple-touch-icon.png')}}">
 
-    <title>{{ config('app.name', 'Laravel Multi Auth Guard') }}</title>
+        <link rel="stylesheet" href="{{asset('assets/css/vendor.css')}}">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!-- Fontawesome -->
+		<link rel="stylesheet" href="{{asset('assets/css/font-awesome/5.13.1/css/all.min.css')}}"/>
+        <!-- Dosis & Poppins Fonts -->
+        <link href="{{asset('assets/css/fonts.googleapis.com/css2df2a.css?family=Dosis:wght@200;300;400;500;523;600;700;800&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap')}}" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
+        <link rel="stylesheet" href="{{asset('assets/layout-1/css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/auth.css')}}">
+
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <!-- Scripts -->
+        <script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
+    </head>
+
+    <body>
+
+		<div id="app" class="login-page">
+
+			<div class="container">
+
+				<!-- Login Panel -->
+				<div class="panel">
+					<div class="row no-gutters">
+
+						<div class="col-md-6">
+
+
+                            @yield('content')
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="panel-body panel-image" style="background-image: url('{{asset('assets/auth/tim-bennett-OwvRB-M3GwE-unsplash-h500.jpg')}}');"></div>
+
+                        </div>
+
+					</div><!-- .row -->
+				</div><!-- / Login Panel -->
+
+			</div><!-- .container -->
+
+		</div>
+
+        <script src="{{asset('assets/js/vendor.js')}}"></script>
+		<script src="{{asset('assets/js/app.js')}}"></script>
+
+        <script>
+            function enableBtn(){
+            document.getElementById("signUp").disabled = false;
+        }
     </script>
-</head>
-<body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    </body>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/admin') }}">
-                    {{ config('app.name', 'Laravel Multi Auth Guard') }}: Admin
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/admin/login') }}">Login</a></li>
-                        <li><a href="{{ url('/admin/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    @yield('content')
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
 </html>
