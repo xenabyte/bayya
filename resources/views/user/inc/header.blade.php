@@ -98,7 +98,7 @@
 
                             <li>
 								<a href="{{url('/user/profile')}}">
-									User Profile
+									Profile
 								</a>
 							</li>
 

@@ -65,6 +65,7 @@ Route::group(['prefix' => 'user'], function () {
   Route::post('/createReview', [App\Http\Controllers\User\HomeController::class, 'createReview']);
 
   Route::post('/uploadKYC', [App\Http\Controllers\User\HomeController::class, 'uploadKYC']);
+  Route::post('/withdraw', [App\Http\Controllers\User\HomeController::class, 'withdraw']);
 
 
 

@@ -470,7 +470,7 @@
 
                                     <div class="form-group">
                                         <label>Amount in {{ $currency }}</label>
-                                        <input type="number" class="form-control" name="usd_amount" min="0" max="{{ number_format($wallet_balance) }}" value="{{ number_format($wallet_balance) }}" arequired>
+                                        <input type="number" class="form-control" name="usd_amount" min="0" max="{{ $controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet) }}" value="{{ round($controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet)) }}"  required>
                                     </div>
 
 

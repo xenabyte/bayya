@@ -131,19 +131,11 @@ class HomeController extends Controller
         //    ]);
         // }
 
-        // if(Auth::guard('user')->user()->status == 'blocked'){
-        //     return view('/user/auth/blocked', [
-        //        'email' => Auth::guard('user')->user()->email,
-        //    ]);
-        // }
-
-        // if(empty(Auth::guard('user')->user()->status)){
-        //     return view('/user/kyc');
-        // }
-
-        // if(Auth::guard('user')->user()->status == 'pending'){
-        //     return view('/user/pending');
-        // }
+        if(Auth::guard('user')->user()->status == 'blocked'){
+            return view('/user/auth/blocked', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
 
         //packages
         $geoip = new GeoIPLocation();
@@ -172,8 +164,6 @@ class HomeController extends Controller
             alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
         }
 
-
-        log::info($wallet_balance);
 
 
         return view('user.home',[
@@ -204,7 +194,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
 
         $genTrades = Seller::where([
@@ -309,7 +299,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
         $transactions = Transaction::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->get();
         $payouts = Payout::where('user_id', $user_id)->get();
@@ -354,7 +344,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
         $transactions = Transaction::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->get();
         $payouts = Payout::where('user_id', $user_id)->get();
@@ -544,7 +534,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
         $selling_id = $request->selling_id;
         //--------------------CURRENT TIME--------------------------------
@@ -700,7 +690,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
         $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
@@ -740,7 +730,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
         $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
@@ -786,7 +776,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
         $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
@@ -895,7 +885,7 @@ class HomeController extends Controller
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_btc);
+        $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
         $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
@@ -947,6 +937,61 @@ class HomeController extends Controller
         alert()->success('Thank you for reviewing this transaction', 'Success');
         return redirect()->back();
 
+    }
+
+
+    public function withdraw(Request $request)
+    {
+        $user = Auth::guard('user')->user();
+        $user_id = $user->id;
+        $username = $user->username;
+        $email = $user->email;
+
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $balance_btc;
+        $labels = env('APP_NAME').'-User-'.$username;
+
+        //--------------------CURRENT TIME--------------------------------
+        $current_time = \Carbon\Carbon::now()->toDateTimeString();
+
+
+        $btc_address = $request->btc_address;
+        $usd_amount = intval($this->toUsd($currency, $request->amount));
+        $btc_amount = $this->getBtcBalance($usd_amount);
+
+
+        $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
+
+        $dispute_count = count($dispute);
+        if($dispute_count > 0) {
+            alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
+        }
+
+       $newpayout = ([
+            'user_id' => $user_id,
+            'username' => $username,
+            'email' => $email,
+            'user_label' => $labels,
+            'amount' => $btc_amount,
+            'btc_address' => $btc_address,
+            'payout_status' => 'pending',
+        ]);
+
+
+        if($btc_amount >= $wallet_balance){
+            alert()->error('Your withdraw amount is higher than your balance, try a lesser amount.', 'Insufficient Funds')->persistent('Close');
+            return redirect()->back();
+        }
+
+        $create = Payout::create($newpayout);
+        alert()->success('Your withdrawal request is been proceed. You external wallet will be created within 24 Hours', 'Success')->persistent('Close');;
+        return redirect()->back();
     }
 
 }

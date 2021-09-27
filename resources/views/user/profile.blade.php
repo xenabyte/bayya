@@ -1,4 +1,5 @@
 @include('user.inc.header')
+@inject('controller', 'App\Http\Controllers\Controller')
 
     <!-- Main Page Content -->
     <div class="page-content">
@@ -75,6 +76,35 @@
 
                                 </div>
 
+                                <br>
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-6">
+                                        <div class="widget widget-file">
+
+                                            <span class="widget-icon-bg">
+                                                <i class="fas fa-money-check-alt"></i>
+                                            </span>
+
+                                            <div class="widget-header">
+                                                <span class="widget-icon bg-info-light">
+                                                    <i class="fas fa-money-check-alt"></i>
+                                                </span>
+                                                <h6 class="widget-label">Wallet Balance</h6>
+                                            </div>
+                                            <div class="widget-body px-4 pb-4">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4 class="used text-left">{{ $currency }} {{ number_format($controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet), 2) }} / {{ Auth::guard('user')->user()->btc_wallet}} BTC</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="progress" style="height: 2px;">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -97,7 +127,12 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link px-md-5" data-toggle="tab" href="#user-profile-tab-3" role="tab" aria-selected="true">
-                                            Two Factor Authentication (2FA)
+                                            Deposit
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link px-md-5" data-toggle="tab" href="#user-profile-tab-4" role="tab" aria-selected="true">
+                                            Withdraw
                                         </a>
                                     </li>
                                 </ul>
@@ -190,25 +225,43 @@
 
                                     <div class="mx-auto" style="max-width: 500px;">
 
-                                        <h5 class="mb-3">Preferences</h5>
-
-                                        <div class="form-group row">
-                                            <label class="col-5 col-md-5 col-lg-5 m-0">Notifications</label>
-                                            <div class="col-7 col-md-7 col-lg-7">
-                                                <input type="checkbox" class="switchery switchery-sm" checked />
+                                        <div class="card profile_card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Deposit(BTC Only)</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="text-center">{{ Auth::guard('user')->user()->btc_address }}</h5>
+                                                <p class="text-center"><a href="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ Auth::guard('user')->user()->btc_address }}" target="_blank" title="barcode"><img id="btc" src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ Auth::guard('user')->user()->btc_address }}" alt="{{ Auth::guard('user')->user()->btc_address }}"></a></p>
+                                                <hr>
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-5 col-md-5 col-lg-5 m-0">Receive Newsletter</label>
-                                            <div class="col-7 col-md-7 col-lg-7">
-                                                <input type="checkbox" class="switchery-sm switchery-danger" checked />
-                                            </div>
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group text-right">
-                                            <button class="btn btn-wide btn-primary">Save</button>
-                                        </div>
+                                </div>
+                                <div class="tab-pane fade" id="user-profile-tab-4" aria-expanded="true">
+
+                                    <div class="mx-auto" style="max-width: 500px;">
+
+                                        <h5 class="mb-3">Withdraw</h5>
+                                        <form action="{{ url('/user/withdraw') }}" method="POST">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="">Amount in {{ $currency }}</label>
+                                                <input name="amount" type="number" min="0" max="{{ $controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet) }}" class="form-control" placeholder="5000 {{ $currency }}">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="">BTC Address</label>
+                                                <div class="input-group input-group-merged input-group-password-toggle">
+                                                    <input type="text" name="btc_address" minlength="32" class="form-control" required placeholder="BTC Address">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group text-right">
+                                                <button type="submit" class="btn btn-wide btn-primary">Withdraw</button>
+                                            </div>
+                                        </form>
 
                                     </div>
 
