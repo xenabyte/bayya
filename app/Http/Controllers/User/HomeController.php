@@ -994,4 +994,33 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function saveProfile(Request $request)
+    {
+        $data = $request->all();
+
+        $user = Auth::guard('user')->user();
+
+
+        if(\Hash::check($data['old_password'], Auth::guard('user')->user()->password)){
+            if($request->new_password == $request->confirm_password){
+                $user->password = bcrypt($request->new_password);
+            }else{
+                alert()->error('Password mismatch', 'Oops!')->persistent('Close');
+                return redirect()->back();
+            }
+        }else{
+            alert()->error('Wrong Old password, Try again with the right one', 'Oops!')->persistent('Close');
+            return redirect()->back();
+        }
+
+
+        if($user->update()) {
+            alert()->success('Save Changes', 'Success')->persistent('Close');
+            return redirect()->back();
+        }else{
+            alert()->error('An Error Occurred', 'Oops!')->persistent('Close');
+            return redirect()->back();
+        }
+    }
+
 }

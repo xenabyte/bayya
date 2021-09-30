@@ -126,7 +126,7 @@
 
 							<li>
 								<a href="{{ url('/user/contact') }}">
-									Contact
+									Ticket
 								</a>
 							</li>
 

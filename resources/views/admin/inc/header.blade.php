@@ -125,7 +125,7 @@
 						<ul class="sidebar-submenu">
 
 							<li>
-								<a href="{{ url('/admin/contact') }}">
+								<a href="{{ url('/admin/tickets') }}">
 									Tickets
 								</a>
 							</li>

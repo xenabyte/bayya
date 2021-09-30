@@ -26,6 +26,8 @@ use App\Models\Conversation;
 use App\Models\Review;
 use App\Models\Deposit;
 use App\Models\Status;
+use App\Models\Ticket;
+use App\Models\TicketAnswer;
 
 use App\Mail\Notification;
 use App\Mail\KycRejectMail;
@@ -75,7 +77,7 @@ class HomeController extends Controller
     public function disputes()
     {
 
-        $disputes = Dispute::orderBy('id', 'DESC')->get();
+        $disputes = Dispute::with(['buyer', 'seller', 'merging', 'merging.associated_buyer', 'merging.associated_seller'])->orderBy('id', 'DESC')->get();
 
         return view('admin.disputes', [
             'disputes' => $disputes
@@ -130,16 +132,10 @@ class HomeController extends Controller
     public function tickets()
     {
 
-        $balance = 0;//LaraBlockIo::getAvailableBalance();
-        $user_count = User::all()->count();
-        $transaction_count = Transaction::all()->count();
-        $payout_count = Payout::where('approved_at', '')->count();
+        $tickets = Ticket::with(['user', 'trade', 'ticket_answer', 'ticket_answer.admin'])->get();
 
         return view('admin.tickets', [
-            'user_count' => $user_count,
-            'transaction_count' => $transaction_count,
-            'payout_count' => $payout_count,
-            'balance' => $balance
+            'tickets' => $tickets
         ]);
     }
 
@@ -164,12 +160,11 @@ class HomeController extends Controller
     {
         $data = $request->all();
 
-        $user = Admin::find($request->id);
+        $user =  $user = Auth::guard('admin')->user();
 
 
         if(\Hash::check($data['old_password'], Auth::guard('admin')->user()->password)){
             if($request->new_password == $request->confirm_password){
-                $user->email = $request->email;
                 $user->password = bcrypt($request->new_password);
             }else{
                 alert()->error('Password mismatch', 'Oops!')->persistent('Close');
@@ -188,6 +183,41 @@ class HomeController extends Controller
             alert()->error('An Error Occurred', 'Oops!')->persistent('Close');
             return redirect()->back();
         }
+    }
+
+
+    public function closeTicket(Request $request)
+    {
+        $id = $request['id'];
+        $current_time = \Carbon\Carbon::now()->toDateTimeString();
+
+        $ticket = Ticket::find($id);
+        $ticket->status = 'Answered';
+        $ticket->answered_at = $current_time;
+        $ticket->update();
+
+        alert()->success('Ticket Closed', 'Success')->persistent('Close');;
+        return redirect()->back();
+    }
+
+    public function sendComment(Request $request)
+    {
+
+        // if(!$trade = Merging::find($request->trade_id)){
+        //     alert()->success('Ticket Closed', 'Success')->persistent('Close');;
+        //     return redirect()->back();
+        // }
+
+        $newComment = ([
+            'ticket_id' => $request->ticket_id,
+            'comment' => $request->comment,
+            'admin_id' => Auth::guard('admin')->user()->id
+        ]);
+
+        $ticket_answer = TicketAnswer::create($newComment);
+
+        alert()->success('Response Sent', 'Success')->persistent('Close');;
+        return redirect()->back();
     }
 
 
@@ -225,7 +255,7 @@ class HomeController extends Controller
         $users->status = NULL;
         $users->update();
 
-        Mail::to($users->email)->send(new KycRejectMail($users->username));
+        // Mail::to($users->email)->send(new KycRejectMail($users->username));
 
         alert()->success('User KYC Rejected.', 'Success')->persistent('Close');;
         return redirect()->back();
@@ -246,9 +276,10 @@ class HomeController extends Controller
     public function approvePayout(Request $request)
     {
         $id = $request['id'];
+        $current_time = \Carbon\Carbon::now()->toDateTimeString();
 
         $payout = Payout::find($id);
-        $payout->payout_status = 'approved';
+        $payout->approved_at = $current_time;
         $payout->update();
 
         alert()->success('Payout approved successfully.', 'Success')->persistent('Close');;

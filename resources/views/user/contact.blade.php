@@ -54,28 +54,29 @@
 							</div>
 
 							<div class="panel-body panel-form">
+                                <form action="#" method="post">
+                                    <div class="form-row">
 
-								<div class="form-row">
+                                        <div class="form-group col-md-6 form-group-underline">
+                                            <label for="form-group-underline-name">Name</label>
+                                            <input type="email" class="form-control" autocomplete="off" id="form-group-underline-name" placeholder="Enter your name">
+                                            <span class="border-color"></span>
+                                        </div>
 
-									<div class="form-group col-md-6 form-group-underline">
-										<label for="form-group-underline-name">Name</label>
-										<input type="email" class="form-control" autocomplete="off" id="form-group-underline-name" placeholder="Enter your name">
-										<span class="border-color"></span>
-									</div>
+                                        <div class="form-group col-md-6 form-group-underline">
+                                            <label for="form-group-underline-email">Email address</label>
+                                            <input type="email" class="form-control" autocomplete="off" id="form-group-underline-email" placeholder="Enter email">
+                                            <span class="border-color"></span>
+                                        </div>
 
-									<div class="form-group col-md-6 form-group-underline">
-										<label for="form-group-underline-email">Email address</label>
-										<input type="email" class="form-control" autocomplete="off" id="form-group-underline-email" placeholder="Enter email">
-										<span class="border-color"></span>
-									</div>
+                                    </div>
 
-								</div>
-
-								<div class="form-group form-group-underline">
-									<label for="form-group-underline-message">Message</label>
-									<textarea class="form-control" autocomplete="off" id="form-group-underline-message" placeholder="Type your message here..."></textarea>
-									<span class="border-color"></span>
-								</div>
+                                    <div class="form-group form-group-underline">
+                                        <label for="form-group-underline-message">Message</label>
+                                        <textarea class="form-control" autocomplete="off" id="form-group-underline-message" placeholder="Type your message here..."></textarea>
+                                        <span class="border-color"></span>
+                                    </div>
+                                </form>
 
 								<div class="form-group mb-0 mt-5 text-right">
 									<a href="{{ url('user/home') }}" class="btn btn-light px-5">Back Home</a>
@@ -128,5 +129,4 @@
 
     </body>
 
-<!-- Mirrored from exon.arsaland.com/html/pages/pages/contact/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Sep 2021 08:55:36 GMT -->
 </html>

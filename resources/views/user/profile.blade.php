@@ -196,27 +196,36 @@
 
                                         <h5 class="mb-3">Security</h5>
 
-                                        <div class="form-group">
-                                            <label for="">Password</label>
-                                            <input type="password" placeholder="Merged Buttons" class="form-control" value="your-password">
-                                        </div>
+                                        <form action="{{ url('/user/saveProfile') }}" method="POST">
+                                            @csrf
 
-                                        <div class="form-group">
-                                            <label for="">New Password</label>
-                                            <div class="input-group input-group-merged input-group-password-toggle">
-                                                <input type="password" placeholder="Merged Buttons" class="form-control" value="your-password">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-white btn-icon btn-password-toggle" type="button">
-                                                        <i class="fas icon-see fa-eye"></i>
-                                                        <i class="fas icon-hide fa-eye-slash"></i>
-                                                    </button>
+                                            <div class="form-group">
+                                                <label for="">Old Password</label>
+                                                <input type="password" name="old_password" class="form-control" placeholder="Your password">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="">New Password</label>
+                                                <input type="password" name="new_password"  class="form-control" placeholder="New Your Password">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="">New Password</label>
+                                                <div class="input-group input-group-merged input-group-password-toggle">
+                                                    <input type="password" name="confirm_password" class="form-control" placeholder="Confirm your password">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-white btn-icon btn-password-toggle" type="button">
+                                                            <i class="fas icon-see fa-eye"></i>
+                                                            <i class="fas icon-hide fa-eye-slash"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group text-right">
-                                            <button class="btn btn-wide btn-primary">Save</button>
-                                        </div>
+                                            <div class="form-group text-right">
+                                                <button type="submit" class="btn btn-wide btn-primary">Save Changes</button>
+                                            </div>
+                                        </form>
 
                                     </div>
 

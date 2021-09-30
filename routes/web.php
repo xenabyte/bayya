@@ -31,22 +31,23 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/password/reset/{token}', [App\Http\Controllers\Admin\Auth\ResetPasswordController::class, 'showResetForm']);
 
     Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index']);
-    Route::get('/allUser', [App\Http\Controllers\Admin\HomeController::class, 'allUser']);
+    Route::get('/allUsers', [App\Http\Controllers\Admin\HomeController::class, 'allUsers']);
     Route::get('/disputes', [App\Http\Controllers\Admin\HomeController::class, 'disputes']);
     Route::get('/payouts', [App\Http\Controllers\Admin\HomeController::class, 'payouts']);
     Route::get('/tickets', [App\Http\Controllers\Admin\HomeController::class, 'tickets']);
     Route::get('/trades', [App\Http\Controllers\Admin\HomeController::class, 'trades']);
     Route::get('/profile', [App\Http\Controllers\Admin\HomeController::class, 'profile']);
 
-    Route::post('/saveProfile', [App\Http\Controllers\User\HomeController::class, 'saveProfile']);
-    Route::post('/blockUser', [App\Http\Controllers\User\HomeController::class, 'blockUser']);
-    Route::post('/approveKYC', [App\Http\Controllers\User\HomeController::class, 'approveKYC']);
-    Route::post('/rejectKYC', [App\Http\Controllers\User\HomeController::class, 'rejectKYC']);
-    Route::post('/unblockUser', [App\Http\Controllers\User\HomeController::class, 'unblockUser']);
-    Route::post('/approvePayout', [App\Http\Controllers\User\HomeController::class, 'approvePayout']);
-    Route::post('/payBuyer', [App\Http\Controllers\User\HomeController::class, 'payBuyer']);
-    Route::post('/paySeller', [App\Http\Controllers\User\HomeController::class, 'paySeller']);
-
+    Route::post('/saveProfile', [App\Http\Controllers\Admin\HomeController::class, 'saveProfile']);
+    Route::post('/blockUser', [App\Http\Controllers\Admin\HomeController::class, 'blockUser']);
+    Route::post('/approveKYC', [App\Http\Controllers\Admin\HomeController::class, 'approveKYC']);
+    Route::post('/rejectKYC', [App\Http\Controllers\Admin\HomeController::class, 'rejectKYC']);
+    Route::post('/unblockUser', [App\Http\Controllers\Admin\HomeController::class, 'unblockUser']);
+    Route::post('/approvePayout', [App\Http\Controllers\Admin\HomeController::class, 'approvePayout']);
+    Route::post('/payBuyer', [App\Http\Controllers\Admin\HomeController::class, 'payBuyer']);
+    Route::post('/paySeller', [App\Http\Controllers\Admin\HomeController::class, 'paySeller']);
+    Route::post('/closeTicket', [App\Http\Controllers\Admin\HomeController::class, 'closeTicket']);
+    Route::post('/sendComment', [App\Http\Controllers\Admin\HomeController::class, 'sendComment']);
 
 });
 
@@ -85,5 +86,7 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::post('/uploadKYC', [App\Http\Controllers\User\HomeController::class, 'uploadKYC']);
     Route::post('/withdraw', [App\Http\Controllers\User\HomeController::class, 'withdraw']);
+
+    Route::post('/saveProfile', [App\Http\Controllers\User\HomeController::class, 'saveProfile']);
 
 });
