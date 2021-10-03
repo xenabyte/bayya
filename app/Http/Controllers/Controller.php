@@ -92,4 +92,26 @@ class Controller extends BaseController
         }
 
     }
+
+    public static function toCurrencyWithRate($currency, $btc, $rate){
+        try {
+            $client = new Client();
+            $body = $client->get('https://api.coindesk.com/v1/bpi/currentprice/'.$currency.'.json')->getBody();
+            $obj = json_decode($body);
+            $mainPrice = intval($obj->bpi->$currency->rate_float);
+            //adding rate
+            $ratePrice = ($rate/100) * $mainPrice;
+            $price = $ratePrice+$mainPrice;
+            //convert amount to btc
+
+            $amount = $btc * $price;
+            return $amount;
+        }
+        catch(\Exception $e){
+            \Log::info("error");
+        }
+
+    }
+
+
 }

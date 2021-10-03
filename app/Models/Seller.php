@@ -50,8 +50,8 @@ class Seller extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function merging(): HasOne
+    public function merging()
     {
-        return $this->hasOne(Merging::class, 'merging_id');
+        return $this->hasOne(Merging::class, 'seller_id');
     }
 }

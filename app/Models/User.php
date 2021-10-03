@@ -33,7 +33,8 @@ class User extends Authenticatable
         'location',
         'currency',
         'email_verified_at',
-        'verification_code'
+        'verification_code',
+        'last_seen'
     ];
     /**
      * The attributes that should be hidden for arrays.

@@ -42,7 +42,6 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>KYC Documents</th>
                                         <th>Username</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
@@ -52,6 +51,7 @@
                                         <th>Currency</th>
                                         <th>IP Address</th>
                                         <th>Joined At</th>
+                                        <th>Last Seen</th>
                                         <th width="3">Action</th>
                                         <th></th>
                                     </tr>
@@ -62,19 +62,6 @@
                                         <td>
                                             #{{ $user->id }}
                                         </td>
-                                        <td>
-                                            @if(!empty($user->kycfront) || !empty($user->kycback))
-                                            <a href="#" id="pop">
-                                                <img src="{{ env('IMAGE_UPLOAD_URL') }}{{ $user->kycfront }}" style="width: 400px; height: 264px;">
-                                                KYC FRONT
-                                            </a>
-                                            <hr>
-                                            <a href="#" id="pop">
-                                                <img  src="{{ env('IMAGE_UPLOAD_URL') }}{{ $user->kycback }}" style="width: 400px; height: 264px;">
-                                                KYC BACK
-                                            </a>
-                                            @endif
-                                        </td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone_number }}</td>
@@ -84,9 +71,12 @@
                                         <td>{{ $user->currency }}</td>
                                         <td>{{ $user->ip_address }}</td>
                                         <td>{{ date('M j Y h:i A', strtotime($user->created_at)) }}</td>
+                                        <td>{{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</td>
                                         <td>@if($user->status == 'approved') <span class="badge color-badge badge-success"></span> Approved  @else<span class="badge color-badge badge-danger"></span> Blocked @endif</td>
                                         <td class="operations">
                                             @if($user->status == 'approved' || $user->status == 'blocked')
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-xl-{{ $user->id }}">View KYC Documents</button>
+                                                <p></p>
                                                 @if($user->status == 'approved')
                                                     <form action="{{ url('/admin/blockUser') }}" method="post">
                                                     @csrf
@@ -103,7 +93,7 @@
                                                 <br>
                                             @endif
 
-                                            @if($user->status != 'pending')
+                                            @if($user->status == 'pending')
                                                 <form action="{{ url('/admin/approveKYC') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $user->id }}"/>
@@ -120,6 +110,34 @@
                                             @endif
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" tabindex="-1" role="dialog" id="modal-xl-{{ $user->id }}">
+                                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">{{ $user->username }}'s Documents</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#333333" viewBox="0 0 24 24" width="24" height="24"><path d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"/></svg>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <img src="{{ env('IMAGE_UPLOAD_URL') }}{{ $user->kycfront }}" class="img-fluid" alt="Responsive image">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <img src="{{ env('IMAGE_UPLOAD_URL') }}{{ $user->kycback }}" class="img-fluid" alt="Responsive image">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light" data-dismiss="modal">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     @endforeach
 
 

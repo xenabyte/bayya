@@ -215,7 +215,7 @@ class HomeController extends Controller
         $userDoneTrades = Seller::whereIn('merging_id', $doneTradesId)->get();
 
 
-        $ongoingTrades = Seller::where([
+        $ongoingTrades = Seller::with('merging')->where([
             ['merge_status', '=', 'merged'],
             ['currency', '=', $currency]
         ])->where('seller_user_id', $user_id)->orWhere('buyer_user_id', $user_id)->get();

@@ -240,7 +240,7 @@
                                             </div>
 
                                             <div class="directory-info">
-                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrency($currency, $genTrade->selling_amount), 2)}}</span>
+                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $genTrade->selling_amount, $getTrade->selling_rate), 2)}}</span>
                                                 <span class="name">{{ $genTrade->selling_rate }}%</span>
                                                 <span class="size">{{ $genTrade->trade_minutes }} Minutes(Trade Minutes)</span>
                                             </div>
@@ -283,7 +283,7 @@
                                             </div>
 
                                             <div class="directory-info">
-                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrency($currency, $userTrade->selling_amount), 2)}}</span>
+                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $userTrade->selling_amount, $userTrade->selling_rate), 2)}}</span>
                                                 <span class="name">{{ $userTrade->selling_rate }}%</span>
                                                 <span class="size">{{ $userTrade->trade_minutes }} Minutes(Trade Minutes)</span>
                                             </div>
@@ -346,6 +346,7 @@
 
                             <ul class="directory-list row">
                                 @foreach($ongoingTrades as $ongoingTrade)
+                                @if(empty($ongoingTrade->merging->pay_received_status))
                                 <li class="col-lg-4 col-md-6">
                                     <div class="">
                                         <a href="{{ url('/user/trade/'.$ongoingTrade->hash) }}">
@@ -357,7 +358,7 @@
                                             </div>
 
                                             <div class="directory-info">
-                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrency($currency, $ongoingTrade->selling_amount), 2)}}</span>
+                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $ongoingTrade->selling_amount, $ongoingTrade->selling_rate), 2)}}</span>
                                                 <span class="name">{{ $ongoingTrade->selling_rate }}%</span>
                                                 <span class="size">{{ $ongoingTrade->trade_minutes }} Minutes(Trade Minutes)</span>
                                             </div>
@@ -374,6 +375,7 @@
                                         </div>
                                     </div>
                                 </li>
+                                @endif
                                 @endforeach
                             </ul>
                         </div>
