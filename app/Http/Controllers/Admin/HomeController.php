@@ -196,7 +196,7 @@ class HomeController extends Controller
         $ticket->answered_at = $current_time;
         $ticket->update();
 
-        alert()->success('Ticket Closed', 'Success')->persistent('Close');;
+        alert()->success('Ticket Closed', 'Success')->persistent('Close');
         return redirect()->back();
     }
 
@@ -204,7 +204,7 @@ class HomeController extends Controller
     {
 
         // if(!$trade = Merging::find($request->trade_id)){
-        //     alert()->success('Ticket Closed', 'Success')->persistent('Close');;
+        //     alert()->success('Ticket Closed', 'Success')->persistent('Close');
         //     return redirect()->back();
         // }
 
@@ -216,7 +216,7 @@ class HomeController extends Controller
 
         $ticket_answer = TicketAnswer::create($newComment);
 
-        alert()->success('Response Sent', 'Success')->persistent('Close');;
+        alert()->success('Response Sent', 'Success')->persistent('Close');
         return redirect()->back();
     }
 
@@ -229,7 +229,7 @@ class HomeController extends Controller
         $users->status = 'blocked';
         $users->update();
 
-        alert()->success('User blocked successfully.', 'Success')->persistent('Close');;
+        alert()->success('User blocked successfully.', 'Success')->persistent('Close');
         return redirect()->back();
     }
 
@@ -243,7 +243,7 @@ class HomeController extends Controller
 
         //Mail::to($users->email)->send(new KycApproveMail($users->username));
 
-        alert()->success('User Account Activated.', 'Success')->persistent('Close');;
+        alert()->success('User Account Activated.', 'Success')->persistent('Close');
         return redirect()->back();
     }
 
@@ -257,7 +257,7 @@ class HomeController extends Controller
 
         // Mail::to($users->email)->send(new KycRejectMail($users->username));
 
-        alert()->success('User KYC Rejected.', 'Success')->persistent('Close');;
+        alert()->success('User KYC Rejected.', 'Success')->persistent('Close');
         return redirect()->back();
     }
 
@@ -269,7 +269,7 @@ class HomeController extends Controller
         $users->status = 'approved';
         $users->update();
 
-        alert()->success('User unblocked successfully.', 'Success')->persistent('Close');;
+        alert()->success('User unblocked successfully.', 'Success')->persistent('Close');
         return redirect()->back();
     }
 
@@ -282,7 +282,7 @@ class HomeController extends Controller
         $payout->approved_at = $current_time;
         $payout->update();
 
-        alert()->success('Payout approved successfully.', 'Success')->persistent('Close');;
+        alert()->success('Payout approved successfully.', 'Success')->persistent('Close');
         return redirect()->back();
     }
 

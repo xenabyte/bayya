@@ -55,10 +55,10 @@ return [
      */
     'otp_secret_column' => 'google2fa_secret',
 
-    /*
+   /*
      * One Time Password View.
      */
-    'view' => 'google2fa.index',
+    'view' => 'user.auth.2fa_verify',
 
     /*
      * One Time Password error message.

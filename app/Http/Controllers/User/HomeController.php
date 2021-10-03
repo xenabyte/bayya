@@ -54,6 +54,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:user']); //, '2fa'
+        // $this->middleware(['auth:user', '2fa']);
     }
 
     public function contact(Request $request)

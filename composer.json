@@ -19,7 +19,7 @@
         "nyholm/psr7": "^1.4",
         "php-http/curl-client": "^2.2",
         "php-http/message": "^1.12",
-        "pragmarx/google2fa-laravel": "^1.4",
+        "pragmarx/google2fa-laravel": "^2.0",
         "uxweb/sweet-alert": "^2.0",
         "victorybiz/geoip-location": "^1.1"
     },

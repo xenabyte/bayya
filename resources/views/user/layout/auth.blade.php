@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="{{asset('assets/css/auth.css')}}">
 
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <!-- Scripts -->
         <script>
             window.Laravel = <?php echo json_encode([
@@ -30,7 +30,7 @@
     </head>
 
     <body>
-
+        @include('sweet::alert')
 		<div id="app" class="login-page login-page-4" style="background-image: url('{{asset('assets/img/abstract-low-poly-lines-mesh-white-background.png')}}');">
 
 			<div class="container">
