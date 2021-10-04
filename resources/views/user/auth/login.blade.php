@@ -68,7 +68,7 @@
         <div class="form-group form-group-btns text-center">
             <div class="row no-gutters">
                 <div class="col-md-6">
-                    <button type="submit" id="signUp" class="btn btn-block btn-lg shadow-sm btn-rounded btn-primary sharp-top-right" >Sign In</button>
+                    <button type="submit" id="signUp" disabled class="btn btn-block btn-lg shadow-sm btn-rounded btn-primary sharp-top-right" >Sign In</button>
                 </div>
                 <div class="col-md-6">
                     <a href="{{ url('user/register') }}" class="btn btn-block btn-lg shadow-sm btn-rounded btn-light sharp-top-left">Sign Up</a>

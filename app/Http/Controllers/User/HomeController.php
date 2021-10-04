@@ -108,13 +108,7 @@ class HomeController extends Controller
 
         if($valid){
             alert()->success('Login Successful', 'Good!!!')->persistent('Close');
-            return view('user.home',[
-				'payment_methods'=> Payment::all(),
-				'wallet_balance' => $wallet_balance,
-				'currencySym' => $currencySym,
-				'transactions' => $transactions,
-				'currency' => $currency
-			]);
+           $this->index();
         }else{
             alert()->error('Invalid verification Code, Please try again.', 'Opps!!!')->persistent('Close');
 			return redirect()->back();
@@ -153,12 +147,25 @@ class HomeController extends Controller
         $user_id = $user->id;
         $transactions = Transaction::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->get();
         $deposits = Deposit::where('user_id', $user_id)->where('status', 'Success')->get();
-        $balance_usd = $user->usd_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_usd);
+        $balance_btc = $user->btc_wallet;
+        $wallet_balance = $balance_btc;
 
 
         $dispute = Dispute::where('buyer_user_id', $user_id)->orWhere('seller_user_id', $user_id)->where('dispute_status', '=', NULL)->get();
 
+        $userTrades = Seller::where([
+            ['merge_status', '=', 'pending'],
+            ['seller_user_id', '=', $user_id],
+            ['currency', '=', $currency]
+        ])->inRandomOrder()->get();
+
+        $ongoingTrades = Seller::with('merging')->where([
+            ['merge_status', '=', 'merged'],
+            ['currency', '=', $currency]
+        ])->where('seller_user_id', $user_id)->orWhere('buyer_user_id', $user_id)->get();
+
+        $reviews = Review::with('reviewer')->where('reviewee_user_id', $user_id)->get();
+        $payouts = Payout::where('user_id', $user_id)->get();
 
         $dispute_count = count($dispute);
         if($dispute_count > 0) {
@@ -172,7 +179,12 @@ class HomeController extends Controller
             'wallet_balance' => $wallet_balance,
             'currencySym' => $currencySym,
             'transactions' => $transactions,
-            'currency' => $currency
+            'currency' => $currency,
+            'deposits' => $deposits,
+            'reviews' => $reviews,
+            'userTrades' => $userTrades,
+            'ongoingTrades' => $ongoingTrades,
+            'payouts' => $payouts,
         ]);
     }
 
@@ -257,8 +269,8 @@ class HomeController extends Controller
         $currency = $geoip->getCurrencyCode();
         $currencySym = $geoip->getCurrencySymbol();
         $defaultCurrency = env('DEFAULT_CURRENCY');
-        $balance_usd = $user->usd_wallet;
-        $wallet_balance = $this->getCurrencyBalance($currency, $balance_usd);
+        $balance_btc = $user->_wabtcllet;
+        $wallet_balance = $balance_btc;
 
         //usd equivalent of amount
         $usd_amount = intval($this->getCurrencyUSD($currency, $request->usd_amount));
@@ -956,7 +968,7 @@ class HomeController extends Controller
         $defaultCurrency = env('DEFAULT_CURRENCY');
         $balance_btc = $user->btc_wallet;
         $wallet_balance = $balance_btc;
-        $labels = env('APP_NAME').'-User-'.$username;
+        $labels = md5(env('APP_NAME').'-User-'.$username.time());
 
         //--------------------CURRENT TIME--------------------------------
         $current_time = \Carbon\Carbon::now()->toDateTimeString();

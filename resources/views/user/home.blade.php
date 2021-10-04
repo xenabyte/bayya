@@ -1,4 +1,5 @@
 @include('user.inc.header')
+@inject('controller', 'App\Http\Controllers\Controller')
 
     <!-- Main Page Content -->
     <div class="page-content">
@@ -9,16 +10,16 @@
                 <div class="widget widget-weather widget-weather-simple">
 
                     <div class="widget-icon-bg">
-                        <img src="assets/widgets/amcharts-weather-icons/cloudy-day-1.svg" width="80">
+                        <i class="fab fa-cash-register"></i>
                     </div>
 
                     <div class="widget-content">
                         <h6 class="widget-degree">
-                            29<small>&deg;c</small>
+                            <i class="fas fa-credit-card"></i>
                         </h6>
                         <div class="widget-label">
-                            <h6>New York City</h6>
-                            <small>United States</small>
+                            <h6>{{ $currency }} {{ number_format($controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet), 2) }} </h6>
+                            <small> {{ Auth::guard('user')->user()->btc_wallet}} BTC</small>
                         </div>
                     </div>
                 </div>
@@ -27,9 +28,9 @@
             <div class="col-xl-4 col-lg-6 col-md-6 mt-24">
                 <div class="widget widget-chart-8">
                     <div class="title">
-                        <h5>Sales History</h5>
+                        <h5>Deposits</h5>
                         <span>
-                            Total : 4321
+                            Total : {{$deposits->count()}}
                         </span>
                     </div>
                     <div class="widget-chart">
@@ -38,30 +39,12 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-lg-6 col-md-6 mt-24 d-xl-none">
-                <div class="widget widget-chart-7 m-0 h-full py-md-0">
-                    <h6>Videos Uploaded</h6>
-                    <div class="widget-chart">
-                        <svg viewBox="0 0 42 42" class="donut" style="max-height: 100px;">
-                            <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle>
-                            <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#eef2fe" stroke-width="2"></circle>
-                            <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#4cacff" stroke-width="2" stroke-dasharray="46.84 53.16" stroke-dashoffset="25"></circle>
-                        </svg>
-                        <span>48%</span>
-                    </div>
-                    <h4>
-                        <svg id="lnr-chevron-up" class="svg-success" viewBox="0 0 1024 1024"><title>chevron-up</title><path class="path1" d="M0 768c0 6.552 2.499 13.102 7.499 18.101 9.997 9.998 26.206 9.998 36.203 0l442.698-442.698 442.699 442.698c9.997 9.998 26.206 9.998 36.203 0s9.998-26.206 0-36.203l-460.8-460.8c-9.997-9.998-26.206-9.998-36.203 0l-460.8 460.8c-5 5-7.499 11.55-7.499 18.102z"></path></svg>
-                        901
-                    </h4>
-                </div>
-            </div>
-
             <div class="col-xl-4 col-lg-6 col-md-6 mt-24">
                 <div class="widget widget-chart-8">
                     <div class="title">
-                        <h5>Sales History</h5>
+                        <h5>Trade History</h5>
                         <span>
-                            Total : 4321
+                            Total : {{ $transactions->count() }}
                         </span>
                     </div>
                     <div class="widget-chart">
@@ -76,154 +59,36 @@
 
         <div class="row mt-n24">
 
-            <div class="col-md-12 mt-24">
-
-                <div class="alert alert-type-2 alert-light alert-dismissible mb-0" data-animation="slideUp" role="alert">
-                    <div class="row">
-                        <div class="col col-img">
-                            <img src="../../assets/svg/undraw/undraw_product_tour_foyt.svg" class="img-fluid" alt="">
-                        </div>
-                        <div class="col col-content">
-                            <h5 class="alert-title">Welcome back!</h5>
-                            <p class="alert-description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis et fugit cupiditate
-                                fugiat quibusdam architecto soluta ipsam accusamus, aut voluptatem unde repellendus
-                                mollitia nihil obcaecati amet tenetur voluptas vitae distinctio!
-                            </p>
-                        </div>
-                    </div>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path class="heroicon-ui" d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"></path></svg>
-                    </button>
-                </div>
-
-            </div>
-
             <div class="col-md-6">
 
                 <!-- Payment History -->
                 <div class="panel">
                     <div class="panel-header">
-                        <h1 class="panel-title">Payment History</h1>
+                        <h1 class="panel-title">Deposit History</h1>
                     </div>
                     <div class="panel-body p-0">
 
                         <ul class="list-group payment-history-list">
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col col-img">
-                                        <div class="item-logo">
-                                            <img src="../../assets/misc/finance/bitcoin-logo.png" alt="">
+                            @foreach($deposits as $deposit)
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col col-img">
+                                            <div class="item-logo">
+                                                <img src="{{asset('assets/misc/finance/bitcoin-logo.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col col-info">
+                                            <span class="lister-item-title"> Bitcoin </span>
+                                        </div>
+                                        <div class="col-md">
+                                            <br>
+                                            <span>{{ $currency }} {{ number_format($controller::toCurrency($currency, $deposit->deposit_amount), 2) }} / {{ $deposit->deposit_amount}} BTC</span>
+                                            <br>
+                                            <small>{{ date('M j Y h:i A', strtotime($deposit->created_at)) }}</small>
                                         </div>
                                     </div>
-                                    <div class="col col-info">
-                                        <span class="lister-item-title"> Bitcoin </span>
-                                        <span class="lister-item-subtitle">XJKKSL********K151</span>
-                                    </div>
-                                    <div class="col col-amount">
-                                        <span>$100</span>
-                                        <small>2020-10-07</small>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col col-img">
-                                        <div class="item-logo">
-                                            <img src="../../assets/misc/finance/ethereum-logo.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col col-info">
-                                        <span class="lister-item-title"> Ethereum </span>
-                                        <span class="lister-item-subtitle">GJSDKN********284HS</span>
-                                    </div>
-                                    <div class="col col-amount">
-                                        <span>$100</span>
-                                        <small>2020-10-07</small>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col col-img">
-                                        <div class="item-logo">
-                                            <img src="../../assets/misc/finance/mastercard-logo.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col col-info">
-                                        <span class="lister-item-title"> Master Card </span>
-                                        <span class="lister-item-subtitle">231 - **** - **** - *325</span>
-                                    </div>
-                                    <div class="col col-amount">
-                                        <span>$114</span>
-                                        <small>2020-10-07</small>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col col-img">
-                                        <div class="item-logo">
-                                            <img src="../../assets/misc/finance/visa-logo.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col col-info">
-                                        <span class="lister-item-title"> Visa Card </span>
-                                        <span class="lister-item-subtitle">1456 - **** - **** - 1458</span>
-                                    </div>
-                                    <div class="col col-amount">
-                                        <span>$57</span>
-                                        <small>2020-10-07</small>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col col-img">
-                                        <div class="item-logo">
-                                            <img src="../../assets/misc/finance/stripe.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col col-info">
-                                        <span class="lister-item-title"> Stripe </span>
-                                        <span class="lister-item-subtitle">your****@gmail.com</span>
-                                    </div>
-                                    <div class="col col-amount">
-                                        <span>$50</span>
-                                        <small>2020-10-07</small>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col col-img">
-                                        <div class="item-logo">
-                                            <img src="../../assets/misc/finance/paypal-logo.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col col-info">
-                                        <span class="lister-item-title"> Paypal </span>
-                                        <span class="lister-item-subtitle">your****@gmail.com</span>
-                                    </div>
-                                    <div class="col col-amount">
-                                        <span>$79</span>
-                                        <small>2020-10-07</small>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item list-group-loader border-bottom-0">
-                                <button type="button" class="btn btn-ellipsis-loader" data-toggle="class" data-target="self" data-class="is-loading">
-                                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-                                </button>
-                            </li>
-
+                                </li>
+                            @endforeach
                         </ul>
 
                     </div>
@@ -252,8 +117,28 @@
                         <h1 class="panel-title">Payout History</h1>
                     </div>
                     <div class="panel-body pl-3 py-3">
-
-
+                        <ul class="list-group payment-history-list">
+                            @foreach($payouts as $payout)
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col col-img">
+                                            <div class="item-logo">
+                                                <img src="{{asset('assets/misc/finance/bitcoin-logo.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col col-info">
+                                            <span class="lister-item-title"> Bitcoin </span>
+                                        </div>
+                                        <div class="col-md">
+                                            <br>
+                                            <span>{{ $currency }} {{ number_format($controller::toCurrency($currency, $payout->amount), 2) }} / {{ $payout->amount}} BTC</span>
+                                            <br>
+                                            <small>{{ date('M j Y h:i A', strtotime($payout->created_at)) }}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div><!-- / Spline Area Chart -->
 
@@ -270,60 +155,18 @@
 
                         <div class="carousel-width list-tabbable">
                             <ul class="list-group contact-list-mini contact-list-widget">
+                                @foreach($reviews->take(5)->sortByDesc('id') as $review)
                                 <li class="list-group-item">
                                     <div class="user-avatar">
-                                        <img src="../../assets/avatars/5.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                        <span class="badge badge-success color-badge badge-size-1"></span>
+                                        <i class="fas fa-user avatar rounded-circle"></i>
                                     </div>
                                     <div class="list-item-info">
-                                        <a href="#"><h6 class="mb-0">Thea Reichert</h6></a>
-                                        <div class="stars d-block my-1">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <small class="mt-1 d-block text-truncate" style="font-weight: 400;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
-                                        <small class="text-muted">10:12</small>
+                                        <a href="#"><h6 class="mb-0">{{ $review->reviewer->username }}</h6></a>
+                                        <small class="mt-1 d-block text-truncate" style="font-weight: 400;"><?php echo $review->review ?></small>
+                                        <small class="text-muted">{{ date('M j Y h:i A', strtotime($review->created_at)) }}</small>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <img src="../../assets/avatars/18.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                        <span class="badge badge-secondary color-badge badge-size-1"></span>
-                                    </div>
-                                    <div class="list-item-info">
-                                        <a href="#"><h6 class="mb-1">Leone Gutkowski</h6></a>
-                                        <div class="stars d-block my-1">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <small class="mt-1 d-block text-truncate" style="font-weight: 400;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
-                                        <small class="text-muted">10:12</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="user-avatar">
-                                        <img src="../../assets/avatars/14.jpg" class="avatar avatar-1 rounded-circle" alt="Avatar image">
-                                        <span class="badge badge-secondary color-badge badge-size-1"></span>
-                                    </div>
-                                    <div class="list-item-info">
-                                        <a href="#"><h6 class="mb-1">Sterling Robel</h6></a>
-                                        <div class="stars d-block my-1">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <small class="mt-1 d-block text-truncate" style="font-weight: 400;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
-                                        <small class="text-muted">10:12</small>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
 
@@ -337,7 +180,7 @@
                 <!-- To Do List -->
                 <div class="panel panel-light">
                     <div class="panel-header">
-                        <h3 class="panel-title">Your Ongoing Trades <span class="text-danger">(4)</span></h3>
+                        <h3 class="panel-title">Your Ongoing Trades</h3>
                         <div class="panel-toolbar">
                             <ul class="nav nav-pills btn-group">
                                 <li class="nav-item btn-group">
@@ -352,8 +195,40 @@
 
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="panel-with-pills-tab-1" aria-expanded="true">
+                                <ul class="directory-list row">
+                                    @foreach($ongoingTrades as $ongoingTrade)
+                                    @if(empty($ongoingTrade->merging->pay_received_status))
+                                    <li class="col-md-10 offset-md-1">
+                                        <div class="">
+                                            <a href="{{ url('/user/trade/'.$ongoingTrade->hash) }}">
+                                                <div class="directory-header">
+                                                    <i class="fa fa-btc"></i>
+                                                </div>
+                                                <div class="directory-size">
+                                                   {{ $ongoingTrade->selling_amount }} BTC
+                                                </div>
 
-
+                                                <div class="directory-info">
+                                                    <span class="name"> {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $ongoingTrade->selling_amount, $ongoingTrade->selling_rate), 2)}}</span>
+                                                    <span class="name">{{ $ongoingTrade->selling_rate }}%</span>
+                                                    <span class="size">{{ $ongoingTrade->trade_minutes }} Minutes(Trade Minutes)</span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown">
+                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="{{ url('/user/trade/'.$ongoingTrade->hash) }}"><i class="fas fa-link"></i> Get Shareable Link</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{{ url('/user/trade/'.$ongoingTrade->hash) }}"><i class="fas fa-info-circle"></i> Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @endif
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
 
@@ -375,8 +250,40 @@
                         </div>
                     </div>
                     <div class="panel-body p-0">
+                        <ul class="directory-list row">
+                            @foreach($userTrades as $userTrade)
+                            <li class="col-md-10 offset-md-1">
+                                <div class="">
+                                    <a href="{{ url('/user/trade/'.$userTrade->hash) }}">
+                                        <div class="directory-header">
+                                            <i class="fa fa-btc"></i>
+                                        </div>
+                                        <div class="directory-size">
+                                           {{ $userTrade->selling_amount }} BTC
+                                        </div>
 
-
+                                        <div class="directory-info">
+                                            <span class="name"> {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $userTrade->selling_amount, $userTrade->selling_rate), 2)}}</span>
+                                            <span class="name">{{ $userTrade->selling_rate }}%</span>
+                                            <span class="size">{{ $userTrade->trade_minutes }} Minutes(Trade Minutes)</span>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{ url('/user/trade/'.$userTrade->hash) }}"><i class="fas fa-link"></i> Get Shareable Link</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{{ url('/user/trade/'.$userTrade->hash) }}"><i class="fas fa-info-circle"></i> Details</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-trash"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div><!-- / Contact List 2 -->
 

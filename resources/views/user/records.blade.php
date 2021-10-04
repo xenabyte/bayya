@@ -50,7 +50,7 @@
                                             {{ sprintf('%06d', $payout->id) }}
                                         </td>
                                         <td>Invoice ID -  ({{ $payout->user_label}})</td>
-                                        <td>{{ number_format($controller::toCurrency($currency, $payout->amount), 2) }} / {{ $payout->amount }} BTC</td>
+                                        <td>{{ $currency }} {{ number_format($controller::toCurrency($currency, $payout->amount), 2) }} / {{ $payout->amount }} BTC</td>
                                         <td>{{ $payout->btc_address }}</td>
                                         <td><span class="badge color-badge @if($payout->payout_status == 'pending') badge-warning @else  badge-success @endif"></span> {{ $payout->payout_status }}</td>
                                     </tr>

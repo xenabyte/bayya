@@ -119,7 +119,7 @@
             <div class="form-group form-group-btns text-center mb-0">
                 <div class="row no-gutters">
                     <div class="col-md-6">
-                        <button type="submit" id="signUp" class="btn btn-block btn-lg btn-primary">Register</button>
+                        <button type="submit" id="signUp" disabled class="btn btn-block btn-lg btn-primary">Register</button>
                     </div>
                     <div class="col-md-6">
                         <a href="{{ url('/') }}" class="btn btn-block btn-lg btn-outline-secondary">Back</a>

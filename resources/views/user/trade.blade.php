@@ -82,7 +82,41 @@
                                            <li><strong>Price: </strong>{{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $trade->selling_amount, $trade->selling_rate), 2)}} / {{ $trade->selling_amount }} BTC  </li>
                                            <li><strong>Payment Method: </strong>{{ $trade->seller_payment_mode }}  </li>
                                            <li><strong>Payment window: </strong>{{ $trade->trade_minutes }} Minutes  </li>
-                                           <li><strong>Status: </strong> {{ $trade->merge_status }}  </li>
+                                           @if(empty($trade->merging->pay_received_status))
+                                           <li><strong>Trade Time: </strong> <span id="demo_<?php echo $trade['id'] ?>"></span>  </li>
+                                           <!-- Display the countdown timer in an element -->
+                                           </p>
+                                           <script>
+                                               // Set the date we're counting down to
+                                               var countDownDate_<?php echo $trade['id'] ?> = <?php echo strtotime(\Carbon\Carbon::parse($trade['merge_at'])->addMinutes($trade->trade_minutes)) ?> * 1000;
+
+                                               // Update the count down every 1 second
+                                               var x_<?php echo $trade['id'] ?> = setInterval(function() {
+
+                                               // Get today's date and time
+                                               var now_<?php echo $trade['id'] ?> = new Date().getTime();
+
+                                               // Find the distance between now and the count down date
+                                               var distance_<?php echo $trade['id'] ?> = countDownDate_<?php echo $trade['id'] ?> - now_<?php echo $trade['id'] ?>;
+
+                                               // Time calculations for days, hours, minutes and seconds
+                                               var days_<?php echo $trade['id'] ?> = Math.floor(distance_<?php echo $trade['id'] ?> / (1000 * 60 * 60 * 24));
+                                               var hours_<?php echo $trade['id'] ?> = Math.floor((distance_<?php echo $trade['id'] ?> % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                               var minutes_<?php echo $trade['id'] ?> = Math.floor((distance_<?php echo $trade['id'] ?> % (1000 * 60 * 60)) / (1000 * 60));
+                                               var seconds_<?php echo $trade['id'] ?> = Math.floor((distance_<?php echo $trade['id'] ?> % (1000 * 60)) / 1000);
+
+                                               // Display the result in the element with id="demo"
+                                               document.getElementById("demo_<?php echo $trade['id'] ?>").innerHTML = "You have " + days_<?php echo $trade['id'] ?> + "d " + hours_<?php echo $trade['id'] ?> + "h "
+                                               + minutes_<?php echo $trade['id'] ?> + "m " + seconds_<?php echo $trade['id'] ?> + "s  left to complete trade";
+
+                                               // If the count down is finished, write some text
+                                               if (distance_<?php echo $trade['id'] ?> < 0) {
+                                                   clearInterval(x_<?php echo $trade['id'] ?>);
+                                                   document.getElementById("demo_<?php echo $trade['id'] ?>").innerHTML = "Trade Cancelled";
+                                               }
+                                               }, 1000);
+                                           </script>
+                                           @endif
                                        </ul>
 
                                        <div class="col-md-12">
