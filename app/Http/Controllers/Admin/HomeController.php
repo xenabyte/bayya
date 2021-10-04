@@ -55,17 +55,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $balance = 0;//LaraBlockIo::getAvailableBalance();
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $balance = '0.00006879'  ; //LaraBlockIo::getAvailableBalance();
         $user_count = User::all()->count();
         $transaction_count = Transaction::all()->count();
         $payout_count = Payout::where('approved_at', '')->count();
+
+        $ongoingTrades = Merging::with('seller')->where([
+            ['pay_received_status', '=', Null],
+        ])->get();
 
         return view('admin.home', [
             'user_count' => $user_count,
             'transaction_count' => $transaction_count,
             'payout_count' => $payout_count,
-            'balance' => $balance
+            'balance' => $balance,
+            'ongoingTrades' => $ongoingTrades,
+            'currency' => $currency
         ]);
     }
 
@@ -76,11 +85,15 @@ class HomeController extends Controller
      */
     public function disputes()
     {
-
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
         $disputes = Dispute::with(['buyer', 'seller', 'merging', 'merging.associated_buyer', 'merging.associated_seller'])->orderBy('id', 'DESC')->get();
 
         return view('admin.disputes', [
-            'disputes' => $disputes
+            'disputes' => $disputes,
+            'currency' => $currency
         ]);
     }
 
@@ -91,11 +104,15 @@ class HomeController extends Controller
      */
     public function payouts()
     {
-
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
         $payouts = Payout::with(['user'])->get();
 
         return view('admin.payouts', [
-            'payouts' => $payouts
+            'payouts' => $payouts,
+            'currency' => $currency
         ]);
     }
 
@@ -106,7 +123,13 @@ class HomeController extends Controller
      */
     public function profile()
     {
-        return view('admin.profile');
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        return view('admin.profile', [
+            'currency' => $currency
+        ]);
     }
 
     /**
@@ -117,10 +140,15 @@ class HomeController extends Controller
     public function trades()
     {
 
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
         $trades = Merging::with(['buyer', 'seller', 'associated_seller', 'associated_buyer'])->get();
 
         return view('admin.trades', [
-            'trades' => $trades
+            'trades' => $trades,
+            'currency' => $currency
         ]);
     }
 
@@ -132,10 +160,15 @@ class HomeController extends Controller
     public function tickets()
     {
 
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
         $tickets = Ticket::with(['user', 'trade', 'ticket_answer', 'ticket_answer.admin'])->get();
 
         return view('admin.tickets', [
-            'tickets' => $tickets
+            'tickets' => $tickets,
+            'currency' => $currency
         ]);
     }
 
@@ -147,11 +180,15 @@ class HomeController extends Controller
      */
     public function allUsers()
     {
-
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
         $users = User::all();
 
         return view('admin.allUsers', [
-            'users' => $users
+            'users' => $users,
+            'currency' => $currency
         ]);
     }
 
@@ -289,6 +326,7 @@ class HomeController extends Controller
     public function payBuyer(Request $request)
     {
         $id = $request['id'];
+       $geoip = new GeoIPLocation();
         $geoip = new GeoIPLocation();
         $ip = $geoip->getIP();
         $set_ip = $geoip->setIP($ip);

@@ -73,6 +73,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/helpCenter', [App\Http\Controllers\User\HomeController::class, 'helpCenter']);
 
     Route::post('/createTrade', [App\Http\Controllers\User\HomeController::class, 'createTrade']);
+    Route::post('/searchTrade', [App\Http\Controllers\User\HomeController::class, 'searchTrade']);
     Route::get('/trade/{hash}', [App\Http\Controllers\User\HomeController::class, 'getTrade']);
     Route::post('/joinTrade', [App\Http\Controllers\User\HomeController::class, 'joinTrade']);
     Route::get('/chatroom/{id}', [App\Http\Controllers\User\HomeController::class, 'chatRoom']);

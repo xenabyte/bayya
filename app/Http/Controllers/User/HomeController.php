@@ -251,7 +251,7 @@ class HomeController extends Controller
     }
 
     //search Markets
-    public function search_market(Request $request)
+    public function searchTrade(Request $request)
     {
         if(Auth::guard('user')->user()->status == 'blocked'){
             return view('/user/auth/blocked', [
@@ -273,22 +273,27 @@ class HomeController extends Controller
         $wallet_balance = $balance_btc;
 
         //usd equivalent of amount
-        $usd_amount = intval($this->getCurrencyUSD($currency, $request->usd_amount));
+        $usd_amount = intval($this->toUsd($currency, $request->usd_amount));
+        $btc_amount = $this->getBtcBalance($usd_amount);
 
-        $sellers = Seller::where([
+        $genTrades = Seller::where([
             ['merge_status', '=', 'pending'],
-            ['selling_amount', '=', $usd_amount],
+            ['selling_amount', '>=', $btc_amount],
             ['seller_user_id', '!=', $user_id],
-        ])->inRandomOrder()->take(20)->get();
-
-        $seller_count = count($sellers);
+        ])->get();
+        $mergings  = Merging::where('seller_user_id', $user_id)->orWhere('buyer_user_id', $user_id)->get();
+        $doneTradesId = $mergings->where('pay_received_status', 'Received')->pluck('id')->toArray();
+        $userDoneTrades = Seller::whereIn('merging_id', $doneTradesId)->get();
+        $reviews = Review::where('reviewee_user_id', $user_id)->get();
 
         alert()->success('Kindly pick from these sellers and transacts. Cheers', 'Success')->persistent('Close');
         return view('user.search_market', [
             'payment_methods'=> Payment::all(),
             'wallet_balance' => $wallet_balance,
-            'sellers' => $sellers,
-            'seller_count' => $seller_count
+            'genTrades' => $genTrades,
+            'currency' => $currency,
+            'userDoneTrades' => $userDoneTrades,
+            'reviews' => $reviews
         ]);
     }
 

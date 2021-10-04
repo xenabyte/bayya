@@ -104,17 +104,6 @@
 
             </div>
 
-            <form class="form-inline content-search-form float-none" onsubmit="javascript:void(0)">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white">
-                            <svg id="lnr-magnifier" width="14" viewBox="0 0 1024 1024"><path class="path1" d="M966.070 981.101l-304.302-331.965c68.573-71.754 106.232-165.549 106.232-265.136 0-102.57-39.942-199-112.47-271.53s-168.96-112.47-271.53-112.47-199 39.942-271.53 112.47-112.47 168.96-112.47 271.53 39.942 199.002 112.47 271.53 168.96 112.47 271.53 112.47c88.362 0 172.152-29.667 240.043-84.248l304.285 331.947c5.050 5.507 11.954 8.301 18.878 8.301 6.179 0 12.378-2.226 17.293-6.728 10.421-9.555 11.126-25.749 1.571-36.171zM51.2 384c0-183.506 149.294-332.8 332.8-332.8s332.8 149.294 332.8 332.8-149.294 332.8-332.8 332.8-332.8-149.294-332.8-332.8z"></path></svg>
-                        </span>
-                    </div>
-                    <input type="text" id="files-search" class="form-control" placeholder="Search">
-                </div>
-            </form>
-
             <div class="row">
                 <div class="col-md-3">
 
@@ -385,48 +374,39 @@
 
             <div class="modals">
 
+
                 <div class="modal fade" tabindex="-1" role="dialog" id="newFolderModal">
                     <div class="modal-dialog modal-mini modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
                                 <div class="icon-box bg-info-light">
-                                    <i class="fas fa-folder"></i>
+                                    <i class="fas fa-people-arrows"></i>
                                 </div>
-                                <h4 class="modal-title text-center">Create A New Folder</h4>
+                                <h4 class="modal-title text-center">Search Trades</h4>
 
-                                <form action="#" class="modal-form new-folder-form mt-3 px-4">
-
+                                <form class="modal-form new-folder-form mt-3 px-4" action="{{ url('/user/searchTrade') }}" method="POST">
+                                    @csrf
                                     <div class="form-group">
-                                        <label>Storage</label>
-                                        <select name="storage" id="storage-selector" class="selectpicker">
-
-                                            <option value="local" data-icon="fas fa-server" selected>Local</option>
-                                            <option value="dropbox" data-icon="fab fa-dropbox">Dropbox</option>
-                                            <option value="google-drive" data-icon="fab fa-google-drive">Google Drive</option>
-
-                                        </select>
+                                        <label>Wallet Balance</label>
+                                        <input type="text" disabled class="form-control" value=" {{$currency}} {{ number_format($controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet)) }} / {{ Auth::guard('user')->user()->btc_wallet}} BTC">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Path</label>
-                                        <input type="text" class="form-control" name="path" value="/Projects/" placeholder="/Path/">
+                                        <label>Amount in {{ $currency }}</label>
+                                        <input type="number" class="form-control" name="usd_amount" min="0" max="{{ $controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet) }}" value="{{ round($controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet)) }}"  required>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-block">Save</button>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="New Folder">
+                                        <button class="btn btn-secondary btn-block" data-dismiss="modal">Cancel</button>
                                     </div>
-
 
                                 </form>
-                            </div>
-                            <div class="modal-footer row">
-                                <div class="col-md-6 px-2">
-                                    <button class="btn btn-success btn-block">Save</button>
-                                </div>
-                                <div class="col-md-6 px-2">
-                                    <button class="btn btn-secondary btn-block" data-dismiss="modal">Cancel</button>
-                                </div>
                             </div>
                         </div>
                     </div>

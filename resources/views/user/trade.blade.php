@@ -82,7 +82,7 @@
                                            <li><strong>Price: </strong>{{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $trade->selling_amount, $trade->selling_rate), 2)}} / {{ $trade->selling_amount }} BTC  </li>
                                            <li><strong>Payment Method: </strong>{{ $trade->seller_payment_mode }}  </li>
                                            <li><strong>Payment window: </strong>{{ $trade->trade_minutes }} Minutes  </li>
-                                           @if(empty($trade->merging->pay_received_status))
+                                           @if(!empty($trade->merging))
                                            <li><strong>Trade Time: </strong> <span id="demo_<?php echo $trade['id'] ?>"></span>  </li>
                                            <!-- Display the countdown timer in an element -->
                                            </p>
@@ -123,7 +123,7 @@
 
 										<div class="card mb-4 card-user-profile-2">
 											<div class="card-header">
-												<h6 class="card-title">Seller Profile</h6>
+												<h6 class="card-title">Seller Reviews</h6>
 											</div>
 											<div class="card-body">
 												<div class="col-avatar">
@@ -152,9 +152,10 @@
 											</div>
 										</div>
 
+                                        @if(!empty($trade->merging_id))
                                         <div class="card mb-4 card-user-profile-2">
 											<div class="card-header">
-												<h6 class="card-title">Buyer Profile</h6>
+												<h6 class="card-title">Buyer Review</h6>
 											</div>
 											<div class="card-body">
 												<div class="col-avatar">
@@ -182,6 +183,7 @@
 												</div>
 											</div>
 										</div>
+                                        @endif
 									</div>
                                     <hr>
                                     @if(Auth::guard('user')->user()->status != 'approved')
