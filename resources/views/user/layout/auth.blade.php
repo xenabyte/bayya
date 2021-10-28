@@ -6,8 +6,8 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="icon" type="image/png" href="{{asset('assets/favicon.png')}}">
-        <link rel="apple-touch-icon" href="{{asset('assets/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" href="{{asset('favicon.ico')}}">
+        <link rel="apple-touch-icon" href="{{asset('favicon.ico')}}">
 
         <link rel="stylesheet" href="{{asset('assets/css/vendor.css')}}">
 

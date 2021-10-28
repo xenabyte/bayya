@@ -229,7 +229,7 @@
                                             </div>
 
                                             <div class="directory-info">
-                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $genTrade->selling_amount, $getTrade->selling_rate), 2)}}</span>
+                                                <span class="name"> {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $genTrade->selling_amount, $genTrade->selling_rate), 2)}}</span>
                                                 <span class="name">{{ $genTrade->selling_rate }}%</span>
                                                 <span class="size">{{ $genTrade->trade_minutes }} Minutes(Trade Minutes)</span>
                                             </div>
