@@ -65,6 +65,12 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/password/reset/{token}', [App\Http\Controllers\User\Auth\ResetPasswordController::class, 'showResetForm']);
 
 
+    Route::post('/email/verify', [App\Http\Controllers\User\HomeController::class, 'resendVerificationEmail']);
+    // Route::get('/verify/{email}/{secret}', 'WelcomeController@verifyEmail');
+    // Route::post('/resendVerificationEmail', 'WelcomeController@resendVerificationEmail');
+
+
+
     Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index']);
     Route::get('/sales', [App\Http\Controllers\User\HomeController::class, 'sales']);
     Route::get('/profile', [App\Http\Controllers\User\HomeController::class, 'profile']);

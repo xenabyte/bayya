@@ -15,6 +15,7 @@ use App\Http\Controllers\ValidationException;
 use Illuminate\Http\Exception\HttpResponseException;
 
 use App\Mail\Notification;
+use App\Mail\VerifyEmail;
 
 use App\Models\User;
 use App\Models\Deposit;
@@ -100,32 +101,5 @@ class AuthController extends Controller
         $user->save();
         alert()->success('Password reset successful, kindly login with the correct details', 'Good')->persistent();
         return view('user.auth.login');
-    }
-
-
-    public function resendVerificationEmail(Request $request){
-        $email = $request->email;
-        $user = User::where('email', $email)->first();
-        $code = $user->verification_code;
-
-        $type= 1;//'verify/'.\base64_encode($email).'/'.\base64_encode($code);
-        $subject = env('APP_NAME') .' Email verification';
-
-        if(!$user){
-             alert()->error('User not found', 'Oops!')->persistent();
-             return redirect()->back();
-        }
-
-        Mail::to($email)->send(new Notification($user, $code, $subject, $type));
-
-        if(true){
-             alert()->success('Verification email resent', 'Good')->persistent();
-             return redirect()->back();
-        }else{
-             alert()->error('An error occur', 'Oops!')->persistent();
-             return redirect()->back();
-        }
-
-
     }
 }

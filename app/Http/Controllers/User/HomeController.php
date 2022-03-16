@@ -38,6 +38,7 @@ use App\Mail\SellerApproveMail;
 use App\Mail\BuyerDisputeMail;
 use App\Mail\SellerDisputeMail;
 use App\Mail\Notification;
+use App\Mail\VerifyEmail;
 use App\Mail\PendingUserMail;
 
 use Mail;
@@ -1043,6 +1044,37 @@ class HomeController extends Controller
             alert()->error('An Error Occurred', 'Oops!')->persistent('Close');
             return redirect()->back();
         }
+    }
+
+
+    public function resendVerificationEmail(Request $request){
+        $user = Auth::guard('user')->user();
+
+        $email = $request->email;
+        $emailUser = User::where('email', $email)->first();
+        $code = $user->verification_code;
+
+        if($user->email != $email){
+            alert()->error('Invalid Email Address', 'Oops!')->persistent();
+             return redirect()->back();
+        }
+
+        if(!$emailUser){
+             alert()->error('User not found', 'Oops!')->persistent();
+             return redirect()->back();
+        }
+
+        Mail::to($email)->send(new VerifyEmail($user, $code));
+
+        if(true){
+             alert()->success('Verification email resent', 'Good')->persistent();
+             return redirect()->back();
+        }else{
+             alert()->error('An error occur', 'Oops!')->persistent();
+             return redirect()->back();
+        }
+
+
     }
 
 }
