@@ -120,11 +120,15 @@ class HomeController extends Controller
         //     return redirect('/2fa');
         // }
 
-        // if(empty(Auth::guard('user')->user()->email_verified_at)){
-        //     return view('/user/auth/verify', [
-        //        'email' => Auth::guard('user')->user()->email,
-        //    ]);
-        // }
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+
+        if(Auth::guard('user')->user()->status == NULL){
+            return $this->profile();
+        }
 
         if(Auth::guard('user')->user()->status == 'blocked'){
             return view('/user/auth/blocked', [

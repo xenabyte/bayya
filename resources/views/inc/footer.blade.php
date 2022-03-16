@@ -1,139 +1,103 @@
-<!-- Footer Starts -->
-<footer class="footer">
-            <!-- Footer Top Area Starts -->
-            <div class="top-footer">
-                <div class="container">
-                    <div class="row">
-                        <!-- Footer Widget Starts -->
-                        <div class="col-sm-4 col-md-2">
-                            <h4>Our Company</h4>
-                            <div class="menu">
-                                <ul>
-                                    <li><a href="index-2.html">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="services.html">Services</a></li>
-                                    <li><a href="pricing.html">Pricing</a></li>
-                                    <li><a href="blog-right-sidebar.html">Blog</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Footer Widget Ends -->
-                        <!-- Footer Widget Starts -->
-                        <div class="col-sm-4 col-md-2">
-                            <h4>Help & Support</h4>
-                            <div class="menu">
-                                <ul>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="terms-of-services.html">Terms of Services</a></li>
-                                    <li><a href="404.html">404</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="coming-soon.html">Coming Soon</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Footer Widget Ends -->
-                        <!-- Footer Widget Starts -->
-                        <div class="col-sm-4 col-md-3">
-                            <h4>Contact Us </h4>
-                            <div class="contacts">
-                                <div>
-                                    <span>contact@website.com</span>
-                                </div>
-                                <div>
-                                    <span>00216 21 184 010</span>
-                                </div>
-                                <div>
-                                    <span>London, England</span>
-                                </div>
-                                <div>
-                                    <span>mon-sat 08am &#x21FE; 05pm</span>
-                                </div>
-                            </div>
-							<!-- Social Media Profiles Starts -->
-                            <div class="social-footer">
-                                <ul>
-                                    <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
-							<!-- Social Media Profiles Ends -->
-                        </div>
-                        <!-- Footer Widget Ends -->
-						<!-- Footer Widget Starts -->
-                        <div class="col-sm-12 col-md-5">
-							<!-- Facts Starts -->
-							<div class="facts-footer">
-								<div>
-									<h5>$198.76B</h5>
-									<span>Market cap</span>
-								</div>
-								<div>
-									<h5>243K</h5>
-									<span>daily transactions</span>
-								</div>
-								<div>
-									<h5>369K</h5>
-									<span>active accounts</span>
-								</div>
-								<div>
-									<h5>127</h5>
-									<span>supported countries</span>
-								</div>
-							</div>
-							<!-- Facts Ends -->
-							<hr>
-							<!-- Supported Payment Cards Logo Starts -->
-							<div class="payment-logos">
-								<h4 class="payment-title">supported payment methods</h4>
-								<img src="images/icons/payment/american-express.png" alt="american-express">
-								<img src="images/icons/payment/mastercard.png" alt="mastercard">
-								<img src="images/icons/payment/visa.png" alt="visa">
-								<img src="images/icons/payment/paypal.png" alt="paypal">
-								<img class="last" src="images/icons/payment/maestro.png" alt="maestro">
-							</div>
-							<!-- Supported Payment Cards Logo Ends -->
-                        </div>
-                        <!-- Footer Widget Ends -->
+<!-- start footer-container -->
+<footer class="footer-container footer-curve">
+    <div class="container">
+        <div class="row pb-50 mobile-pb-20 footer-top-content overflow-hidden">
+            <div class="col-12 col-md-6 col-lg-5 footer-col wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                <div class="footer-unicrypt">
+                    <div class="footer-logo">
+                        <img src="frontend_assets/images/logo.png" alt="" />
                     </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adip isicing elit, sed do eiusmod tempor inci didunt ut labore et dolore magna aliqua.</p>
+                    <ul class=" d-flex flex-wrap social-link">
+                        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
                 </div>
             </div>
-            <!-- Footer Top Area Ends -->
-            <!-- Footer Bottom Area Starts -->
-            <div class="bottom-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <!-- Copyright Text Starts -->
-                            <p class="text-center">Copyright © {{ date('Y') }} {{env('APP_NAME')}} All Rights Reserved</p>
-                            <!-- Copyright Text Ends -->
-                        </div>
-                    </div>
+            <div class="col-12 col-md-6 col-lg-2 footer-col link-hover wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Team Members</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6 col-lg-2 footer-col link-hover wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="#">Token Sale</a></li>
+                    <li><a href="#">Road Map</a></li>
+                    <li><a href="#">Cryptocurrenty</a></li>
+                    <li><a href="#">User Guide</a></li>
+                    <li><a href="#">Exchange Markets</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 footer-col wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
+                <h4>Contact us</h4>
+                <ul>
+                    <li>
+                        <div class="foo-social">
+                           <span><a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i></a></span>
+                           <p>Uttara, Dhaka, Bangladesh</p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="foo-social">
+                           <a href="mailto:email@yourdomain.com" target="_blank"><span><i class="far fa-envelope"></i></span>
+                           <p>email@yourdomain.com</p></a>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="foo-social">
+                            <a href="tel:88012345678" target="_blank"><span><i class="fas fa-phone"></i></span>
+                            <p>+880 - 1234 - 5678</p></a>
+                       </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="pt-40 pb-20 d-flex flex-wrap justify-content-between footer-bottom-content">
+                    <p class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start order-2 order-sm-2 order-md-2 order-lg-1">All rights reserved (c) 2018 -  {{ date('Y') }}</p>
+                    <ul class="d-flex flex-wrap order-1 order-sm-1 order-md-1 order-lg-2">
+                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
                 </div>
             </div>
-            <!-- Footer Bottom Area Ends -->
-        </footer>
-        <!-- Footer Ends -->
-		<!-- Back To Top Starts  -->
-        <a href="#" id="back-to-top" class="back-to-top fa fa-arrow-up"></a>
-		<!-- Back To Top Ends  -->
-		
-        <!-- Template JS Files -->
-        <script src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('js/select2.min.js')}}"></script>
-        <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
-        <script src="{{asset('js/custom.js')}}"></script>
-		
-		<!-- Live Style Switcher JS File - only demo -->
-		<script src="{{ asset('js/styleswitcher.js') }}"></script>
-
+        </div>
     </div>
-    <!-- Wrapper Ends -->
-</body>
+</footer>
+<!-- //end .footer-container -->
 
+<a class="skip_swing backtop" href="#wrapper"><i class="fas fa-chevron-up"></i></a>
+
+</div>
+<!-- //end #wrapper -->
+
+<!-- include jquery min -->
+<script src="frontend_assets/vendor/jquery.min.js"></script>
+<!-- include jquery bootstrap -->
+<script src="frontend_assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="frontend_assets/vendor/bootstrap/js/popper.min.js"></script>
+<!-- include jquery fatNav -->
+<script src="frontend_assets/js/jquery.fatNav.js"></script>
+<!-- include jquery responsive tabs -->
+<script src="frontend_assets/js/easy-responsive-tabs.js"></script>
+<!-- include chart js -->
+<script src="frontend_assets/vendor/chart/js/chart.min.js"></script>
+<!-- include wow animation -->
+<script src="frontend_assets/vendor/animate/js/wow.min.js"></script>
+<!-- include main javascript file -->
+<script src="frontend_assets/js/main.js"></script>
+<!-- include ajax mail file -->
+<script src="frontend_assets/js/ajax-mail.js"></script>
+</body>
 
 </html>

@@ -1,813 +1,551 @@
-@include('inc/header')
-<!-- Wrapper Starts -->
-<div class="wrapper">
-        <!-- Header Starts -->
-        <header class="header">
+@include('inc.header')
+
+    <!-- start wrapper -->
+    <div id="wrapper" class="overflow-hidden">
+
+        <div class="fat-nav"></div>
+
+        @include('inc/menu')
+
+        <!-- start banner-container -->
+        <div class="banner-container">
             <div class="container">
-                <div class="row">
-                    <!-- Logo Starts -->
-                    <div class="main-logo col-xs-12 col-md-3 col-md-2 col-lg-2 hidden-xs">
-                        <a href="index-2.html">
-							<img id="logo" class="img-responsive" src="images/logo-dark.png" alt="logo">
-						</a>
-                    </div>
-                    <!-- Logo Ends -->
-                    <!-- Statistics Starts -->
-                    <div class="col-md-7 col-lg-7">
-                        <ul class="unstyled bitcoin-stats text-center">
-                            <li>
-                                <h6>9,450 USD</h6><span>Last trade price</span></li>
-                            <li>
-                                <h6>+5.26%</h6><span>24 hour price</span></li>
-                            <li>
-                                <h6>12.820 BTC</h6><span>24 hour volume</span></li>
-                            <li>
-                                <h6>2,231,775</h6><span>active traders</span></li>
-                            <li>
-                                <div class="btcwdgt-price" data-bw-theme="light" data-bw-cur="usd"></div>
-                                <span>Live Bitcoin price</span>
-							</li>
-                        </ul>
-                    </div>
-                    <!-- Statistics Ends -->
-                    <!-- User Sign In/Sign Up Starts -->
-                    <div class="col-md-3 col-lg-3">
-                        <ul class="unstyled user">
-                            <li class="sign-in"><a href="login.html" class="btn btn-primary"><i class="fa fa-user"></i> sign in</a></li>
-                            <li class="sign-up"><a href="register.html" class="btn btn-primary"><i class="fa fa-user-plus"></i> register</a></li>
-                        </ul>
-                    </div>
-                    <!-- User Sign In/Sign Up Ends -->
-                </div>
-            </div>
-            <!-- Navigation Menu Starts -->
-            <nav class="site-navigation navigation" id="site-navigation">
-                <div class="container">
-                    <div class="site-nav-inner">
-                        <!-- Logo For ONLY Mobile display Starts -->
-                        <a class="logo-mobile" href="index-2.html">
-							<img id="logo-mobile" class="img-responsive" src="images/logo-dark.png" alt="">
-						</a>
-                        <!-- Logo For ONLY Mobile display Ends -->
-                        <!-- Toggle Icon for Mobile Starts -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-                        <!-- Toggle Icon for Mobile Ends -->
-                        <div class="collapse navbar-collapse navbar-responsive-collapse">
-                            <!-- Main Menu Starts -->
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="index-2.html">Home</a></li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-                                        <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
-										<li><a href="blog-grid-no-sidebar.html">Grid No Sidebar</a></li>
-                                        <li><a href="blog-post.html">Single Post</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">pages <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="register.html">Register page</a></li>
-                                        <li><a href="login.html">Login page</a></li>
-										<li><a href="shopping-cart.html">Shopping cart</a></li>
-                                        <li><a href="shopping-checkout.html">shopping checkout</a></li>
-                                        <li><a href="faq.html">FAQ page</a></li>
-                                        <li><a href="404.html">404 Page</a></li>
-										<li><a href="503.html">Server Error Page</a></li>
-                                        <li><a href="terms-of-services.html">Terms of Services</a></li>
-										<li><a href="coming-soon.html">Coming Soon</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
-								<!-- Cart Icon Starts -->
-								<li class="cart"><a href="shopping-cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-								<!-- Cart Icon Starts -->
-                                <!-- Search Icon Starts -->
-                                <li class="search"><button class="fa fa-search"></button></li>
-                                <!-- Search Icon Ends -->
-                            </ul>
-                            <!-- Main Menu Ends -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Search Input Starts -->
-                <div class="site-search">
-                    <div class="container">
-                        <input type="text" placeholder="type your keyword and hit enter ...">
-                        <span class="close">×</span>
-                    </div>
-                </div>
-                <!-- Search Input Ends -->
-            </nav>
-            <!-- Navigation Menu Ends -->
-        </header>
-        <!-- Header Ends -->
-        <!-- Slider Starts -->
-        <div id="main-slide" class="carousel slide carousel-fade" data-ride="carousel">
-            <!-- Indicators Starts -->
-            <ol class="carousel-indicators visible-lg visible-md">
-                <li data-target="#main-slide" data-slide-to="0" class="active"></li>
-                <li data-target="#main-slide" data-slide-to="1"></li>
-                <li data-target="#main-slide" data-slide-to="2"></li>
-            </ol>
-            <!-- Indicators Ends -->
-            <!-- Carousel Inner Starts -->
-            <div class="carousel-inner">
-                <!-- Carousel Item Starts -->
-                <div class="item active bg-parallax item-1">
-                    <div class="slider-content">
-                        <div class="container">
-                            <div class="slider-text text-center">
-                                <h3 class="slide-title"><span>Secure</span> and <span>Easy Way</span><br/> To Bitcoin</h3>
-                                <p>
-                                    <a href="about.html" class="slider btn btn-primary">Learn more</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Carousel Item Ends -->
-                <!-- Carousel Item Starts -->
-                <div class="item bg-parallax item-2">
-                    <div class="slider-content">
-                        <div class="col-md-12">
-                            <div class="container">
-                                <div class="slider-text text-center">
-                                    <h3 class="slide-title"><span>Bitcoin</span> Exchange <br/>You can <span>Trust</span> </h3>
-                                    <p>
-                                        <a href="pricing.html" class="slider btn btn-primary">our prices</a>
-                                    </p>
+    			<div class="row banner-content-area justify-content-between">
+                    <div class="col-12 col-md-10 col-lg-6 banner-content">
+                        <div class="banner-cont-info text-white wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                            <h5 class="text-white">The True Game Changer</h5>
+                            <h1 class="text-white">UniCrypt will change your experience of Crypto Currency</h1>
+                            <p class="text-white">Sed sollicitudin arcu urna, sit amet pellentesque massa con sequat faucibus. Quisque posuere venenatis cursus.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a style="margin: 5px" class="unc-btn text-white" href="{{ url('user/login') }}">Login</a>
                                 </div>
-                            </div>
+                                <div class="col-md-6">
+                                    <a style="margin: 5px" class="unc-btn text-white" href="{{ url('user/register') }}">Register</a>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                 </div>
-                <!-- Carousel Item Ends -->
+                <a class="btn-scroll skip_swing" href="#section0"><span></span></a>
             </div>
-            <!-- Carousel Inner Ends -->
-            <!-- Carousel Controlers Starts -->
-            <a class="left carousel-control" href="index-2.html#main-slide" data-slide="prev">
-				<span><i class="fa fa-angle-left"></i></span>
-			</a>
-            <a class="right carousel-control" href="index-2.html#main-slide" data-slide="next">
-				<span><i class="fa fa-angle-right"></i></span>
-			</a>
-            <!-- Carousel Controlers Ends -->
         </div>
-        <!-- Slider Ends -->
-        <!-- Features Section Starts -->
-        <section class="features">
-            <div class="container">
-                <div class="row features-row">
-                    <!-- Feature Box Starts -->
-                    <div class="feature-box col-md-4 col-sm-12">
-                        <span class="feature-icon">
-							<img id="download-bitcoin" src="images/icons/orange/download-bitcoin.png" alt="download bitcoin">
-						</span>
-                        <div class="feature-box-content">
-                            <h3>Download Bitcoin Wallet</h3>
-                            <p>Get it on PC or Mobile to create, send and receive bitcoins.</p>
-                        </div>
-                    </div>
-                    <!-- Feature Box Ends -->
-                    <!-- Feature Box Starts -->
-                    <div class="feature-box two col-md-4 col-sm-12">
-                        <span class="feature-icon">
-							<img id="add-bitcoins" src="images/icons/orange/add-bitcoins.png" alt="add bitcoins">
-						</span>
-                        <div class="feature-box-content">
-                            <h3>Add coins to your Wallet</h3>
-                            <p>Add bitcoins you’ve created or exchanged via credit card.</p>
-                        </div>
-                    </div>
-                    <!-- Feature Box Ends -->
-                    <!-- Feature Box Starts -->
-                    <div class="feature-box three col-md-4 col-sm-12">
-                        <span class="feature-icon">
-							<img id="buy-sell-bitcoins" src="images/icons/orange/buy-sell-bitcoins.png" alt="buy and sell bitcoins">
-						</span>
-                        <div class="feature-box-content">
-                            <h3>Buy/Sell with Wallet</h3>
-                            <p>Enter receiver's address, specify the amount and send.</p>
-                        </div>
-                    </div>
-                    <!-- Feature Box Ends -->
-                </div>
-            </div>
-        </section>
-        <!-- Features Section Ends -->
-        <!-- About Section Starts -->
-        <section class="about-us">
-            <div class="container">
-                <!-- Section Title Starts -->
-                <div class="row text-center">
-                    <h2 class="title-head">About <span>Us</span></h2>
-                    <div class="title-head-subtitle">
-                        <p>a commercial website that lists wallets, exchanges and other bitcoin related info</p>
-                    </div>
-                </div>
-                <!-- Section Title Ends -->
-                <!-- Section Content Starts -->
-                <div class="row about-content">
-                    <!-- Image Starts -->
-                    <div class="col-sm-12 col-md-5 col-lg-6 text-center">
-                        <img id="about-us" class="img-responsive img-about-us" src="images/about-us.png" alt="about us">
-                    </div>
-                    <!-- Image Ends -->
-                    <!-- Content Starts -->
-                    <div class="col-sm-12 col-md-7 col-lg-6">
-                        <h3 class="title-about">WE ARE BAYYA</h3>
-                        <p class="about-text">A place for everyone who wants to simply buy and sell Bitcoins. Deposit funds using your Visa/MasterCard or bank transfer. Instant buy/sell of Bitcoins at fair price is guaranteed. Nothing extra. Join over 700,000 users from all over the world satisfied with our services.</p>
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#menu1">Our Mission</a></li>
-                            <li><a data-toggle="tab" href="#menu2">Our advantages</a></li>
-                            <li><a data-toggle="tab" href="#menu3">Our guarantees</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div id="menu1" class="tab-pane fade in active">
-                                <p>Bitcoin is based on a protocol known as the blockchain, which allows to create, transfer and verify ultra-secure financial data without interference of third parties.</p>
-                            </div>
-                            <div id="menu2" class="tab-pane fade">
-                                <p>Our mission as an official partner of Bitcoin Foundation is to help you enter and better understand the world of #1 cryptocurrency and avoid any issues you may encounter.</p>
-                            </div>
-                            <div id="menu3" class="tab-pane fade">
-                                <p>We are here because we are passionate about open, transparent markets and aim to be a major driving force in widespread adoption, we are the first and the best in cryptocurrency. </p>
-                            </div>
-                        </div>
-                        <a class="btn btn-primary" href="about.html">Read More</a>
-                    </div>
-                    <!-- Content Ends -->
-                </div>
-                <!-- Section Content Ends -->
-            </div>
-        </section>
-        <!-- About Section Ends -->
-        <!-- Features and Video Section Starts -->
-        <section class="image-block">
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- Features Starts -->
-                    <div class="col-md-8 ts-padding img-block-left">
-                        <div class="gap-20"></div>
-                        <div class="row">
-                            <!-- Feature Starts -->
-                            <div class="col-sm-6 col-md-6 col-xs-12">
-                                <div class="feature text-center">
-                                    <span class="feature-icon">
-										<img id="strong-security" src="images/icons/orange/strong-security.png" alt="strong security"/>
-									</span>
-                                    <h3 class="feature-title">Strong Security</h3>
-                                    <p>Protection against DDoS attacks, <br>full data encryption</p>
-                                </div>
-                            </div>
-                            <!-- Feature Ends -->
-							<div class="gap-20-mobile"></div>
-                            <!-- Feature Starts -->
-                            <div class="col-sm-6 col-md-6 col-xs-12">
-                                <div class="feature text-center">
-                                    <span class="feature-icon">
-										<img id="world-coverage" src="images/icons/orange/world-coverage.png" alt="world coverage"/>
-									</span>
-                                    <h3 class="feature-title">World Coverage</h3>
-                                    <p>Providing services in 99% countries<br> around all the globe</p>
-                                </div>
-                            </div>
-                            <!-- Feature Ends -->
-                        </div>
-                        <div class="gap-20"></div>
-                        <div class="row">
-                            <!-- Feature Starts -->
-                            <div class="col-sm-6 col-md-6 col-xs-12">
-                                <div class="feature text-center">
-                                    <span class="feature-icon">
-										<img id="payment-options" src="images/icons/orange/payment-options.png" alt="payment options"/>
-									</span>
-                                    <h3 class="feature-title">Payment Options</h3>
-                                    <p>Popular methods: Visa, MasterCard, <br>bank transfer, cryptocurrency</p>
-                                </div>
-                            </div>
-                            <!-- Feature Ends -->
-							<div class="gap-20-mobile"></div>
-                            <!-- Feature Starts -->
-                            <div class="col-sm-6 col-md-6 col-xs-12">
-                                <div class="feature text-center">
-                                    <span class="feature-icon">
-										<img id="mobile-app" src="images/icons/orange/mobile-app.png" alt="mobile app"/>
-									</span>
-                                    <h3 class="feature-title">Mobile App</h3>
-                                    <p>Trading via our Mobile App, Available<br> in Play Store & App Store</p>
-                                </div>
-                            </div>
-                            <!-- Feature Ends -->
-                        </div>
-                        <div class="gap-20"></div>
-                        <div class="row">
-                            <!-- Feature Starts -->
-                            <div class="col-sm-6 col-md-6 col-xs-12">
-                                <div class="feature text-center">
-                                    <span class="feature-icon">
-										<img id="cost-efficiency" src="images/icons/orange/cost-efficiency.png" alt="cost efficiency"/>
-									</span>
-                                    <h3 class="feature-title">Cost efficiency</h3>
-                                    <p>Reasonable trading fees for takers<br> and all market makers</p>
-                                </div>
-                            </div>
-                            <!-- Feature Ends -->
-							<div class="gap-20-mobile"></div>
-                            <!-- Feature Starts -->
-                            <div class="col-sm-6 col-md-6 col-xs-12">
-                                <div class="feature text-center">
-                                    <span class="feature-icon">
-										<img id="high-liquidity" src="images/icons/orange/high-liquidity.png" alt="high liquidity"/>
-									</span>
-                                    <h3 class="feature-title">High Liquidity</h3>
-                                    <p>Fast access to high liquidity orderbook<br> for top currency pairs</p>
-                                </div>
-                            </div>
-                            <!-- Feature Ends -->
-                        </div>
-                    </div>
-                    <!-- Features Ends -->
-                    <!-- Video Starts -->
-                    <div class="col-md-4 ts-padding bg-image-1">
-                        <div>
-                            <div class="text-center">
-                                <a class="button-video mfp-youtube" href="https://www.youtube.com/watch?v=0gv7OC9L2s8"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Video Ends -->
-                </div>
-            </div>
-        </section>
-        <!-- Features and Video Section Ends -->
-        <!-- Pricing Starts -->
-        <section class="pricing">
-            <div class="container">
-                <!-- Section Title Starts -->
-                <div class="row text-center">
-                    <h2 class="title-head">affordable <span>packages</span></h2>
-                    <div class="title-head-subtitle">
-                        <p>Purchase Bitcoin using a credit card or with your linked bank account</p>
-                    </div>
-                </div>
-                <!-- Section Title Ends -->
-                <!-- Section Content Starts -->
-                <div class="row pricing-tables-content">
-                    <div class="pricing-container">
-                        <!-- Pricing Switcher Starts -->
-                        <div class="pricing-switcher">
-                            <p>
-                                <input type="radio" name="switch" value="buy" id="buy-1" checked>
-                                <label for="buy-1">BUY</label>
-                                <input type="radio" name="switch" value="sell" id="sell-1">
-                                <label for="sell-1">SELL</label>
-                                <span class="switch"></span>
-                            </p>
-                        </div>
-                        <!-- Pricing Switcher Ends -->
-                        <!-- Pricing Tables Starts -->
-                        <ul class="pricing-list bounce-invert">
-                            <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                                <ul class="pricing-wrapper">
-                                    <!-- Buy Pricing Table #1 Starts -->
-                                    <li data-type="buy" class="is-visible">
-                                        <header class="pricing-header">
-                                            <h2>GET 0.007 BTC <span>For </span></h2>
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-dollar"></i></span>
-                                                <span class="value">100</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Buy Pricing Table #1 Ends -->
-                                    <!-- Sell Pricing Table #1 Starts -->
-                                    <li data-type="sell" class="is-hidden">
-                                        <header class="pricing-header">
-                                            <h2>GET 100 USD <span>For </span></h2>
+        <!-- //end .banner-container -->
 
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-bitcoin"></i></span>
-                                                <span class="value">0.2</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Sell Pricing Table #1 Ends -->
-                                </ul>
-                            </li>
-                            <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                                <ul class="pricing-wrapper">
-                                    <!-- Buy Pricing Table #2 Starts -->
-                                    <li data-type="buy" class="is-visible">
-                                        <header class="pricing-header">
-                                            <h2>GET 0.015 BTC <span>For </span></h2>
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-dollar"></i></span>
-                                                <span class="value">300</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Buy Pricing Table #2 Ends -->
-                                    <!-- Sell Pricing Table #2 Starts -->
-                                    <li data-type="sell" class="is-hidden">
-                                        <header class="pricing-header">
-                                            <h2>GET 1000 USD <span>For </span></h2>
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-bitcoin"></i></span>
-                                                <span class="value">0.5</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Sell Pricing Table #2 Ends -->
-                                </ul>
-                            </li>
-                            <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                                <ul class="pricing-wrapper">
-                                    <!-- Buy Pricing Table #3 Starts -->
-                                    <li data-type="buy" class="is-visible">
-                                        <header class="pricing-header">
-                                            <h2>GET 0.031 BTC <span>For </span></h2>
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-dollar"></i></span>
-                                                <span class="value">500</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Buy Pricing Table #3 Ends -->
-                                    <!-- Yearlt Pricing Table #3 Starts -->
-                                    <li data-type="sell" class="is-hidden">
-                                        <header class="pricing-header">
-                                            <h2>GET 3000 USD <span>For </span></h2>
+        <!-- start three-col-container -->
+        <div class="three-col-container">
+            <div class="container">
+    			<div class="row three-col-area">
+                    <div class="col-12 col-md-12 col-lg-4 mb-40 three-col wow zoomIn" data-wow-duration="1s" data-wow-delay=".3s">
+                        <div class="three-col-info pt-60 pb-50 mobile-pb-30 mobile-pt-40">
+                            <div class="three-col-icon">
+                                <img src="frontend_assets/images/col-icon1.png" alt="" width="108" height="120" />
+                            </div>
+                            <div class="three-col-cont">
+                                <h3>Secure ICO System</h3>
+                                <p>Sed sollicitudin arcu sect etur adip isici uta magna eget posuere ferme ntum, leo nisl luctus risu</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-4 mb-40 three-col wow zoomIn" data-wow-duration="1s">
+                        <div class="three-col-info pt-60 pb-50 mobile-pb-30 mobile-pt-40">
+                            <div class="three-col-icon">
+                                <img src="frontend_assets/images/col-icon2.png" alt="" width="118" height="120" />
+                            </div>
+                            <div class="three-col-cont">
+                                <h3>Easy System Integration</h3>
+                                <p>Donec dictum lectus ac sem posu eresect etur adipisicing elit, sed do ei usmod tempor incididunt</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-4 mb-40 three-col wow zoomIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="three-col-info pt-60 pb-50 mobile-pb-30 mobile-pt-40">
+                            <div class="three-col-icon">
+                                <img src="frontend_assets/images/col-icon3.png" alt="" width="116" height="120" />
+                            </div>
+                            <div class="three-col-cont">
+                                <h3>One to One Token Sale</h3>
+                                <p>Etiam suscipit urna quis nulla con sequat, at condimentum diam congue. Integer volu sectet</p>
+                            </div>
+                        </div>
+                    </div>
+    			</div>
+    		</div>
+        </div>
+        <!-- //end .three-col-container -->
 
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-bitcoin"></i></span>
-                                                <span class="value">1</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Sell Pricing Table #3 Ends -->
-                                </ul>
-                            </li>
-                            <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                                <ul class="pricing-wrapper">
-                                    <!-- Buy Pricing Table #4 Starts -->
-                                    <li data-type="buy" class="is-visible">
-                                        <header class="pricing-header">
-                                            <h2>GET 0.081 BTC <span>For </span></h2>
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-dollar"></i></span>
-                                                <span class="value">1,000</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Buy Pricing Table #4 Ends -->
-                                    <!-- Sell Pricing Table #4 Starts -->
-                                    <li data-type="sell" class="is-hidden">
-                                        <header class="pricing-header">
-                                            <h2>GET 9000 USD <span>For </span></h2>
-                                            <div class="price">
-                                                <span class="currency"><i class="fa fa-bitcoin"></i></span>
-                                                <span class="value">2</span>
-                                            </div>
-                                        </header>
-                                        <footer class="pricing-footer">
-                                            <a href="#" class="btn btn-primary">ORDER NOW</a>
-                                        </footer>
-                                    </li>
-                                    <!-- Sell Pricing Table #4 Ends -->
-                                </ul>
-                            </li>
-                        </ul>
+        <!-- start invented-container -->
+        <div id="section0" class="invented-container overflow-hidden">
+            <div class="container">
+                <div class="row invented-area pt-70 pb-40 mobile-pt-45 justify-content-between">
+                    <div class="col-12 col-md-6 col-lg-6 invented-left">
+                        <div class="invented-img wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+                            <img src="frontend_assets/images/invented-img.png" alt="" width="626" height="556" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6 invented-cont wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
+                        <h3>We are UniCrypt</h3>
+                        <h2>We invented a new type of Crypto Currency</h2>
+                        <p>Suspendisse molestie lobortis eros, sit amet pellente mod tempor incididunt ut labore et do assa et sagittis aliquam, elit lectulore magna aliqua. Uesestrud exercitation.</p>
+                        <p>Etiam suscipit urna quis nulla conseq tetr adipisicing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
+                        <a class="unc-btn text-white" href="{{ url('marketplace') }}"> Explore Marketplace</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //end .invented-container -->
+
+        <!-- start unc-inventment-container --> 
+        <section class="unc-inventment-container overflow-hidden">
+            <div class="container">
+                <div class="row pt-20 pb-90 mobile-pb-20">
+                    <div class="col-12 col-md-12 col-lg-8 mobile-pb-0">
+                        <div class="unc-inventment-content pt-110 mobile-pt-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
+                            <h3>Why Choose UniCrypt</h3>
+                            <h2>Buying UniCrypt will be a great inventment for you</h2>
+                            <p>Metetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
+                            <div class="unc-inv-col-area">
+                                <div class="unc-inv-col">
+                                    <div class="unc-inv-col-row">
+                                        <div class="unc-inv-col-img">
+                                            <img src="frontend_assets/images/inv-col-img1.png" alt="" width="60" height="60" />
+                                        </div>
+                                        <div class="unc-inv-col-cont">
+                                            <h4>Multichain with device</h4>
+                                            <p>Vivamus semper ipsum dolex ea commodo consequat.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="unc-inv-col">
+                                    <div class="unc-inv-col-row">
+                                        <div class="unc-inv-col-img">
+                                            <img src="frontend_assets/images/inv-col-img2.png" alt="" width="60" height="60" />
+                                        </div>
+                                        <div class="unc-inv-col-cont">
+                                            <h4>Initial coin offering</h4>
+                                            <p>Etiam suscipit urna quis nulla eqx ea commodo consequat.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="unc-inv-col">
+                                    <div class="unc-inv-col-row">
+                                        <div class="unc-inv-col-img">
+                                            <img src="frontend_assets/images/inv-col-img3.png" alt="" width="60" height="60" />
+                                        </div>
+                                        <div class="unc-inv-col-cont">
+                                            <h4>Payment integration</h4>
+                                            <p>Cras sodales, massa et sagittis a vitae cursus odio equat. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="unc-inv-col">
+                                    <div class="unc-inv-col-row">
+                                        <div class="unc-inv-col-img">
+                                            <img src="frontend_assets/images/inv-col-img4.png" alt="" width="60" height="60" />
+                                        </div>
+                                        <div class="unc-inv-col-cont">
+                                            <h4>Full data ownership</h4>
+                                            <p>Sullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Pricing Ends -->
-        <!-- Bitcoin Calculator Section Starts -->
-        <section class="bitcoin-calculator-section">
+        <!-- //end .unc-inventment-container -->
+
+        <!-- start features-bns-container -->
+        <div class="features-bns-container overflow-hidden">
+            <div class="container">
+                <div class="row justify-content-between pt-110 pb-70 mobile-pt-50 mobile-pb-30">
+                    <div class="col-12 col-md-5 features-bns-left wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+                        <img src="frontend_assets/images/features-bns-img.png" alt="" width="600" height="768" />
+                    </div>
+                    <div class="col-12 col-md-6 features-bns-right mobile-pt-10 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
+                        <div class="features-bns-cont">
+                            <h3>UniCrypt Features</h3>
+                            <h2>UniCrypt has awesome features for business</h2>
+                            <p>Donec dictum lectus ac sem posuere venenatis. Cras sodale eiusmod tempor incididunt ut labore et dolore magna</p>
+                            <div class="features-bns-area">
+                                <div class="features-bns-col-row">
+                                    <div class="features-bns-col-img">
+                                        <img src="frontend_assets/images/features-bns-icon1.png" alt="" width="60" height="60" />
+                                    </div>
+                                    <div class="features-bns-col-cont">
+                                        <h4>The true game changer</h4>
+                                        <p>Quisque posuere pulvinar eleifend odo conse quamet, consectetur adipisicing elit, sed do eius mod tempor incididunt ut labor</p>
+                                    </div>
+                                </div>
+                                <div class="features-bns-col-row">
+                                    <div class="features-bns-col-img">
+                                        <img src="frontend_assets/images/features-bns-icon2.png" alt="" width="62" height="62" />
+                                    </div>
+                                    <div class="features-bns-col-cont">
+                                        <h4>Solid blockchain infrastructure</h4>
+                                        <p>Nam porta ipsum nec tortor interd dilero naedo conse quamet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor</p>
+                                    </div>
+                                </div>
+                                <div class="features-bns-col-row">
+                                    <div class="features-bns-col-img">
+                                        <img src="frontend_assets/images/features-bns-icon3.png" alt="" width="60" height="60" />
+                                    </div>
+                                    <div class="features-bns-col-cont">
+                                        <h4>Global system intigration</h4>
+                                        <p>Etiam at massa ut ipsum viverra dictum comuem cetetur adipisicing elit, sed do eiusmod tempor incididunt ut labor</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //end .features-bns-container -->
+
+        <!-- start benefits-container -->
+        <div class="benefits-container overflow-hidden">
+            <div class="container">
+                <div class="row pt-110 mobile-pt-60">
+                    <div class="col-12 big-title white-text text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+                        <h3>How You Get Benefited</h3>
+                        <h2>Benefits of UniCrypt Hoders</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-between benefits-content pt-40 pb-80 mobile-pt-10 mobile-pb-40">
+                    <div class="col-12 col-md-6 benefits-left wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+                        <img src="frontend_assets/images/mgm-img.png" alt="" width="736" height="464" />
+                    </div>
+                    <div class="col-12 col-md-6 benefits-right wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
+                        <div class="benefits-cont">
+                            <p>Etiam suscipit urna quis nulla consequat, at condimentum unt ut labore et dolore magna alienim ad minim veniam</p>
+                            <div class="bnf-area pt-30 mt-2 mobile-mt-0">
+                                <div class="bnf-col-row pb-20 mobile-pb-10">
+                                    <div class="bnf-col-img">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="bnf-col-cont">
+                                        <p>Cras sodales, massa et sagittis aliquam, elit lect veniam, quis nostrud exmco labtomra keu kidite paro prem oris nisi ut aliquip ex ea commodo consequat.</p>
+                                    </div>
+                                </div>
+                                <div class="bnf-col-row pb-20 mobile-pb-10">
+                                    <div class="bnf-col-img">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="bnf-col-cont">
+                                        <p>Integer volutpat aliquam felisque posuere , quis nostrud exmco labtomra keu kidite paro prem oris nisi ut aliquip ex ea commodo consequat.</p>
+                                    </div>
+                                </div>
+                                <div class="bnf-col-row pb-20 mobile-pb-10">
+                                    <div class="bnf-col-img">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="bnf-col-cont">
+                                        <p>Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exmco labtomra keu kidite paro prem oris nisi ut aliquip ex ea commodo consequat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //end .benefits-container -->
+
+        <!-- start faq -->
+        <div id="faq" class="faq pt-110 mobile-pt-60 mobile-pb-20 overflow-hidden">
             <div class="container">
                 <div class="row">
-                    <!-- Section Heading Starts -->
-                    <div class="col-md-12">
-                        <h2 class="title-head text-center"><span>Bitcoin</span> Calculator</h2>
-                        <p class="message text-center">Find out the current Bitcoin value with our easy-to-use converter</p>
+                    <div class="col-12 big-title text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                        <h3>UniCrypt Help Desk</h3>
+                        <h2>Frequently Asked Questions</h2>
                     </div>
-                    <!-- Section Heading Ends -->
-                    <!-- Bitcoin Calculator Form Starts -->
-                    <div class="col-md-12 text-center">
-                        <form class="bitcoin-calculator" id="bitcoin-calculator">
-                            <!-- Input #1 Starts -->
-                            <input class="form-input" name="btc-calculator-value" value="1">
-                            <!-- Input #1 Ends -->
-                            <div class="form-info"><i class="fa fa-bitcoin"></i></div>
-                            <div class="form-equal">=</div>
-                            <!-- Input/Result Starts -->
-                            <input class="form-input form-input-result" name="btc-calculator-result">
-                            <!-- Input/Result Ends -->
-                            <!-- Select Currency Starts -->
-                            <div class="form-wrap">
-                                <select id="currency-select" class="form-input select-currency select-primary" name="btc-calculator-currency" data-dropdown-class="select-primary-dropdown"></select>
+                </div>
+                <div class="row pb-60 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    <div class="horizontal_tab_data">
+                        <div id="horizontalTab">
+                            <ul class="resp-tabs-list">
+                                <li>General</li>
+                                <li>Token</li>
+                                <li>Bitcoin</li>
+                                <li>Cryptocurrency</li>
+                                <li>Blockchain</li>
+                            </ul>
+                            <div class="resp-tabs-container">
+                                <div>
+                                    <div class="tab_inner">
+                                        <div class="d-flex flex-wrap justify-content-between tab_content">
+                                            <div class="tab-col">
+                                                <h3>What is Crypto Currency ?</h3>
+                                                <p>Praesent dictum eu nibh eget pretium odo conse quamet, conon sectetur adipisicing elit, sed do eiusmod tempor incididunt utahu labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>What exactly UniCrypt is ?</h3>
+                                                <p>Sullamco laboris nisi ut aliquip ex ea commodo conse quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to exchange UniCrypt ?</h3>
+                                                <p>Fusce diam eros, dapibus at rutrum ac, iaculis eu or quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to get benefited with Unicrypt ?</h3>
+                                                <p>Proin sed commodo metus. Phasellus arcu nibh, luct et, con se ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tab_inner">
+                                        <div class="d-flex flex-wrap justify-content-between tab_content">
+                                            <div class="tab-col">
+                                                <h3>What is Crypto Currency ?</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra a lorem vitae consequat. Donec consequat nec felis vitae suscipit. Etiam ultricies elit id laoreet ultricies.</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>What exactly UniCrypt is ?</h3>
+                                                <p>Etiam eleifend faucibus gravida. Vestibulum mattis posuere rutrum. Quisque eu diam at arcu accumsan sollicitudin nec a nibh. Nullam consequat laoreet condimentum. Sed id hendrerit ipsum</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to exchange UniCrypt ?</h3>
+                                                <p>Sed ut lectus iaculis, faucibus quam et, fermentum quam. Praesent massa ex, egestas ut felis a, vehicula aliquet elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras malesuada accumsan urna eu iaculis.</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to get benefited with Unicrypt ?</h3>
+                                                <p>Donec eu eros ullamcorper, dictum dolor et, viverra lacus. Nunc luctus purus quis porta sagittis. Proin egestas nunc sit amet dapibus iaculis. Phasellus ultrices bibendum urna eget aliquet. Pellentesque in leo semper, egestas metus non, accumsan enim.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tab_inner">
+                                        <div class="d-flex flex-wrap justify-content-between tab_content">
+                                            <div class="tab-col">
+                                                <h3>What is Crypto Currency ?</h3>
+                                                <p>Praesent dictum eu nibh eget pretium odo conse quamet, conon sectetur adipisicing elit, sed do eiusmod tempor incididunt utahu labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>What exactly UniCrypt is ?</h3>
+                                                <p>Sullamco laboris nisi ut aliquip ex ea commodo conse quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to exchange UniCrypt ?</h3>
+                                                <p>Fusce diam eros, dapibus at rutrum ac, iaculis eu or quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to get benefited with Unicrypt ?</h3>
+                                                <p>Proin sed commodo metus. Phasellus arcu nibh, luct et, con se ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tab_inner">
+                                        <div class="d-flex flex-wrap justify-content-between tab_content">
+                                            <div class="tab-col">
+                                                <h3>What is Crypto Currency ?</h3>
+                                                <p>Aenean lacinia elementum est, id finibus nunc maximus vel. Duis non ipsum sodales, fermentum nisl vel, cursus leo. Suspendisse sit amet ante feugiat, ullamcorper diam eu, mollis mi. Proin id nulla metus. </p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>What exactly UniCrypt is ?</h3>
+                                                <p>Duis elementum feugiat nisi eu sollicitudin. Nullam sit amet tincidunt dolor. Curabitur porttitor aliquam lacus, ut dictum diam fringilla ut.</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to exchange UniCrypt ?</h3>
+                                                <p>Quisque a pharetra lorem. Etiam in eros malesuada, vestibulum massa non, mollis metus. Nunc feugiat sem turpis, euismod pharetra est maximus ultrices. Nam ultrices sem ut nisi sollicitudin laoreet.</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to get benefited with Unicrypt ?</h3>
+                                                <p>Etiam porta, erat ut pretium porta, erat turpis lobortis enim, sit amet blandit felis tellus tempus felis. Quisque vitae ornare mauris. Ut eleifend massa vitae leo fermentum ullamcorper.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tab_inner">
+                                        <div class="d-flex flex-wrap justify-content-between tab_content">
+                                            <div class="tab-col">
+                                                <h3>What is Crypto Currency ?</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra a lorem vitae consequat. Donec consequat nec felis vitae suscipit. Etiam ultricies elit id laoreet ultricies.</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>What exactly UniCrypt is ?</h3>
+                                                <p>Etiam eleifend faucibus gravida. Vestibulum mattis posuere rutrum. Quisque eu diam at arcu accumsan sollicitudin nec a nibh. Nullam consequat laoreet condimentum. Sed id hendrerit ipsum</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to exchange UniCrypt ?</h3>
+                                                <p>Sed ut lectus iaculis, faucibus quam et, fermentum quam. Praesent massa ex, egestas ut felis a, vehicula aliquet elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras malesuada accumsan urna eu iaculis.</p>
+                                            </div>
+                                            <div class="tab-col">
+                                                <h3>How to get benefited with Unicrypt ?</h3>
+                                                <p>Donec eu eros ullamcorper, dictum dolor et, viverra lacus. Nunc luctus purus quis porta sagittis. Proin egestas nunc sit amet dapibus iaculis. Phasellus ultrices bibendum urna eget aliquet. Pellentesque in leo semper, egestas metus non, accumsan enim.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Select Currency Ends -->
-                        </form>
-                        <p class="info"><i>* Data updated every 15 minutes</i></p>
+                        </div>
                     </div>
-                    <!-- Bitcoin Calculator Form Ends -->
                 </div>
             </div>
-        </section>
-        <!-- Bitcoin Calculator Section Ends -->
-        <!-- Team Section Starts -->
-        <section class="team">
+        </div>
+        <!-- //end .faq -->
+
+        <!-- start partner -->
+        <div class="partner">
             <div class="container">
-                <!-- Section Title Starts -->
-                <div class="row text-center">
-                    <h2 class="title-head">our <span>experts</span></h2>
-                    <div class="title-head-subtitle">
-                        <p> A talented team of Cryptocurrency experts based in London</p>
+                <div class="row pt-110 pb-40 mobile-pt-60 mobile-pb-10">
+                    <div class="big-title white-text text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                        <h3>Our Partners</h3>
+                        <h2>We Worked with Brands</h2>
                     </div>
                 </div>
-                <!-- Section Title Ends -->
-                <!-- Team Members Starts -->
-                <div class="row team-content team-members">
-                    <!-- Team Member Starts -->
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <div class="team-member">
-                            <!-- Team Member Picture Starts -->
-                            <img src="images/team/member1.jpg" class="img-responsive" alt="team member">
-                            <!-- Team Member Picture Ends -->
-                            <!-- Team Member Details Starts -->
-                            <div class="team-member-caption social-icons">
-                                <h4>Lina Marzouki</h4>
-                                <p>Ceo Founder</p>
-                                <ul class="list list-inline social">
-                                    <li>
-                                        <a href="#" class="fa fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-google-plus"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Team Member Details Ends -->
-                        </div>
+                <div class="row justify-content-center pb-60 partner-area mobile-pb-20 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo1.png" alt="" width="105" height="49" />
+                        </a>
                     </div>
-                    <!-- Team Member Ends -->
-                    <!-- Team Member Starts -->
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <div class="team-member">
-                            <!-- Team Member Picture Starts -->
-                            <img src="images/team/member2.jpg" class="img-responsive" alt="team member">
-                            <!-- Team Member Picture Ends -->
-                            <!-- Team Member Details Starts -->
-                            <div class="team-member-caption social-icons">
-                                <h4>Marco Verratti</h4>
-                                <p>Director</p>
-                                <ul class="list list-inline social">
-                                    <li>
-                                        <a href="#" class="fa fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-google-plus"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Team Member Details Ends -->
-                        </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo2.png" alt="" width="106" height="49" />
+                        </a>
                     </div>
-                    <!-- Team Member Ends -->
-                    <!-- Team Member Starts -->
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <!-- Team Member-->
-                        <div class="team-member">
-                            <!-- Team Member Picture Starts -->
-                            <img src="images/team/member3.jpg" class="img-responsive" alt="team member">
-                            <!-- Team Member Picture Ends -->
-                            <!-- Team Member Details Starts -->
-                            <div class="team-member-caption social-icons">
-                                <h4>Emilia Bella</h4>
-                                <p>Bitcoin Consultant</p>
-                                <ul class="list list-inline social">
-                                    <li>
-                                        <a href="#" class="fa fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-google-plus"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Team Member Details Ends -->
-                        </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo3.png" alt="" width="126" height="49" />
+                        </a>
                     </div>
-                    <!-- Team Member Ends -->
-                    <!-- Team Member Starts -->
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <div class="team-member">
-                            <!-- Team Member Picture Starts -->
-                            <img src="images/team/member4.jpg" class="img-responsive" alt="team member">
-                            <!-- Team Member Picture Ends -->
-                            <!-- Team Member Details Starts -->
-                            <div class="team-member-caption social-icons">
-                                <h4>Antonio Conte</h4>
-                                <p>Bitcoin Developer</p>
-                                <ul class="list list-inline social">
-                                    <li>
-                                        <a href="#" class="fa fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="fa fa-google-plus"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Team Member Details Ends -->
-                        </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo4.png" alt="" width="82" height="49" />
+                        </a>
                     </div>
-                    <!-- Team Member Ends -->
-                </div>
-                <!-- Team Members Ends -->
-            </div>
-        </section>
-        <!-- Team Section Ends -->
-        <!-- Quote and Chart Section Starts -->
-        <section class="image-block2">
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- Quote Starts -->
-                    <div class="col-md-4 img-block-quote bg-image-2">
-                        <blockquote>
-                            <p>Bitcoin is one of the most important inventions in all of human history. For the first time ever, anyone can send or receive any amount of money with anyone else, anywhere on the planet, conveniently and without restriction. It’s the dawn of a better, more free world.</p>
-                            <footer><img src="images/ceo.jpg" alt="ceo" /> <span>Marc Smith</span> - CEO</footer>
-                        </blockquote>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo5.png" alt="" width="67" height="49" />
+                        </a>
                     </div>
-                    <!-- Quote Ends -->
-                    <!-- Chart Starts -->
-                    <div class="col-md-8 bg-grey-chart">
-                        <div class="chart-widget dark-chart chart-1">
-                            <div>
-                                <div class="btcwdgt-chart" data-bw-theme="dark"></div>
-                            </div>
-                        </div>
-						<div class="chart-widget light-chart chart-2">
-                            <div>
-                                <div class="btcwdgt-chart" bw-theme="light"></div>
-                            </div>
-                        </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo6.png" alt="" width="126" height="49" />
+                        </a>
                     </div>
-                    <!-- Chart Ends -->
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo7.png" alt="" width="106" height="49" />
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo8.png" alt="" width="119" height="49" />
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo9.png" alt="" width="93" height="49" />
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo10.png" alt="" width="138" height="49" />
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo11.png" alt="" width="143" height="49" />
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
+                        <a href="#">
+                            <img src="frontend_assets/images/brands-logo12.png" alt="" width="142" height="49" />
+                        </a>
+                    </div>
                 </div>
             </div>
-        </section>
-        <!-- Quote and Chart Section Ends -->
-        <!-- Blog Section Starts -->
-        <section class="blog">
-            <div class="container">
-                <!-- Section Title Starts -->
-                <div class="row text-center">
-                    <h2 class="title-head">Bitcoin <span>News</span></h2>
-                    <div class="title-head-subtitle">
-                        <p>Discover latest news about Bitcoin on our blog</p>
-                    </div>
-                </div>
-                <!-- Section Title Ends -->
-                <!-- Section Content Starts -->
-                <div class="row latest-posts-content">
-                    <!-- Article Starts -->
-                    <div class="col-sm-4 col-md-4 col-xs-12">
-                        <div class="latest-post">
-                            <!-- Featured Image Starts -->
-                            <a href="blog-post.html"><img class="img-responsive" src="images/blog/blog-post-small-1.jpg" alt="img"></a>
-                            <!-- Featured Image Ends -->
-                            <!-- Article Content Starts -->
-                            <div class="post-body">
-                                <h4 class="post-title">
-                                    <a href="blog-post.html">How Cryptocurrency Begun and Its Impact To Financial Transactions</a>
-                                </h4>
-                                <div class="post-text">
-                                    <p>incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis nostrud...</p>
+        </div>
+        <!-- //end .partner -->
+
+        <!-- start contact-container -->
+        <div class="contact-container pt-40">
+            <div class="contact-content">
+                <div class="container">
+                    <div class="row justify-content-between mb-2 pt-70 pb-90 mobile-pt-20 mobile-pb-30 contact-content-area">
+                        <div class="col-12 col-md-5 contact-info wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                            <div class="contact-us">
+                                <h3>Contact us</h3>
+                                <h2>Got A Question?</h2>
+                                <p>Nam aliquam tempus sodale vestibulum con dimentum est id vulputat  auctor lacus eget enim melahobe hobe na</p>
+                                <ul class="contact-social">
+                                    <li>
+                                       <div class="social-row">
+                                           <a href="tel:88012345678" target="_blank"><span><i class="fas fa-phone"></i></span>
+                                           <p>+880 - 1234 - 5678</p></a>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="social-row">
+                                           <a  href="mailto:hello@unicrypt.com" target="_blank"><span><i class="far fa-envelope"></i></span>
+                                           <p>hello@unicrypt.com</p></a>
+                                       </div>
+                                    </li>
+                                    <li>
+                                       <div class="social-row">
+                                           <span><a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i></a></span>
+                                           <p>Uttara, Dhaka, Bangladesh</p>
+                                       </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                            <form class="contact-form" action="https://bootstrapshaper.com/tmforest/unicrypt/frontend_assets/mail.php" method="POST">
+                                <div class="d-flex flex-wrap form-col">
+                                    <div class="form-group">
+                                        <input class="form-control required" type="text" name="fname" placeholder="Your name" />
+                                        <span class="alert-error"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control required" type="email" name="email" placeholder="Your email" />
+                                        <span class="alert-error"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="post-date">
-                                <span>01</span>
-                                <span>JAN</span>
-                            </div>
-							<a href="blog-post.html" class="btn btn-primary">read more</a>
-                            <!-- Article Content Ends -->
+                                <div class="form-group">
+                                    <input class="form-control required" type="text" name="subject" placeholder="Subject" />
+                                    <span class="alert-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control required" name="message" rows="7" cols="7" placeholder="Start writing here"></textarea>
+                                    <span class="alert-error"></span>
+                                </div>
+                                <div class="submit-col">
+                                    <input type="submit" value="Submit" />
+                                </div>
+                                <div class="col-12 contact-message"></div>
+                            </form>
                         </div>
                     </div>
-                    <!-- Article Ends -->
-                    <!-- Article Starts -->
-                    <div class="col-sm-4 col-md-4 col-xs-12">
-                        <div class="latest-post">
-                            <!-- Featured Image Starts -->
-                            <a href="blog-post.html"><img class="img-responsive" src="images/blog/blog-post-small-2.jpg" alt="img"></a>
-                            <!-- Featured Image Ends -->
-                            <!-- Article Content Starts -->
-                            <div class="post-body">
-                                <h4 class="post-title">
-                                    <a href="blog-post.html">Cryptocurrency - Who Are Involved With It? Words about members</a>
-                                </h4>
-                                <div class="post-text">
-                                    <p>incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis nostrud...</p>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="newsletter-content wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                                <h2>Subscribe to Our Newsletter</h2>
+                                <div class="form-group newsletter-field">
+                                    <form target="_blank" action="https://bootstrapshaper.us6.list-manage.com/subscribe/post?u=0061a1f05f345a8f34416646c&amp;id=000949c92f" method="post" novalidate>
+                                        <input class="form-control" type="email" name="EMAIL" placeholder="Your email" />
+                                        <input type="submit" value="" />
+                                    </form>
+
+                                    <!-- submission error message -->
+                                    <div class="nl-error"></div>
                                 </div>
                             </div>
-                            <div class="post-date">
-                                <span>17</span>
-                                <span>MAR</span>
-                            </div>
-							<a href="blog-post.html" class="btn btn-primary">read more</a>
-                            <!-- Article Content Ends -->
-                        </div>
-                    </div>
-                    <!-- Article Ends -->
-                    <!-- Article Start -->
-                    <div class="col-sm-4 col-md-4 col-xs-12">
-                        <div class="latest-post">
-                            <!-- Featured Image Starts -->
-                            <a href="blog-post.html"><img class="img-responsive" src="images/blog/blog-post-small-3.jpg" alt="img"></a>
-                            <!-- Featured Image Ends -->
-                            <!-- Article Content Starts -->
-                            <div class="post-body">
-                                <h4 class="post-title">
-                                    <a href="blog-post.html">Risks & Rewards Of Investing In Bitcoin. Pros and Cons</a>
-                                </h4>
-                                <div class="post-text">
-                                    <p>incididunt ut labore et dolore magna aliqua. Ut enim aminim veniam, quis nostrud...</p>
-                                </div>
-                            </div>
-                            <div class="post-date">
-                                <span>25</span>
-                                <span>FEB</span>
-                            </div>
-							<a href="blog-post.html" class="btn btn-primary">read more</a>
-                            <!-- Article Content Ends -->
                         </div>
                     </div>
                 </div>
-				<!-- Section Content Ends -->
             </div>
-        </section>
-        <!-- Blog Section Ends -->
-        <!-- Call To Action Section Starts -->
-        <section class="call-action-all">
-			<div class="call-action-all-overlay">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-							<!-- Call To Action Text Starts -->
-							<div class="action-text">
-								<h2>Get Started Today With Bitcoin</h2>
-								<p class="lead">Open account for free and start trading Bitcoins!</p>
-							</div>
-							<!-- Call To Action Text Ends -->
-							<!-- Call To Action Button Starts -->
-							<p class="action-btn"><a class="btn btn-primary" href="register.html">Register Now</a></p>
-							<!-- Call To Action Button Ends -->
-						</div>
-					</div>
-				</div>
-			</div>
-        </section>
-        <!-- Call To Action Section Ends -->
-@include('inc/footer')
+        </div>
+        <!-- //end .contact-container -->
+
+@include('inc.footer')
