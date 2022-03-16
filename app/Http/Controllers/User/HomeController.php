@@ -337,6 +337,10 @@ class HomeController extends Controller
             alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
         }
 
+        if(empty(Auth::guard('user')->user()->status)){
+            alert()->error('Kindly upload your documents for verification', 'KYC Document')->persistent('Close');
+        }
+
         return view('user.profile', [
             'payment_methods'=> Payment::all(),
             'wallet_balance' => $wallet_balance,

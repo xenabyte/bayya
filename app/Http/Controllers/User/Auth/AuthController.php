@@ -16,6 +16,7 @@ use Illuminate\Http\Exception\HttpResponseException;
 
 use App\Mail\Notification;
 use App\Mail\VerifyEmail;
+use App\Mail\ResetPassword;
 
 use App\Models\User;
 use App\Models\Deposit;
@@ -41,7 +42,6 @@ class AuthController extends Controller
 
 
         $subject = env('APP_NAME') .' Reset Password';
-        $type=0; //reset password
         $user = User::where('email', $email)->first();
 
          if(!$user){
@@ -49,7 +49,7 @@ class AuthController extends Controller
              return redirect()->back();
         }
 
-        Mail::to($email)->send(new Notification($user, $time, $subject, $type));
+        Mail::to($email)->send(new ResetPassword($user, $time));
 
         if(true){
              alert()->success('Password email sent', 'Good')->persistent();
@@ -65,9 +65,6 @@ class AuthController extends Controller
         $email = \base64_decode($email); //decode email address
         $time = \base64_decode($time); // decode time
 
-        log::info($email);
-
-
         return view('user.auth.passwords.reset')->with(
             ['email' => $email, 'time' => $time]
         );
@@ -77,6 +74,7 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $time = $request->input('time');
+        log::info(Carbon::parse($time));
         $user = User::where('email', $email)->first();
 
         if($time < Carbon::parse('- 15minutes')){
@@ -101,5 +99,41 @@ class AuthController extends Controller
         $user->save();
         alert()->success('Password reset successful, kindly login with the correct details', 'Good')->persistent();
         return view('user.auth.login');
+    }
+
+
+    public function verifyEmail($email,$secret){
+
+        $email = \base64_decode($email); //decode email address
+        $secret = \base64_decode($secret); // decode verification_code
+
+        $user = User::where('email', $email)->where('verification_code',$secret)->first();
+
+        if(!empty($user->email_verified_at)){
+            if(Auth::guard('user')->check()){
+              alert()->success('Email Already Verified', 'Good')->persistent();
+              return redirect("/user/home");
+            }else{
+                alert()->success('Email Already Verified', 'Good')->persistent();
+                return redirect("/user/login");
+            }
+        }
+
+        if($user){
+            $user->email_verified_at = Carbon::parse();
+            $user->save();
+
+            if(Auth::guard('user')->check()){
+              alert()->success('Email Verified', 'Good')->persistent();
+              return redirect("/user/home");
+            }else{
+                alert()->success('Email Verified', 'Good')->persistent();
+                return redirect("/user/login");
+            }
+
+        }else{
+            alert()->error('Email not verified', 'Oops!')->persistent();
+            return redirect("/user/login");
+        }
     }
 }

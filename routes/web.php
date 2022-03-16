@@ -59,13 +59,14 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'register']);
 
-    Route::post('/password/email', [App\Http\Controllers\User\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.request');
-    Route::post('/password/reset', [App\Http\Controllers\User\Auth\ResetPasswordController::class, 'reset'])->name('password.email');
-    Route::get('/password/reset', [App\Http\Controllers\User\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.reset');
-    Route::get('/password/reset/{token}', [App\Http\Controllers\User\Auth\ResetPasswordController::class, 'showResetForm']);
+    Route::post('/password/email', [App\Http\Controllers\User\Auth\AuthController::class, 'sendResetLinkEmail'])->name('password.request');
+    Route::post('/password/reset', [App\Http\Controllers\User\Auth\AuthController::class, 'reset'])->name('password.email');
+    Route::get('/password/reset', [App\Http\Controllers\User\Auth\AuthController::class, 'showLinkRequestForm'])->name('password.reset');
+    Route::get('/password/reset/{email}/{time}', [App\Http\Controllers\User\Auth\AuthController::class, 'showResetForm']);
 
 
     Route::post('/email/verify', [App\Http\Controllers\User\HomeController::class, 'resendVerificationEmail']);
+    Route::get('/verify/{email}/{secret}',  [App\Http\Controllers\User\Auth\AuthController::class, 'verifyEmail']);
     // Route::get('/verify/{email}/{secret}', 'WelcomeController@verifyEmail');
     // Route::post('/resendVerificationEmail', 'WelcomeController@resendVerificationEmail');
 
