@@ -64,6 +64,8 @@
 						</a>
 					</li>
 
+                    @if(Auth::guard('user')->user()->status == 'approved')
+
                     <li class="header-menu">
 						<span>Exchange Market</span>
 					</li>
@@ -81,6 +83,7 @@
 							<span>Records</span>
 						</a>
 					</li>
+                    @endif
 
                     <li class="header-menu">
 						<span>Security</span>
@@ -110,6 +113,7 @@
 
 						</ul>
 					</li>
+
 
                     <li class="header-menu">
 						<span>Support</span>

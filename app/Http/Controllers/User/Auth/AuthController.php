@@ -74,7 +74,6 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $time = $request->input('time');
-        log::info(Carbon::parse($time));
         $user = User::where('email', $email)->first();
 
         if($time < Carbon::parse('- 15minutes')){

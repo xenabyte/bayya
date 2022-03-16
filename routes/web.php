@@ -91,6 +91,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/raiseDispute', [App\Http\Controllers\User\HomeController::class, 'raiseDispute']);
     Route::post('/confirmPayment', [App\Http\Controllers\User\HomeController::class, 'confirmPayment']);
     Route::post('/createReview', [App\Http\Controllers\User\HomeController::class, 'createReview']);
+    Route::post('/contactAdmin', [App\Http\Controllers\User\HomeController::class, 'contactAdmin']);
 
     Route::post('/uploadKYC', [App\Http\Controllers\User\HomeController::class, 'uploadKYC']);
     Route::post('/withdraw', [App\Http\Controllers\User\HomeController::class, 'withdraw']);

@@ -39,6 +39,7 @@ use App\Mail\BuyerDisputeMail;
 use App\Mail\SellerDisputeMail;
 use App\Mail\Notification;
 use App\Mail\VerifyEmail;
+use App\Mail\SupportAdmin;
 use App\Mail\PendingUserMail;
 
 use Mail;
@@ -58,12 +59,15 @@ class HomeController extends Controller
         // $this->middleware(['auth:user', '2fa']);
     }
 
-    public function contact(Request $request)
+    public function contact()
     {
+        if(Auth::guard('user')->user()->status == 'blocked'){
+            alert()->error('Your account have been blocked, Kindly send a mail to support', 'Account Blocked')->persistent('Close');
+        }
         return view('/user/contact');
     }
 
-    public function helpCenter(Request $request)
+    public function helpCenter()
     {
         return view('/user/help-center');
     }
@@ -132,9 +136,7 @@ class HomeController extends Controller
         }
 
         if(Auth::guard('user')->user()->status == 'blocked'){
-            return view('/user/auth/blocked', [
-               'email' => Auth::guard('user')->user()->email,
-           ]);
+            return $this->contact();
         }
 
         //packages
@@ -1080,5 +1082,25 @@ class HomeController extends Controller
 
 
     }
+
+    public function contactAdmin(Request $request){
+        $user = Auth::guard('user')->user();
+
+        $name = $request->name;
+        $body = $request->message;
+
+        Mail::to(env('SUPPORT_EMAIL'))->send(new SupportAdmin($user, $name, $body));
+
+        if(true){
+             alert()->success('Email Sent', 'Good')->persistent();
+             return redirect()->back();
+        }else{
+             alert()->error('An error occur', 'Oops!')->persistent();
+             return redirect()->back();
+        }
+
+
+    }
+
 
 }

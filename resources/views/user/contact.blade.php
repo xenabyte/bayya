@@ -35,6 +35,7 @@
     </head>
 
     <body>
+		@include('sweet::alert')
 
 		<div id="app" class="contacts-page">
 
@@ -54,18 +55,19 @@
 							</div>
 
 							<div class="panel-body panel-form">
-                                <form action="#" method="post">
+                                <form action="{{ url('user/contactAdmin') }}" method="post">
+									@csrf
                                     <div class="form-row">
 
-                                        <div class="form-group col-md-6 form-group-underline">
-                                            <label for="form-group-underline-name">Name</label>
-                                            <input type="email" class="form-control" autocomplete="off" id="form-group-underline-name" placeholder="Enter your name">
+										<div class="form-group col-md-6 form-group-underline">
+                                            <label for="form-group-underline-email">Email address</label>
+                                            <input type="email" class="form-control" name="email" autocomplete="off" id="form-group-underline-email" readonly value="{{ Auth::guard('user')->user()->email }}">
                                             <span class="border-color"></span>
                                         </div>
 
                                         <div class="form-group col-md-6 form-group-underline">
-                                            <label for="form-group-underline-email">Email address</label>
-                                            <input type="email" class="form-control" autocomplete="off" id="form-group-underline-email" placeholder="Enter email">
+                                            <label for="form-group-underline-name">Name</label>
+                                            <input type="text" name="name" class="form-control" required autocomplete="off" id="form-group-underline-name" placeholder="Enter your name">
                                             <span class="border-color"></span>
                                         </div>
 
@@ -73,15 +75,15 @@
 
                                     <div class="form-group form-group-underline">
                                         <label for="form-group-underline-message">Message</label>
-                                        <textarea class="form-control" autocomplete="off" id="form-group-underline-message" placeholder="Type your message here..."></textarea>
+                                        <textarea class="form-control" name="message" autocomplete="off" required id="form-group-underline-message" placeholder="Type your message here..."></textarea>
                                         <span class="border-color"></span>
                                     </div>
-                                </form>
 
-								<div class="form-group mb-0 mt-5 text-right">
-									<a href="{{ url('user/home') }}" class="btn btn-light px-5">Back Home</a>
-									<button type="submit" class="btn btn-info px-5 ml-2">Send Message</button>
-								</div>
+									<div class="form-group mb-0 mt-5 text-right">
+										<a href="{{ url('user/home') }}" class="btn btn-light px-5">Back Home</a>
+										<button type="submit" class="btn btn-info px-5 ml-2">Send Message</button>
+									</div>
+                                </form>
 
 							</div>
 
