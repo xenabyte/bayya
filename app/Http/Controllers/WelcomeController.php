@@ -47,13 +47,22 @@ class WelcomeController extends Controller
     public function marketplace()
     {
 
-        $userTrades = Seller::where([
+        $geoip = new GeoIPLocation();
+        $ip = $geoip->getIP();
+        $set_ip = $geoip->setIP($ip);
+        $currency = $geoip->getCurrencyCode();
+        $currencySym = $geoip->getCurrencySymbol();
+        $defaultCurrency = env('DEFAULT_CURRENCY');
+
+        $trades = Seller::where([
             ['merge_status', '=', 'pending'],
-            ['seller_user_id', '=', $user_id],
             ['currency', '=', $currency]
         ])->inRandomOrder()->get();
 
-        
-        return view('marketplace');
+
+        return view('marketplace', [
+            'currency' => $currency,
+            'trades' => $trades
+        ]);
     }
 }

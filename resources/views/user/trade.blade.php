@@ -83,7 +83,7 @@
                                            <li><strong>Payment Method: </strong>{{ $trade->seller_payment_mode }}  </li>
                                            <li><strong>Payment window: </strong>{{ $trade->trade_minutes }} Minutes  </li>
                                            @if(!empty($trade->merging))
-                                           <li><strong>Trade Time: </strong> <span id="demo_<?php echo $trade['id'] ?>"></span>  </li>
+                                           @if($trade->merging->payment_status == null)<li><strong>Trade Time: </strong> <span id="demo_<?php echo $trade['id'] ?>"></span>  </li>@endif
                                            <!-- Display the countdown timer in an element -->
                                            </p>
                                            <script>
@@ -263,6 +263,8 @@
                                                         @else
                                                             Kindly contact the buyer and wait for the buyer to make payment. Afterward a button to acknowledge payment will appear.
                                                         @endif
+                                                            <hr>
+                                                            <h5 class="text-primary">Review Trade </h5>
                                                             @if(count($reviews) < 2)
                                                             <form action="{{url('/user/createReview')}}" method="post">
                                                             @csrf
@@ -291,7 +293,7 @@
                                                                 <textarea  id="classic-editor" style="padding: 10px;" autofocus name="review" style="border: 1px solid" class="form-control" cols="5" rows="5" required placeholder="Send Message"> </textarea>
                                                                 <br/>
                                                                 <button type="submit" class="btn btn-success btn-lg">
-                                                                    Send message
+                                                                    Send Review
                                                                 </button>
                                                             </form>
                                                         @endif

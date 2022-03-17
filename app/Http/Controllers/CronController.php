@@ -91,7 +91,7 @@ class CronController extends Controller
         try {
 
             $pendingMergings = Merging::with(['buyer', 'seller', 'associated_seller', 'associated_buyer'])
-            ->where('pay_received_status', NULL)
+            ->where('payment_status', NULL)
             ->get();
 
             if(!$pendingMergings)
@@ -118,6 +118,7 @@ class CronController extends Controller
                 //Schedule tasks
                 if(Carbon::now() > $maxTradeTime){
                     $sellers = Seller::find($pendingMerging->seller_id);
+                    $sellers->merging_id = NULL;
                     $sellers->buyer_id = NULL;
                     $sellers->buyer_user_id = NULL;
                     $sellers->merge_at = NULL;

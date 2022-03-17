@@ -1,4 +1,5 @@
 @include('inc.header')
+@inject('controller', 'App\Http\Controllers\Controller')
 
    <!-- start wrapper -->
    <div id="wrapper" class="overflow-hidden">
@@ -33,17 +34,22 @@
             </div>
 
             <div style="margin-top: 5%;" class="row">
+                @foreach($trades as $trade)
                 <div class="col-md-4">
+                    <a href="{{ url('/user/trade/'.$trade->hash) }}"  style="text-decoration:none">
                     <div style="box-shadow: 0px 2px 10px 2px rgb(0 0 0 / 10%)" class="road-map-event event wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".5s">
                         <div class="content">
-                            <h3>August 20, 2018</h3>
-                            <div class="timeline-cont-info">
-                                <h5>Idea Generation</h5>
-                                <p>Sullamco laboris nisi ut aliquip ex onse quamet, consectetur adip isicing elit, sed do eiusmod</p>
+                            <h3>{{ $trade->selling_amount }} BTC</h3>
+                            <div class="text-left" style="margin: 5%; padding: 5%">
+                                <span class="name">Amount: {{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $trade->selling_amount, $trade->selling_rate), 2)}}</span> <br>
+                                <span class="name">Rate: {{ $trade->selling_rate }}%</span><br>
+                                <span class="size">Trade Time: {{ $trade->trade_minutes }} Minutes</span><br>
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
