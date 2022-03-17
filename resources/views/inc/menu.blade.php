@@ -1,5 +1,5 @@
  <!-- start header-container -->
- <header class="header-container position-absolute">
+ <header class="@if(Request::getPathInfo() =='/' ) header-container position-absolute @else header-container blog-header-container @endif">
     <div class="container">
         <div class="row header-area justify-content-between pt-50 pb-20">
             <div class="logo">
@@ -8,9 +8,9 @@
             <div class="menu-area d-flex flex-wrap">
                 <nav class="main-menu">
                     <ul class="nav">
-                        <li class=""><a href="index.html">Home</a></li>
+                        <li class=""><a href="{{ url('/') }}">Home</a></li>
                         <li><a class="skip_swing" href="#section0">About</a></li>
-                        <li><a href="token-sale.html">MarketPlace</a></li>
+                        <li><a href="{{ url('/marketplace') }}">MarketPlace</a></li>
                         <li><a class="skip_swing" href="#faq">Faq</a></li>
                     </ul>
                 </nav>

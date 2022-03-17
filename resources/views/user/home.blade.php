@@ -65,6 +65,11 @@
                 <div class="panel">
                     <div class="panel-header">
                         <h1 class="panel-title">Deposit History</h1>
+                        <div class="panel-toolbar">
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a href="{{ url('/user/sales') }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#deposit">Make Deposit</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body p-0">
 
@@ -291,7 +296,33 @@
         </div>
 
 
-
+        <div class="modal fade" tabindex="-1" role="dialog" id="deposit">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-privacy" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="logo">
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <h2 class="font-weight-600 text-center">Make deposit to your wallet address bellow</h2>
+                        <p class="mt-n2">
+                           
+                            <hr>
+                        </p>
+                        <p>
+                            <h5 class="text-center">{{ Auth::guard('user')->user()->btc_address }}</h5>
+                            <p class="text-center"><a href="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ Auth::guard('user')->user()->btc_address }}" target="_blank" title="barcode"><img id="btc" src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ Auth::guard('user')->user()->btc_address }}" alt="{{ Auth::guard('user')->user()->btc_address }}"></a><br><small class="text-danger">BTC only</small></p>
+                            <hr>
+                        </p>
+                    </div>
+                    <div class="modal-footer modal-footer-2 justify-content-start">
+                        <a href="{{ url('user/sales') }}" class="mr-2 text-muted">Trades</a>
+                        |
+                        <a href="{{ url('user/home') }}" class="ml-2 text-muted">Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div><!-- / .page-content -->
     <!-- Main Page Content -->

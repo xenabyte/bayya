@@ -131,7 +131,7 @@ class HomeController extends Controller
            ]);
         }
 
-        if(Auth::guard('user')->user()->status == NULL){
+        if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending'){
             return $this->profile();
         }
 
@@ -197,11 +197,19 @@ class HomeController extends Controller
 
     public function sales()
     {
-        // if(Auth::guard('user')->user()->status == 'blocked'){
-        //     return view('/user/auth/blocked', [
-        //        'email' => Auth::guard('user')->user()->email,
-        //    ]);
-        // }
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+
+        if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending'){
+            return $this->profile();
+        }
+
+        if(Auth::guard('user')->user()->status == 'blocked'){
+            return $this->contact();
+        }
 
         $user = Auth::guard('user')->user();
         $user_id = $user->id;
@@ -356,10 +364,18 @@ class HomeController extends Controller
 
     public function records()
     {
-        if(Auth::guard('user')->user()->status == 'blocked'){
-            return view('/user/auth/blocked', [
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
                'email' => Auth::guard('user')->user()->email,
            ]);
+        }
+
+        if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending'){
+            return $this->profile();
+        }
+
+        if(Auth::guard('user')->user()->status == 'blocked'){
+            return $this->contact();
         }
 
         $user = Auth::guard('user')->user();
@@ -432,9 +448,18 @@ class HomeController extends Controller
 
     public function createTrade(Request $request)
     {
-        if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending' ){
-            alert()->success('Kindly upload KYC Document and wait till you are verified', 'KYC document is needed')->persistent('Close');
-            return view('/user/profile');
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+
+        if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending'){
+            return $this->profile();
+        }
+
+        if(Auth::guard('user')->user()->status == 'blocked'){
+            return $this->contact();
         }
 
         //User data
@@ -522,7 +547,10 @@ class HomeController extends Controller
 
         $trade = Seller::with(['seller', 'seller.reviewee', 'buyer.reviewee'])->where('hash', $hash)->first();
 
-        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $trade->merging_id)->first();
+        if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $trade->merging_id)->first()){
+            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+            return $this->sales();
+        }
         $reviews = Review::where('merging_id', $trade->merging_id)->get();
 
         $genTrades = Seller::where([
@@ -550,6 +578,20 @@ class HomeController extends Controller
             'selling_id' => 'required|min:1',
         ]);
 
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+
+        if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending'){
+            return $this->profile();
+        }
+
+        if(Auth::guard('user')->user()->status == 'blocked'){
+            return $this->contact();
+        }
+
         $user = Auth::guard('user')->user();
         $user_id = $user->id;
         $username = $user->username;
@@ -568,12 +610,6 @@ class HomeController extends Controller
         $selling_id = $request->selling_id;
         //--------------------CURRENT TIME--------------------------------
         $current_time = \Carbon\Carbon::now()->toDateTimeString();
-
-        //user_status approved means kyc document have been uploaded and approved by admin
-        // if($user_status != 'approved'){
-        //     alert()->error('Kindly go to your profile and upload KYC document for approval', 'Oops')->persistent('Close');
-        //     return redirect()->back();
-        // }
 
         //RETRIEVING SELLING INFORMATION
         $seller_info = Seller::where('id', $selling_id)->where('merge_status', 'pending')->first();
@@ -679,8 +715,8 @@ class HomeController extends Controller
         $balance_btc = $user->btc_wallet;
 
         if(!$merging = Merging::with(['associated_buyer', 'associated_seller'])->where('id', $id)->first()){
-            alert()->error('Invalid Order', 'Oops')->persistent('Close');
-            return redirect()->back();
+            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+            return $this->sales();
         }
 
         log::info($merging);
@@ -722,7 +758,10 @@ class HomeController extends Controller
         $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
-        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first()){
+            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+            return $this->sales();
+        }
         $buyer_username = $merging->associated_buyer->username;
         $seller_username = $merging->associated_seller->username;
         $buyer_email = $merging->associated_buyer->email;
@@ -735,9 +774,9 @@ class HomeController extends Controller
             alert()->error('You have an unresolved dispute, kindy resolve the dispute to continue transactions.', 'Pending Dispute')->persistent('Close');
         }
 
-        $accept = DB::table('mergings')->where('id', '=', $merging_id)->update(['seller_consent' => 'Deal']);
+        $merging->seller_consent = 'Deal'; //update(['seller_consent' => 'Deal']);
 
-        if($accept){
+        if($merging->update()){
             //Seller Email BuyerAgreementMail
             // Mail::to($buyer_email)->send(new BuyerAgreementMail($buyer_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
 
@@ -762,23 +801,28 @@ class HomeController extends Controller
         $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
-        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first()){
+            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+            return $this->sales();
+        }
         $buyer_username = $merging->associated_buyer->username;
         $seller_username = $merging->associated_seller->username;
         $buyer_email = $merging->associated_buyer->email;
         $seller_email = $merging->associated_seller->email;
 
         $buying_id = $merging->buyer_id;
-
-        $deletebuyer = Buyer::where('id', '=', $buying_id)->delete();
-        $deletemerging = Merging::where('id', '=', $merging_id)->delete();
+        $selling_id = $merging->seller_id;
 
         $sellers = Seller::find($selling_id);
+        $sellers->merging_id = null;
         $sellers->buyer_id = NULL;
         $sellers->buyer_user_id = NULL;
         $sellers->merge_at = NULL;
         $sellers->merge_status = 'pending';
         $sellers->update();
+
+        $deletebuyer = Buyer::where('id', '=', $buying_id)->delete();
+        $deletemerging = Merging::where('id', '=', $merging_id)->delete();
 
         if($deletemerging){
             //Seller Email BuyerRejectMail
@@ -808,7 +852,10 @@ class HomeController extends Controller
         $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
-        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first()){
+            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+            return $this->sales();
+        }
         $buyer_username = $merging->associated_buyer->username;
         $seller_username = $merging->associated_seller->username;
         $buyer_email = $merging->associated_buyer->email;
@@ -866,7 +913,10 @@ class HomeController extends Controller
         $dispute_reason = $request->dispute_reason;
 
         $merging_id = $request->merging_id;
-        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first()){
+            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+            return $this->sales();
+        }
         $buyer_username = $merging->associated_buyer->username;
         $seller_username = $merging->associated_seller->username;
         $buyer_email = $merging->associated_buyer->email;
@@ -917,7 +967,10 @@ class HomeController extends Controller
         $wallet_balance = $balance_btc;
 
         $merging_id = $request->merging_id;
-        $merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first();
+        if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $merging_id)->first()){
+            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+            return $this->sales();
+        }
         $buyer_username = $merging->associated_buyer->username;
         $seller_username = $merging->associated_seller->username;
         $buyer_email = $merging->associated_buyer->email;
