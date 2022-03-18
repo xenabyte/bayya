@@ -107,17 +107,8 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/generateSecret', [App\Http\Controllers\LoginSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
         Route::post('/enable2fa', [App\Http\Controllers\LoginSecurityController::class, 'enable2fa'])->name('enable2fa');
         Route::post('/disable2fa', [App\Http\Controllers\LoginSecurityController::class, 'disable2fa'])->name('disable2fa');
-
-        // 2fa middleware
-        Route::post('/2faVerify', function () {
-            return redirect(URL()->previous());
-        })->name('2faVerify')->middleware('2fa');
+        Route::post('/2faVerify',  [App\Http\Controllers\User\HomeController    ::class, 'authenticate2fa'])->name('authenticate2fa');
     });
 
 });
 
-
-// test middleware
-Route::get('/test_middleware', function () {
-    return "2FA middleware work!";
-})->middleware(['auth', '2fa']);

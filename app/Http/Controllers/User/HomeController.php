@@ -55,8 +55,8 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:user']); //, '2fa'
-        // $this->middleware(['auth:user', '2fa']);
+        // $this->middleware(['auth:user']); //, '2fa'
+        $this->middleware(['auth:user', '2fa']);
     }
 
     public function contact()
@@ -121,9 +121,9 @@ class HomeController extends Controller
     }
 
     public function index(){
-        // if(empty(Auth::guard('user')->user()->loginSecurity)){
-        //     return redirect('/2fa');
-        // }
+        if(empty(Auth::guard('user')->user()->loginSecurity)){
+            return redirect('/user/2fa');
+        }
 
         if(empty(Auth::guard('user')->user()->email_verified_at)){
             return view('/user/auth/verify', [
@@ -439,7 +439,7 @@ class HomeController extends Controller
 
         if($user->update()){
 
-            //Mail::to(env('ADMIN_EMAIL'))->send(new PendingUserMail($user->username));
+            Mail::to(env('ADMIN_EMAIL'))->send(new PendingUserMail($user->username));
 
             alert()->success('Kindly wait, Your document is been processed.', 'KYC Document Upload Successfully')->persistent('Close');
             return redirect()->back();
@@ -778,7 +778,7 @@ class HomeController extends Controller
 
         if($merging->update()){
             //Seller Email BuyerAgreementMail
-            // Mail::to($buyer_email)->send(new BuyerAgreementMail($buyer_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+            Mail::to($buyer_email)->send(new BuyerAgreementMail($buyer_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
 
             alert()->success('You have agreed to have a trade with the buyer.', 'Nice Job')->persistent('Close');
             return redirect()->back();
@@ -826,7 +826,7 @@ class HomeController extends Controller
 
         if($deletemerging){
             //Seller Email BuyerRejectMail
-            // /Mail::to($buyer_email)->send(new BuyerRejectMail($buyer_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+            Mail::to($buyer_email)->send(new BuyerRejectMail($buyer_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
 
             alert()->success('You have refused to have a transaction with the buyer.', 'Oops')->persistent('Close');
             return redirect()->back();
@@ -897,10 +897,10 @@ class HomeController extends Controller
             $merging->pay_received_status = 'Received';
             $merging->update();
 
-            // //Buyer Email BuyerApproveMail
-            // Mail::to($buyer_email)->send(new BuyerApproveMail($buyer_email, $seller_username, $buyer_username, sprintf('%06d', $merging_id)));
-            // //Seller Email SellerApproveMail
-            // Mail::to($seller_email)->send(new SellerApproveMail($seller_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+            //Buyer Email BuyerApproveMail
+            Mail::to($buyer_email)->send(new BuyerApproveMail($buyer_email, $seller_username, $buyer_username, sprintf('%06d', $merging_id)));
+            //Seller Email SellerApproveMail
+            Mail::to($seller_email)->send(new SellerApproveMail($seller_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
 
             alert()->success('You have confirm payment made by buyer, buyer will be credited and you will be deducted', 'Good Job')->persistent('Close');
             return redirect()->back();
@@ -942,10 +942,10 @@ class HomeController extends Controller
 
         $dispute = Dispute::create($newdispute);
 
-        // //Buyer Email BuyerDisputeMail
-        // Mail::to($seller_email)->send(new BuyerDisputeMail($buyer_email, $buyer_username, $dispute_reason, sprintf('%06d', $merging_id)));
-        // //Seller Email SellerDisputeMail
-        // Mail::to($seller_email)->send(new SellerDisputeMail($seller_email, $seller_username, $dispute_reason, sprintf('%06d', $merging_id)));
+        //Buyer Email BuyerDisputeMail
+        Mail::to($seller_email)->send(new BuyerDisputeMail($buyer_email, $buyer_username, $dispute_reason, sprintf('%06d', $merging_id)));
+        //Seller Email SellerDisputeMail
+        Mail::to($seller_email)->send(new SellerDisputeMail($seller_email, $seller_username, $dispute_reason, sprintf('%06d', $merging_id)));
 
         alert()->success('Dispute created successfully, our dispute manager will contact you to resolve the dispute', 'Success')->persistent('Close');;
         return redirect()->back();
@@ -986,7 +986,7 @@ class HomeController extends Controller
         DB::table('mergings')->where('id', '=', $merging_id)->update(['payment_status' => 'Paid']);
 
         //Buyer Email BuyerPaymentMail
-        //Mail::to($seller_email)->send(new BuyerPaymentMail($seller_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
+        Mail::to($seller_email)->send(new BuyerPaymentMail($seller_email, $buyer_username, $seller_username, sprintf('%06d', $merging_id)));
         alert()->success('You have confirm payment made by you. Kindly wait for seller to acknowledge you payment.', 'Yeah')->persistent('Close');
         return redirect()->back();
 

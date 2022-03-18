@@ -38,7 +38,7 @@
         <!-- Login Panel -->
         <div class="panel">
 
-            <div class="col-md">
+            <div class="col-md-12">
                 <div class="panel-body panel-form">
 
                     @yield('content')
@@ -51,11 +51,11 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <ul class="nav text-lg-left text-center">
-                                    <li class="nav-item"><a href="#" class="nav-link">ABOUT US</a></li>
-                                    <li class="nav-item"><a href="#" class="nav-link">HELP</a></li>
-                                    <li class="nav-item"><a href="#" class="nav-link">PRESS</a></li>
-                                    <li class="nav-item"><a href="#" class="nav-link">API</a></li>
-                                    <li class="nav-item"><a href="#" class="nav-link">JOBS</a></li>
+                                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">HOMepage</a></li>
+                                    <li class="nav-item"><a href="{{ url('/') }}/#about" class="nav-link">ABOUT US</a></li>
+                                    <li class="nav-item"><a href="{{ url('/') }}/#contact" class="nav-link">HELP</a></li>
+                                    <li class="nav-item"><a href="{{ url('/') }}/#faq" class="nav-link">FAQ</a></li>
+                                    <li class="nav-item"><a href="{{ url('/marketplace') }}" class="nav-link">Marketplace</a></li>
                                     <li class="nav-item"><a href="#" class="nav-link">PRIVACY</a></li>
                                     <li class="nav-item"><a href="#" class="nav-link">TERMS</a></li>
                                 </ul>

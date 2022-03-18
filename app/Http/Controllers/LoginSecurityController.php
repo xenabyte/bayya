@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\LoginSecurity;
+use App\Models\LoginSecurity;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
@@ -65,7 +65,7 @@ class LoginSecurityController extends Controller
         $login_security->save();
 
         alert()->success('Secret key is generated.', 'Success');
-        return redirect('user/2fa');
+        return redirect('/user/2fa');
     }
 
     /**
@@ -82,10 +82,10 @@ class LoginSecurityController extends Controller
             $user->loginSecurity->google2fa_enable = 1;
             $user->loginSecurity->save();
             alert()->success('2FA is enabled successfully.', 'Success');
-            return redirect('user/2fa');
+            return redirect('/user/home');
         }else{
             alert()->error('Invalid verification Code, Please try again.', 'Ops');
-            return redirect('user/2fa');
+            return redirect('/user/2fa');
         }
     }
 
@@ -106,6 +106,6 @@ class LoginSecurityController extends Controller
         $user->loginSecurity->google2fa_enable = 0;
         $user->loginSecurity->save();
         alert()->success('2FA is now disabled.', 'Success');
-        return redirect('user/2fa');
+        return redirect('/user/home');
     }
 }

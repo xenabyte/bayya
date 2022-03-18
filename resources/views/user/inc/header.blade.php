@@ -106,7 +106,7 @@
 							</li>
 
 							<li>
-								<a href="pages/dashboards/dashboard-2.html">
+								<a href="{{ url('/user/2fa') }}">
 									Two Factor Authentication
 								</a>
 							</li>
