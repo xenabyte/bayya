@@ -11,7 +11,7 @@ class SupportAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $email;
     public $name;
     public $body;
 
@@ -20,11 +20,11 @@ class SupportAdmin extends Mailable
      *
      * @return void
      */
-    public function __construct($user, $name, $body)
+    public function __construct($email, $name, $body)
     {
         //
 
-        $this->user = $user;
+        $this->email = $email;
         $this->name = $name;
         $this->body = $body;
     }

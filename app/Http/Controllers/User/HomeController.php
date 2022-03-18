@@ -686,11 +686,11 @@ class HomeController extends Controller
             $updateseller->merging_id = $merging_id;
             $updateseller->update();
 
-            // //Seller Email SellerNotificationMail
-            // Mail::to($seller_email)->send(new SellerNotificationMail($seller_username, $seller_email, $selling_amount, $selling_rate, $buyer_username, $buyer_email, $currency));
+            //Seller Email SellerNotificationMail
+            Mail::to($seller_email)->send(new SellerNotificationMail($seller_username, $seller_email, $selling_amount, $selling_rate, $buyer_username, $buyer_email, $currency));
 
-            // //Seller Email BuyerNotificationMail
-            // Mail::to($buyer_email)->send(new BuyerNotificationMail($seller_username, $seller_email, $selling_amount, $selling_rate, $buyer_username, $buyer_email, $currency));
+            //Seller Email BuyerNotificationMail
+            Mail::to($buyer_email)->send(new BuyerNotificationMail($seller_username, $seller_email, $selling_amount, $selling_rate, $buyer_username, $buyer_email, $currency));
 
             alert()->success('Your interest have been made known to the seller', 'Order Successfully Placed')->persistent('Close');
             return redirect()->back();
@@ -1138,11 +1138,11 @@ class HomeController extends Controller
 
     public function contactAdmin(Request $request){
         $user = Auth::guard('user')->user();
-
+        $email = $user->email;
         $name = $request->name;
         $body = $request->message;
 
-        Mail::to(env('SUPPORT_EMAIL'))->send(new SupportAdmin($user, $name, $body));
+        Mail::to(env('SUPPORT_EMAIL'))->send(new SupportAdmin($email, $name, $body));
 
         if(true){
              alert()->success('Email Sent', 'Good')->persistent();

@@ -12,6 +12,7 @@
                         <li><a class="skip_swing" href="#section0">About</a></li>
                         <li><a href="{{ url('/marketplace') }}">MarketPlace</a></li>
                         <li><a class="skip_swing" href="#faq">Faq</a></li>
+                        <li><a class="skip_swing" href="#contact">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="header-right">

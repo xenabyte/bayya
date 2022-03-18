@@ -1,224 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ env('APP_NAME') }}</title>
-  <style type="text/css">
-    @import url(http://fonts.googleapis.com/css?family=Lato:400);
+@extends('mails.layout.main')
 
-    /* Take care of image borders and formatting */
+@section('content')
 
-    img {
-      max-width: 600px;
-      outline: none;
-      text-decoration: none;
-      -ms-interpolation-mode: bicubic;
-    }
+<?php  
+$mailTitle ='Reset Password';
+?>
 
-    a {
-      text-decoration: none;
-      border: 0;
-      outline: none;
-      color: #e7af03;
-    }
+<table id="u_content_text_3" style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 60px 50px;font-family:'Montserrat',sans-serif;" align="left">
+        
+        <div style="color: #444444; line-height: 170%; text-align: justify; word-wrap: break-word;">
+          <p style="font-size: 14px; line-height: 170%; text-align: left;">
+            <span style="font-size: 16px; line-height: 27.2px;">Dear {{ $user->username }},</span>
+          </p>
 
-    a img {
-      border: none;
-    }
+          <br/>
 
-    /* General styling */
+          <p style="font-size: 14px; line-height: 170%;">
+            <span style="font-size: 16px; line-height: 27.2px;">
+              You are receiving this email because we have received a password reset request for your account.
+            </span>
+          </p>
 
-    td, h1, h2, h3  {
-      font-family: Helvetica, Arial, sans-serif;
-      font-weight: 400;
-    }
-
-    body {
-      -webkit-font-smoothing:antialiased;
-      -webkit-text-size-adjust:none;
-      width: 100%;
-      height: 100%;
-      color: #37302d;
-      background: #ffffff;
-    }
-
-    table {
-      background:
-    }
-
-    h1, h2, h3 {
-      padding: 0;
-      margin: 0;
-      color: #ffffff;
-      font-weight: 400;
-    }
-
-    h3 {
-      color: #21c5ba;
-      font-size: 24px;
-    }
-  </style>
-
-  <style type="text/css" media="screen">
-    @media screen {
-       /* Thanks Outlook 2013! http://goo.gl/XLxpyl*/
-      td, h1, h2, h3 {
-        font-family: 'Lato', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
-      }
-    }
-  </style>
-
-  <style type="text/css" media="only screen and (max-width: 480px)">
-    /* Mobile styles */
-    @media only screen and (max-width: 480px) {
-      table[class="w320"] {
-        width: 320px !important;
-      }
-
-      table[class="w300"] {
-        width: 300px !important;
-      }
-
-      table[class="w290"] {
-        width: 290px !important;
-      }
-
-      td[class="w320"] {
-        width: 320px !important;
-      }
-
-      td[class="mobile-center"] {
-        text-align: center !important;
-      }
-
-      td[class="mobile-padding"] {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        padding-bottom: 20px !important;
-      }
-    }
-  </style>
-</head>
-<body class="body" style="padding:0; margin:0; display:block; background:#ffffff; -webkit-text-size-adjust:none" bgcolor="#ffffff">
-<table align="center" cellpadding="0" cellspacing="0" width="100%" height="100%" >
-  <tr>
-    <td align="center" valign="top" bgcolor="#ffffff"  width="100%">
-
-    <table cellspacing="0" cellpadding="0" width="100%">
-      <tr>
-        <td style="border-bottom: 3px solid #001833;" width="100%">
-          <center>
-            <table cellspacing="0" cellpadding="0" width="500" class="w320">
+          <table id="u_content_button_1" style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+            <tbody>
               <tr>
-                <td valign="top" style="padding:10px 0; text-align:center;" class="mobile-center">
-                  <img width="30%" src="{{ env('APP_LOGO') }}">
-				  <h1 style="color:#e7af03"><strong>{{ env('APP_NAME') }}</strong></h1>
+                <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 50px;font-family:'Montserrat',sans-serif;" align="left">
+                  
+                  <div align="center">
+                    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Montserrat',sans-serif;"><tr><td class="v-button-colors" style="font-family:'Montserrat',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com/" style="height:47px; v-text-anchor:middle; width:164px;" arcsize="8.5%" stroke="f" fillcolor="#cca250"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Montserrat',sans-serif;"><![endif]-->
+                      <a href="{{ env('APP_URL') }}/user/password/reset/{{base64_encode($user->email)}}/{{base64_encode($data)}}" target="_blank" class="v-button-colors" style="box-sizing: border-box;display: inline-block;font-family:'Montserrat',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #343a40; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
+                        <span style="display:block;padding:14px 33px;line-height:120%;"><strong><span style="font-size: 16px; line-height: 19.2px;">Reset Password &rarr;</span></strong></span>
+                      </a>
+                    <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
+                  </div>
+          
                 </td>
               </tr>
-            </table>
-          </center>
-        </td>
-      </tr>
-      <tr>
-        <td background="https://www.filepicker.io/api/file/zLBr1W6UT6qZP4jI2yRz" bgcolor="#e7af03" valign="top" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(117, 19, 93, 0.73)), url(https://www.filepicker.io/api/file/zLBr1W6UT6qZP4jI2yRz) no-repeat center; background-color: #64594b; background-position: center;">
-          <!--[if gte mso 9]>
-          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;height:303px;">
-            <v:fill type="tile" src="https://www.filepicker.io/api/file/ewEXNrLlTneFGtlB5ryy" color="#64594b" />
-            <v:textbox inset="0,0,0,0">
-          <![endif]-->
-          <div>
-            <center>
-              <table cellspacing="0" cellpadding="0" width="530" height="303" class="w320">
-                <tr>
-                  <td valign="middle" style="vertical-align:middle; padding-right: 15px; padding-left: 15px; text-align:left;" class="mobile-center" height="303">
+            </tbody>
+          </table>
 
-                    <h1 style="color:#e7af03">UPDATE!</h1>
-                    <h2 style="color:#e7af03">General Notification</h2>
-
-                  </td>
-                </tr>
-              </table>
-            </center>
-          </div>
-          <!--[if gte mso 9]>
-            </v:textbox>
-          </v:rect>
-          <![endif]-->
-        </td>
-      </tr>
-      <tr>
-        <td valign="top">
-          <center>
-            <table cellspacing="0" cellpadding="0" width="500" class="w320">
-              <tr>
-                <td>
-
-                  <table cellspacing="0" cellpadding="0" width="100%">
-                    <tr>
-                      <td class="mobile-padding" style="text-align:left;">
-                      <br>
-                      <br>
-                        Hi {{ $user->username }},<br><br>
-                        <p style="margin: 0;">
-                              kindly click <a href="{{ env('APP_URL') }}/user/password/reset/{{base64_encode($user->email)}}/{{base64_encode($data)}}">here</a> to reset password, this links expires in 15 minutes. or copy the link you browswer
-                              <br>
-                              {{ env('APP_URL') }}/user/password/reset/{{base64_encode($user->email)}}/{{base64_encode($data)}}
-
-                            <br/>
-                            Kindly ignore if the message is not for you.
-                        </p>
+          <p style="font-size: 14px; line-height: 170%;">
+            <span style="font-size: 16px; line-height: 27.2px;">
+              this links expires in 15 minutes. if you did not request a password reset, no further action is required.
+            </span>
+          </p>
+          <hr>
+          <p style="font-size: 14px; line-height: 170%;">
+            <span style="font-size: 16px; line-height: 27.2px;">
+              if your are having trouble clicking the "Reset Password" button, please copy and paste the link below into your web browser.
+              <a href="{{ env('APP_URL') }}/user/password/reset/{{base64_encode($user->email)}}/{{base64_encode($data)}}">{{ env('APP_URL') }}/user/password/reset/{{base64_encode($user->email)}}/{{base64_encode($data)}}</a>
+            </span>
+          </p>
 
 
-                        <br>
+          <br/>
+          <p style="font-size: 14px; line-height: 170%; text-align: left;">
+            <span style="font-size: 16px; line-height: 27.2px;">Thank You <br/>{{env('APP_NAME')}}</span>
+          </p>
 
-                        <br>
-                        Thanks for being a customer!<br>
-                       {{env('APP_NAME')}}
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="mobile-padding">
-                <br>
-                <br>
+        </div>
 
-                  <br>&nbsp;
-                  <br>
-                </td>
-              </tr>
-            </table>
-          </center>
-        </td>
-      </tr>
-      <tr>
-        <td style="background-color:#001833;">
-          <center>
-            <table cellspacing="0" cellpadding="0" width="500" class="w320">
-              <tr>
-                <td>
-                  <center>
-                    <table style="margin:0 auto;" cellspacing="0" cellpadding="5" width="100%">
-                      <tr>
-                        <td style="text-align:center; margin:0 auto;" width="100%">
-                           <a href="#" style="text-align:center;">
-                             <img style="margin:0 auto;" width="20%" src="{{ env('APP_LOGO') }}" alt="logo link" /><h2><strong>{{ env('APP_NAME') }}</strong></h2>
-                           </a>
-                        </td>
-                      </tr>
-                    </table>
-                  </center>
-                </td>
-              </tr>
-            </table>
-          </center>
-        </td>
-      </tr>
-    </table>
-    </td>
-  </tr>
+      </td>
+    </tr>
+  </tbody>
 </table>
-</body>
-</html>
+
+  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+  </div>
+</div>
+<!--[if (mso)|(IE)]></td><![endif]-->
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>
+
+@endsection

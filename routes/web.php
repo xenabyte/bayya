@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/marketplace',  [App\Http\Controllers\WelcomeController::class, 'marketplace']);
+Route::post('/contactAdminLanding', [App\Http\Controllers\WelcomeController::class, 'contactAdminLanding']);
+
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login',  [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('login');

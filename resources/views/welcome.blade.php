@@ -468,7 +468,7 @@
         <!-- //end .partner -->
 
         <!-- start contact-container -->
-        <div class="contact-container pt-40">
+        <div id="contact" class="contact-container pt-40">
             <div class="contact-content">
                 <div class="container">
                     <div class="row justify-content-between mb-2 pt-70 pb-90 mobile-pt-20 mobile-pb-30 contact-content-area">
@@ -500,20 +500,17 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                            <form class="contact-form" action="https://bootstrapshaper.com/tmforest/unicrypt/frontend_assets/mail.php" method="POST">
+                            <form class="contact-form" action="{{ url('contactAdminLanding') }}" method="POST">
+                                @csrf
                                 <div class="d-flex flex-wrap form-col">
                                     <div class="form-group">
-                                        <input class="form-control required" type="text" name="fname" placeholder="Your name" />
+                                        <input class="form-control required" type="text" name="name" placeholder="Your name" />
                                         <span class="alert-error"></span>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control required" type="email" name="email" placeholder="Your email" />
                                         <span class="alert-error"></span>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control required" type="text" name="subject" placeholder="Subject" />
-                                    <span class="alert-error"></span>
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control required" name="message" rows="7" cols="7" placeholder="Start writing here"></textarea>

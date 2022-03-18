@@ -30,6 +30,7 @@ use App\Models\Status;
 
 use App\Mail\MergingCancelMail;
 use App\Mail\MergingTimerMail;
+use App\Mail\SupportAdmin;
 
 use Mail;
 use LaraBlockIo;
@@ -64,5 +65,23 @@ class WelcomeController extends Controller
             'currency' => $currency,
             'trades' => $trades
         ]);
+    }
+
+    public function contactAdminLanding(Request $request){
+        $email = $request->email;
+        $name = $request->name;
+        $body = $request->message;
+
+        Mail::to(env('SUPPORT_EMAIL'))->send(new SupportAdmin($email, $name, $body));
+
+        if(true){
+             alert()->success('Email Sent', 'Good')->persistent();
+             return redirect()->back();
+        }else{
+             alert()->error('An error occur', 'Oops!')->persistent();
+             return redirect()->back();
+        }
+
+
     }
 }
