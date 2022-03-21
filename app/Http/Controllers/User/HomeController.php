@@ -121,14 +121,15 @@ class HomeController extends Controller
     }
 
     public function index(){
-        if(empty(Auth::guard('user')->user()->loginSecurity)){
-            return redirect('/user/2fa');
-        }
-
+        
         if(empty(Auth::guard('user')->user()->email_verified_at)){
             return view('/user/auth/verify', [
                'email' => Auth::guard('user')->user()->email,
            ]);
+        }
+
+        if(empty(Auth::guard('user')->user()->loginSecurity)){
+            return redirect('/user/2fa');
         }
 
         if(Auth::guard('user')->user()->status == NULL || Auth::guard('user')->user()->status == 'pending'){
@@ -268,6 +269,12 @@ class HomeController extends Controller
     //search Markets
     public function searchTrade(Request $request)
     {
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+
         if(Auth::guard('user')->user()->status == 'blocked'){
             return view('/user/auth/blocked', [
                'email' => Auth::guard('user')->user()->email,
@@ -315,6 +322,12 @@ class HomeController extends Controller
 
     public function profile()
     {
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+
         if(Auth::guard('user')->user()->status == 'blocked'){
             return view('/user/auth/blocked', [
                'email' => Auth::guard('user')->user()->email,
@@ -364,6 +377,12 @@ class HomeController extends Controller
 
     public function records()
     {
+        if(empty(Auth::guard('user')->user()->email_verified_at)){
+            return view('/user/auth/verify', [
+               'email' => Auth::guard('user')->user()->email,
+           ]);
+        }
+        
         if(empty(Auth::guard('user')->user()->email_verified_at)){
             return view('/user/auth/verify', [
                'email' => Auth::guard('user')->user()->email,
