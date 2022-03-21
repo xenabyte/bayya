@@ -110,7 +110,12 @@ class AuthController extends Controller
 
         if(!empty($user->email_verified_at)){
             if(Auth::guard('user')->check()){
-              alert()->success('Email Already Verified', 'Good')->persistent();
+              
+                if($user->loginSecurity == null){
+                    alert()->success('Email already verified, Kindly set up 2 factor authentication', 'Good')->persistent();
+                    return redirect("/user/2fa");
+                }
+            alert()->success('Email Already Verified', 'Good')->persistent();
               return redirect("/user/home");
             }else{
                 alert()->success('Email Already Verified', 'Good')->persistent();
@@ -123,11 +128,13 @@ class AuthController extends Controller
             $user->save();
 
             if(Auth::guard('user')->check()){
-              alert()->success('Email Verified', 'Good')->persistent();
-              return redirect("/user/home");
-            }else{
+              
+                if($user->loginSecurity == null){
+                    alert()->success('Email verified, Kindly set up 2 factor authentication', 'Good')->persistent();
+                    return redirect("/user/2fa");
+                }
                 alert()->success('Email Verified', 'Good')->persistent();
-                return redirect("/user/login");
+                return redirect("/user/home");
             }
 
         }else{

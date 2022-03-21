@@ -113,7 +113,7 @@ class HomeController extends Controller
 
         if($valid){
             alert()->success('Login Successful', 'Good!!!')->persistent('Close');
-           $this->index();
+            return redirect()->back();
         }else{
             alert()->error('Invalid verification Code, Please try again.', 'Opps!!!')->persistent('Close');
 			return redirect()->back();
