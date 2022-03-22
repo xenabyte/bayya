@@ -74,9 +74,9 @@
                                         <td>{{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</td>
                                         <td>@if($user->status == 'approved') <span class="badge color-badge badge-success"></span> Approved  @else<span class="badge color-badge badge-danger"></span> Blocked @endif</td>
                                         <td class="operations">
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-xl-{{ $user->id }}">View KYC Documents</button>
+                                            <p></p>
                                             @if($user->status == 'approved' || $user->status == 'blocked')
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-xl-{{ $user->id }}">View KYC Documents</button>
-                                                <p></p>
                                                 @if($user->status == 'approved')
                                                     <form action="{{ url('/admin/blockUser') }}" method="post">
                                                     @csrf
@@ -123,11 +123,11 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <img src="{{ env('IMAGE_UPLOAD_URL') }}{{ $user->kycfront }}" class="img-fluid" alt="Responsive image">
+                                                            <img src="{{ env('IMAGE_UPLOAD_URL') }}/{{ $user->kycfront }}" class="img-fluid" alt="Responsive image">
                                                         </div>
 
                                                         <div class="col-md-6">
-                                                            <img src="{{ env('IMAGE_UPLOAD_URL') }}{{ $user->kycback }}" class="img-fluid" alt="Responsive image">
+                                                            <img src="{{ env('IMAGE_UPLOAD_URL') }}/{{ $user->kycback }}" class="img-fluid" alt="Responsive image">
                                                         </div>
                                                     </div>
                                                 </div>

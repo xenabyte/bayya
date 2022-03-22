@@ -458,7 +458,7 @@ class HomeController extends Controller
 
         if($user->update()){
 
-            Mail::to(env('ADMIN_EMAIL'))->send(new PendingUserMail($user->username));
+            Mail::to(env('SUPPORT_EMAIL'))->send(new PendingUserMail($user->username));
 
             alert()->success('Kindly wait, Your document is been processed.', 'KYC Document Upload Successfully')->persistent('Close');
             return redirect()->back();

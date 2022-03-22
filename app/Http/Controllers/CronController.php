@@ -74,8 +74,6 @@ class CronController extends Controller
                     ]);
 
                     $deposit = Deposit::create($new_deposit);
-
-
                 }
             }
 
