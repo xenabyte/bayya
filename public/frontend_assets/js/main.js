@@ -87,7 +87,7 @@ jQuery(function() {
                     label: '# of Votes',
                     data: [60,15,10,8,4,3],
                     backgroundColor: [
-                        '#4845b4',
+                        '#282828',
                         '#4fc489',
                         '#0ba1d6',
                         '#efe943',
@@ -124,7 +124,7 @@ jQuery(function() {
                     label: '# of Votes',
                     data: [40,30,15,10,5],
                     backgroundColor: [
-                        '#4845b4',
+                        '#282828',
                         '#4fc489',
                         '#0ba1d6',
                         '#efe943',
@@ -159,7 +159,7 @@ jQuery(function() {
                     label: '# of Votes',
                     data: [60,15,10,8,4,3],
                     backgroundColor: [
-                        '#4845b4',
+                        '#282828',
                         '#4fc489',
                         '#0ba1d6',
                         '#efe943',
@@ -195,7 +195,7 @@ jQuery(function() {
                     label: '# of Votes',
                     data: [60,15,10,8,4,3],
                     backgroundColor: [
-                        '#4845b4',
+                        '#282828',
                         '#4fc489',
                         '#0ba1d6',
                         '#efe943',
@@ -230,7 +230,7 @@ jQuery(function() {
                     label: '# of Votes',
                     data: [40,30,15,10,5],
                     backgroundColor: [
-                        '#4845b4',
+                        '#282828',
                         '#4fc489',
                         '#0ba1d6',
                         '#efe943',
