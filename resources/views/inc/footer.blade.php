@@ -7,12 +7,10 @@
                     <div class="footer-logo">
                         <img src="frontend_assets/images/logo.png" alt="" />
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adip isicing elit, sed do eiusmod tempor inci didunt ut labore et dolore magna aliqua.</p>
+                    <p>We've got you covered.</p>
                     <ul class=" d-flex flex-wrap social-link">
-                        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
                         <li><a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -20,41 +18,31 @@
                 <h4>Company</h4>
                 <ul>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#">Team Members</a></li>
                     <li><a href="#">Service</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms & Condition</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-md-6 col-lg-2 footer-col link-hover wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
-                <h4>Useful Links</h4>
-                <ul>
-                    <li><a href="#">Token Sale</a></li>
-                    <li><a href="#">Road Map</a></li>
-                    <li><a href="#">Cryptocurrenty</a></li>
-                    <li><a href="#">User Guide</a></li>
-                    <li><a href="#">Exchange Markets</a></li>
-                </ul>
-            </div>
+            
             <div class="col-12 col-md-6 col-lg-3 footer-col wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
                 <h4>Contact us</h4>
                 <ul>
                     <li>
                         <div class="foo-social">
-                           <span><a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i></a></span>
-                           <p>Uttara, Dhaka, Bangladesh</p>
+                           <span><a href="#" target=""><i class="fas fa-map-marker-alt"></i></a></span>
+                           <p>543 Yandell Rd, Canton, Mississippi(MS)</p>
                        </div>
                     </li>
                     <li>
                         <div class="foo-social">
-                           <a href="mailto:email@yourdomain.com" target="_blank"><span><i class="far fa-envelope"></i></span>
-                           <p>email@yourdomain.com</p></a>
+                           <a href="mailto:info@localcoinbox.com" target="_blank"><span><i class="far fa-envelope"></i></span>
+                           <p>info@localcoinbox.com</p></a>
                        </div>
                     </li>
                     <li>
                         <div class="foo-social">
-                            <a href="tel:88012345678" target="_blank"><span><i class="fas fa-phone"></i></span>
-                            <p>+880 - 1234 - 5678</p></a>
+                            <a href="tel:6015235618" target="_blank"><span><i class="fas fa-phone"></i></span>
+                            <p>+1601 - 523 - 5618</p></a>
                        </div>
                     </li>
                 </ul>
@@ -63,7 +51,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="pt-40 pb-20 d-flex flex-wrap justify-content-between footer-bottom-content">
-                    <p class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start order-2 order-sm-2 order-md-2 order-lg-1">All rights reserved (c) 2018 -  {{ date('Y') }}</p>
+                    <p class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start order-2 order-sm-2 order-md-2 order-lg-1">All rights reserved (c) {{ date('Y') }}</p>
                     <ul class="d-flex flex-wrap order-1 order-sm-1 order-md-1 order-lg-2">
                         <li><a href="#">Terms & Condition</a></li>
                         <li><a href="#">Privacy Policy</a></li>

@@ -14,8 +14,10 @@
                     <div class="col-12 col-md-10 col-lg-6 banner-content">
                         <div class="banner-cont-info text-white wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <h5 class="text-white">The True Game Changer</h5>
-                            <h1 class="text-white">UniCrypt will change your experience of Crypto Currency</h1>
-                            <p class="text-white">Sed sollicitudin arcu urna, sit amet pellentesque massa con sequat faucibus. Quisque posuere venenatis cursus.</p>
+                            <h1 class="text-white">Localcoinbox provides you with access to a worldwide market</h1>
+                            <p class="text-white">Buy and sell your bitcoin locally,
+                            person-to-person crypto marketplace where you can buy and sell bitcoin using any payment method.
+                            </p>
                             <div class="row">
                                 <div class="col-md-6">
                                     <a style="margin: 5px" class="unc-btn text-white" href="{{ url('user/login') }}">Login</a>
@@ -42,8 +44,10 @@
                                 <img src="frontend_assets/images/col-icon1.png" alt="" width="108" height="120" />
                             </div>
                             <div class="three-col-cont">
-                                <h3>Secure ICO System</h3>
-                                <p>Sed sollicitudin arcu sect etur adip isici uta magna eget posuere ferme ntum, leo nisl luctus risu</p>
+                                <h3>200+ Different Ways to Exchange</h3>
+                                <p>Buy and sell Bitcoin using any payment method,
+                                    including bank transfer, western union, skrill and more.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -53,8 +57,8 @@
                                 <img src="frontend_assets/images/col-icon2.png" alt="" width="118" height="120" />
                             </div>
                             <div class="three-col-cont">
-                                <h3>Easy System Integration</h3>
-                                <p>Donec dictum lectus ac sem posu eresect etur adipisicing elit, sed do ei usmod tempor incididunt</p>
+                                <h3>Buy/Sell Worldwide</h3>
+                                <p>Accessible around the world. The unbanked, underbanked and overbanked are all empowered by Localcoinbox.</p>
                             </div>
                         </div>
                     </div>
@@ -64,8 +68,10 @@
                                 <img src="frontend_assets/images/col-icon3.png" alt="" width="116" height="120" />
                             </div>
                             <div class="three-col-cont">
-                                <h3>One to One Token Sale</h3>
-                                <p>Etiam suscipit urna quis nulla con sequat, at condimentum diam congue. Integer volu sectet</p>
+                                <h3>A Secure Escrow-Style Payment</h3>
+                                <p>Your bitcoin is held in our secure escrow until
+                                    the trade is completed successfully, sell your bitcoin at your chosen rate.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -84,10 +90,10 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-6 invented-cont wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
-                        <h3>We are UniCrypt</h3>
-                        <h2>We invented a new type of Crypto Currency</h2>
-                        <p>Suspendisse molestie lobortis eros, sit amet pellente mod tempor incididunt ut labore et do assa et sagittis aliquam, elit lectulore magna aliqua. Uesestrud exercitation.</p>
-                        <p>Etiam suscipit urna quis nulla conseq tetr adipisicing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
+                        <h3>We are Localcoinbox</h3>
+                        <h2>Blockchain-powered escrow service</h2>
+                        <p>We deployed a smart contract that protect escrow accounts, making it difficult for Localcoinbox or hackers to withdraw funds which implies that our system is not hackable.</p>
+                        <p>Buy and sell bitcoin in real time using our secure escrow, trade with other users online near you or around the globe. Your sensitive payment details have ultimate protection from data leaks. Messages between users are end-to-end encrypted.</p>
                         <a class="unc-btn text-white" href="{{ url('marketplace') }}"> Explore Marketplace</a>
                     </div>
                 </div>
@@ -101,9 +107,9 @@
                 <div class="row pt-20 pb-90 mobile-pb-20">
                     <div class="col-12 col-md-12 col-lg-8 mobile-pb-0">
                         <div class="unc-inventment-content pt-110 mobile-pt-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
-                            <h3>Why Choose UniCrypt</h3>
-                            <h2>Buying UniCrypt will be a great inventment for you</h2>
-                            <p>Metetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
+                            <h3>Why Choose Localcoinbox</h3>
+                            <h2>Person-to-person trading has never been easier</h2>
+                            <p>Everyone is welcome, everyday we welcome new Localcoinbox users, all of them asking their own questions about cryptocurrency and figuring out how to get started in a way that suits them.</p>
                             <div class="unc-inv-col-area">
                                 <div class="unc-inv-col">
                                     <div class="unc-inv-col-row">
@@ -112,7 +118,7 @@
                                         </div>
                                         <div class="unc-inv-col-cont">
                                             <h4>Multichain with device</h4>
-                                            <p>Vivamus semper ipsum dolex ea commodo consequat.</p>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -122,8 +128,8 @@
                                             <img src="frontend_assets/images/inv-col-img2.png" alt="" width="60" height="60" />
                                         </div>
                                         <div class="unc-inv-col-cont">
-                                            <h4>Initial coin offering</h4>
-                                            <p>Etiam suscipit urna quis nulla eqx ea commodo consequat.</p>
+                                            <h4>Trade anywhere, anytime.</h4>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +140,7 @@
                                         </div>
                                         <div class="unc-inv-col-cont">
                                             <h4>Payment integration</h4>
-                                            <p>Cras sodales, massa et sagittis a vitae cursus odio equat. </p>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +151,7 @@
                                         </div>
                                         <div class="unc-inv-col-cont">
                                             <h4>Full data ownership</h4>
-                                            <p>Sullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -166,9 +172,8 @@
                     </div>
                     <div class="col-12 col-md-6 features-bns-right mobile-pt-10 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
                         <div class="features-bns-cont">
-                            <h3>UniCrypt Features</h3>
-                            <h2>UniCrypt has awesome features for business</h2>
-                            <p>Donec dictum lectus ac sem posuere venenatis. Cras sodale eiusmod tempor incididunt ut labore et dolore magna</p>
+                            <h3>Localcoinbox Features</h3>
+                            <h2>Localcoinbox has awesome features for P2P business</h2>
                             <div class="features-bns-area">
                                 <div class="features-bns-col-row">
                                     <div class="features-bns-col-img">
@@ -176,7 +181,7 @@
                                     </div>
                                     <div class="features-bns-col-cont">
                                         <h4>The true game changer</h4>
-                                        <p>Quisque posuere pulvinar eleifend odo conse quamet, consectetur adipisicing elit, sed do eius mod tempor incididunt ut labor</p>
+                                        <p>Low fees compared to some other exchanges. It also has an easy-to-use buy/sell option for beginners.</p>
                                     </div>
                                 </div>
                                 <div class="features-bns-col-row">
@@ -185,7 +190,7 @@
                                     </div>
                                     <div class="features-bns-col-cont">
                                         <h4>Solid blockchain infrastructure</h4>
-                                        <p>Nam porta ipsum nec tortor interd dilero naedo conse quamet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor</p>
+                                        <p>The blockchain technology that underpins, it takes advantage of the power of peer-to-peer networks to create a shared and trusted ledger of transactions.</p>
                                     </div>
                                 </div>
                                 <div class="features-bns-col-row">
@@ -194,7 +199,7 @@
                                     </div>
                                     <div class="features-bns-col-cont">
                                         <h4>Global system intigration</h4>
-                                        <p>Etiam at massa ut ipsum viverra dictum comuem cetetur adipisicing elit, sed do eiusmod tempor incididunt ut labor</p>
+                                        <p>When used as a means of exchange, Bitcoin can bridge economies and expand opportunities for the billions of unbanked.</p>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +216,7 @@
                 <div class="row pt-110 mobile-pt-60">
                     <div class="col-12 big-title white-text text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
                         <h3>How You Get Benefited</h3>
-                        <h2>Benefits of UniCrypt Hoders</h2>
+                        <h2>Benefits of Using Localcoinbox</h2>
                     </div>
                 </div>
                 <div class="row justify-content-between benefits-content pt-40 pb-80 mobile-pt-10 mobile-pb-40">
@@ -220,14 +225,14 @@
                     </div>
                     <div class="col-12 col-md-6 benefits-right wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
                         <div class="benefits-cont">
-                            <p>Etiam suscipit urna quis nulla consequat, at condimentum unt ut labore et dolore magna alienim ad minim veniam</p>
+                            <p>Localcoinbox provides you with access to a worldwide market. Buying and selling Bitcoins has never been easier.</p>
                             <div class="bnf-area pt-30 mt-2 mobile-mt-0">
                                 <div class="bnf-col-row pb-20 mobile-pb-10">
                                     <div class="bnf-col-img">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <div class="bnf-col-cont">
-                                        <p>Cras sodales, massa et sagittis aliquam, elit lect veniam, quis nostrud exmco labtomra keu kidite paro prem oris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p>Both the buyer and the seller are protected by escrow protection for safe trade.</p>
                                     </div>
                                 </div>
                                 <div class="bnf-col-row pb-20 mobile-pb-10">
@@ -235,7 +240,7 @@
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <div class="bnf-col-cont">
-                                        <p>Integer volutpat aliquam felisque posuere , quis nostrud exmco labtomra keu kidite paro prem oris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p>Finding and filtering trustworthy clients using a reputation system.</p>
                                     </div>
                                 </div>
                                 <div class="bnf-col-row pb-20 mobile-pb-10">
@@ -243,7 +248,7 @@
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <div class="bnf-col-cont">
-                                        <p>Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exmco labtomra keu kidite paro prem oris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p>You will earn bitcoins from the users who arrive to the site through your affiliate link, register and make trades.</p>
                                     </div>
                                 </div>
                             </div>
@@ -259,7 +264,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 big-title text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                        <h3>UniCrypt Help Desk</h3>
+                        <h3>Localcoinbox Help Desk</h3>
                         <h2>Frequently Asked Questions</h2>
                     </div>
                 </div>
@@ -268,7 +273,7 @@
                         <div id="horizontalTab">
                             <ul class="resp-tabs-list">
                                 <li>General</li>
-                                <li>Token</li>
+                                <li>Escrow</li>
                                 <li>Bitcoin</li>
                                 <li>Cryptocurrency</li>
                                 <li>Blockchain</li>
@@ -279,19 +284,19 @@
                                         <div class="d-flex flex-wrap justify-content-between tab_content">
                                             <div class="tab-col">
                                                 <h3>What is Crypto Currency ?</h3>
-                                                <p>Praesent dictum eu nibh eget pretium odo conse quamet, conon sectetur adipisicing elit, sed do eiusmod tempor incididunt utahu labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <p>A digital currency in which transactions are validated and records are kept by a decentralized system rather than a centralized authority utilizing cryptography.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>What exactly UniCrypt is ?</h3>
-                                                <p>Sullamco laboris nisi ut aliquip ex ea commodo conse quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <h3>Whats is Localcoinbox?</h3>
+                                                <p>Localcoinbox is a peer-to-peer cryptocurrency exchange where you may trade crypto directly with other Localcoinbox users. Localcoinbox P2P allows you to conduct cryptocurrency transactions using your favorite payment method, currency, and pricing.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to exchange UniCrypt ?</h3>
-                                                <p>Fusce diam eros, dapibus at rutrum ac, iaculis eu or quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <h3>How to exchange on Localcoinbox?</h3>
+                                                <p>Decide how much you want to buy or sell and lock in a price. Complete the transaction. The buyer pays the seller via a selected payment method after the seller locks an agreed quantity of bitcoin in an escrow account.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to get benefited with Unicrypt ?</h3>
-                                                <p>Proin sed commodo metus. Phasellus arcu nibh, luct et, con se ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <h3>How to get benefited with Localcoinbox?</h3>
+                                                <p>Localcoinbox provides you with access to a worldwide market. Buying and selling Bitcoins has never been easier.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -300,20 +305,20 @@
                                     <div class="tab_inner">
                                         <div class="d-flex flex-wrap justify-content-between tab_content">
                                             <div class="tab-col">
-                                                <h3>What is Crypto Currency ?</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra a lorem vitae consequat. Donec consequat nec felis vitae suscipit. Etiam ultricies elit id laoreet ultricies.</p>
+                                                <h3>What is an Escrow?</h3>
+                                                <p> An escrow service is a mediator service that keeps the money for a transaction in safekeeping until the Bitcoins are handed over. Escrow protects buyers from fraudulent sellers by requiring the Bitcoin to be deposited up front, before any money changes hands</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>What exactly UniCrypt is ?</h3>
-                                                <p>Etiam eleifend faucibus gravida. Vestibulum mattis posuere rutrum. Quisque eu diam at arcu accumsan sollicitudin nec a nibh. Nullam consequat laoreet condimentum. Sed id hendrerit ipsum</p>
+                                                <h3>How am I protected from being scammed?</h3>
+                                                <p>Escrow protects all internet transactions. When a deal is initiated, the seller's Localcoinbox Wallet is automatically used to reserve the required number of Bitcoins. This implies that if the seller takes your money and does not release your Bitcoins, Localcoinbox.com can release the Bitcoins from escrow to you. If you're selling Bitcoins, you should never release the escrow until you've received payment from the Bitcoin buyer.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to exchange UniCrypt ?</h3>
-                                                <p>Sed ut lectus iaculis, faucibus quam et, fermentum quam. Praesent massa ex, egestas ut felis a, vehicula aliquet elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras malesuada accumsan urna eu iaculis.</p>
+                                                <h3>How do i recieve Bitcoins to my Localcoinbox from Escrow</h3>
+                                                <p>After payment has been made by buyer, seller will proceed to confirm if payment is from the right source, seller can then click i have recieved payment, bitcoin will be automatically released to buyer's wallet.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to get benefited with Unicrypt ?</h3>
-                                                <p>Donec eu eros ullamcorper, dictum dolor et, viverra lacus. Nunc luctus purus quis porta sagittis. Proin egestas nunc sit amet dapibus iaculis. Phasellus ultrices bibendum urna eget aliquet. Pellentesque in leo semper, egestas metus non, accumsan enim.</p>
+                                                <h3>How long does a trade take?</h3>
+                                                <p>Localcoinbox does not decide that, seller will be the one to set a payment window time and if buyer can not meet up with the time, the trade will automatically cancel and bitcoin will be returned back to the seller's wallet.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -476,24 +481,24 @@
                             <div class="contact-us">
                                 <h3>Contact us</h3>
                                 <h2>Got A Question?</h2>
-                                <p>Nam aliquam tempus sodale vestibulum con dimentum est id vulputat  auctor lacus eget enim melahobe hobe na</p>
+                                <p>It’s never too late to get started. Buy, sell, store, and learn about peer-to-peer. </p>
                                 <ul class="contact-social">
                                     <li>
                                        <div class="social-row">
                                            <a href="tel:88012345678" target="_blank"><span><i class="fas fa-phone"></i></span>
-                                           <p>+880 - 1234 - 5678</p></a>
+                                           <p>+1(601) - 523 - 5618</p></a>
                                        </div>
                                     </li>
                                     <li>
                                        <div class="social-row">
                                            <a  href="mailto:hello@unicrypt.com" target="_blank"><span><i class="far fa-envelope"></i></span>
-                                           <p>hello@unicrypt.com</p></a>
+                                           <p>info@localcoinbox.com</p></a>
                                        </div>
                                     </li>
                                     <li>
                                        <div class="social-row">
                                            <span><a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i></a></span>
-                                           <p>Uttara, Dhaka, Bangladesh</p>
+                                           <p>543 Yandell Rd, Canton, Mississippi(MS)</p>
                                        </div>
                                     </li>
                                 </ul>
