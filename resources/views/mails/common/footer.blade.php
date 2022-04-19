@@ -114,8 +114,8 @@
         <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Montserrat',sans-serif;" align="left">
           
     <div style="color: #b0b1b4; line-height: 180%; text-align: center; word-wrap: break-word;">
-      <p style="font-size: 14px; line-height: 180%;">123 San Francisco, CA. United States</p>
-  <p style="font-size: 14px; line-height: 180%;">123-456-7890</p>
+      <p style="font-size: 14px; line-height: 180%;">543 Yandell Rd, Canton, Mississippi(MS)</p>
+  <p style="font-size: 14px; line-height: 180%;">+1(601) - 523 - 5618</p>
     </div>
   
         </td>
