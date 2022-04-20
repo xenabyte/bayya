@@ -61,10 +61,11 @@ $mailTitle ='Support Notification';
                           {{ $name }} is encountering a problem with the app. <br/>
 
                           {{ $body }}
-
-                          <h2>User Details</h2>
-                          Name: {{ $user->username }} <br/>
-                          Email: {{ $user->email }} <br/>
+                          @if(!empty($user))
+                            <h2>User Details</h2>
+                            Name: {{ $user->username }} <br/>
+                            Email: {{ $user->email }} <br/>
+                          @endif
                              
                             Kindly ignore if the message is not for you.
                         </p>

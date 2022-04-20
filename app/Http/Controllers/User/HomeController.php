@@ -1161,7 +1161,7 @@ class HomeController extends Controller
         $name = $request->name;
         $body = $request->message;
 
-        Mail::to(env('SUPPORT_EMAIL'))->send(new SupportAdmin($email, $name, $body));
+        Mail::to(env('SUPPORT_EMAIL'))->send(new SupportAdmin($email, $name, $body, $user));
 
         if(true){
              alert()->success('Email Sent', 'Good')->persistent();

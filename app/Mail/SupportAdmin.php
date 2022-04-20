@@ -14,19 +14,21 @@ class SupportAdmin extends Mailable
     public $email;
     public $name;
     public $body;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($email, $name, $body)
+    public function __construct($email, $name, $body, $user=null)
     {
         //
 
         $this->email = $email;
         $this->name = $name;
         $this->body = $body;
+        $this->user = $user;
     }
 
     /**
