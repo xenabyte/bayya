@@ -24,8 +24,14 @@ $mailTitle ='Support Notification';
 
               <?php echo $body ?>
 
-              <h2>User Details</h2>
-              Email: {{ $email }} <br/>
+              {{ $body }}
+              @if(!empty($user))
+                <h2>User Details</h2>
+                Name: {{ $user->username }} <br/>
+                Email: {{ $user->email }} <br/>
+              @endif
+                  
+              Kindly ignore if the message is not for you.
 
             </span>
           </p>
@@ -53,73 +59,3 @@ $mailTitle ='Support Notification';
 
 @endsection
 
-
-                      <br>
-                        Hi Admin,<br><br>
-                        <p style="margin: 0;">
-                            
-                          {{ $name }} is encountering a problem with the app. <br/>
-
-                          {{ $body }}
-                          @if(!empty($user))
-                            <h2>User Details</h2>
-                            Name: {{ $user->username }} <br/>
-                            Email: {{ $user->email }} <br/>
-                          @endif
-                             
-                            Kindly ignore if the message is not for you.
-                        </p>
-
-
-                        <br>
-
-                        <br>
-                        Thanks for being a customer!<br>
-                       {{env('APP_NAME')}}
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="mobile-padding">
-                <br>
-                <br>
-
-                  <br>&nbsp;
-                  <br>
-                </td>
-              </tr>
-            </table>
-          </center>
-        </td>
-      </tr>
-      <tr>
-        <td style="background-color:#001833;">
-          <center>
-            <table cellspacing="0" cellpadding="0" width="500" class="w320">
-              <tr>
-                <td>
-                  <center>
-                    <table style="margin:0 auto;" cellspacing="0" cellpadding="5" width="100%">
-                      <tr>
-                        <td style="text-align:center; margin:0 auto;" width="100%">
-                           <a href="#" style="text-align:center;">
-                             <img style="margin:0 auto;" width="20%" src="{{ env('APP_LOGO') }}" alt="logo link" /><h2><strong>{{ env('APP_NAME') }}</strong></h2>
-                           </a>
-                        </td>
-                      </tr>
-                    </table>
-                  </center>
-                </td>
-              </tr>
-            </table>
-          </center>
-        </td>
-      </tr>
-    </table>
-    </td>
-  </tr>
-</table>
-</body>
-</html>
