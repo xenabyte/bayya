@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><![endif]-->
 	<!-- favicon -->
-	<link rel="shortcut icon" href="favicon.ico" sizes="16x16" />
+	<link rel="shortcut icon" href="{{asset('fav.ico')}}" sizes="16x16" />
 	<!-- include Google Fonts -->
 	<link href="/frontend_assets/css/css0e41.css?family=Quicksand:300,400,500,700&amp;display=swap" rel="stylesheet">
 	<!-- include Fontawesome icons css -->
