@@ -490,7 +490,7 @@
                                 <div class="form-group newsletter-field">
                                     <form target="_blank" action="#" method="post" novalidate>
                                         <input class="form-control" type="email" name="EMAIL" placeholder="Your email" />
-                                        <input type="submit" value="Submit" />
+                                        <input type="submit" value="" />
                                     </form>
 
                                     <!-- submission error message -->
