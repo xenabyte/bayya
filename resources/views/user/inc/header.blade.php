@@ -47,10 +47,12 @@
 
             <!-- Sidebar -->
             <nav id="sidebar" class="sidebar">
-                <div class="sidebar-brand">
-                    <img src="{{ asset('logo.png') }}" class="img" style="height: 100%" alt="">
+                <a href="{{ url('/') }}">
+                    <div class="sidebar-brand">
+                    <img src="{{ asset('logo.png') }}" class="img" style="height: 70%" alt="">
                     <img src="{{ asset('logo.png') }}" class="img-sm" alt="">
                 </div>
+                </a>
                 <ul class="sidebar-menu">
 
 					<li class="header-menu">

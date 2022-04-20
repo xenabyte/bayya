@@ -44,7 +44,7 @@
                                 <img src="frontend_assets/images/col-icon1.png" alt="" width="108" height="120" />
                             </div>
                             <div class="three-col-cont">
-                                <h3>200+ Different Ways to Exchange</h3>
+                                <h3 style="color:#0275d8">200+ Different Ways to Exchange</h3>
                                 <p>Buy and sell Bitcoin using any payment method,
                                     including bank transfer, western union, skrill and more.
                                 </p>
@@ -57,7 +57,7 @@
                                 <img src="frontend_assets/images/col-icon2.png" alt="" width="118" height="120" />
                             </div>
                             <div class="three-col-cont">
-                                <h3>Buy/Sell Worldwide</h3>
+                                <h3 style="color:#0275d8">Buy/Sell Worldwide</h3>
                                 <p>Accessible around the world. The unbanked, underbanked and overbanked are all empowered by Localcoinbox.</p>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                 <img src="frontend_assets/images/col-icon3.png" alt="" width="116" height="120" />
                             </div>
                             <div class="three-col-cont">
-                                <h3>A Secure Escrow-Style Payment</h3>
+                                <h3 style="color:#0275d8">A Secure Escrow-Style Payment</h3>
                                 <p>Your bitcoin is held in our secure escrow until
                                     the trade is completed successfully, sell your bitcoin at your chosen rate.
                                 </p>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-6 invented-cont wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
                         <h3>We are Localcoinbox</h3>
-                        <h2>Blockchain-powered escrow service</h2>
+                        <h2 style="color:#0275d8">Blockchain-powered escrow service</h2>
                         <p>We deployed a smart contract that protect escrow accounts, making it difficult for Localcoinbox or hackers to withdraw funds which implies that our system is not hackable.</p>
                         <p>Buy and sell bitcoin in real time using our secure escrow, trade with other users online near you or around the globe. Your sensitive payment details have ultimate protection from data leaks. Messages between users are end-to-end encrypted.</p>
                         <a class="unc-btn text-white" href="{{ url('marketplace') }}"> Explore Marketplace</a>
@@ -173,7 +173,7 @@
                     <div class="col-12 col-md-6 features-bns-right mobile-pt-10 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
                         <div class="features-bns-cont">
                             <h3>Localcoinbox Features</h3>
-                            <h2>Localcoinbox has awesome features for P2P business</h2>
+                            <h2 style="color:#0275d8">Localcoinbox has awesome features for P2P business</h2>
                             <div class="features-bns-area">
                                 <div class="features-bns-col-row">
                                     <div class="features-bns-col-img">
@@ -265,7 +265,7 @@
                 <div class="row">
                     <div class="col-12 big-title text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                         <h3>Localcoinbox Help Desk</h3>
-                        <h2>Frequently Asked Questions</h2>
+                        <h2 style="color:#0275d8">Frequently Asked Questions</h2>
                     </div>
                 </div>
                 <div class="row pb-60 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
@@ -397,80 +397,34 @@
         </div>
         <!-- //end .faq -->
 
-        <!-- start partner -->
-        <div class="partner">
+        <!-- start our-team-container -->
+        <div class="team team3 overflow-hidden">
             <div class="container">
-                <div class="row pt-110 pb-40 mobile-pt-60 mobile-pb-10">
-                    <div class="big-title white-text text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                        <h3>Our Partners</h3>
-                        <h2>We Worked with Brands</h2>
+                <div class="row pt-110 mobile-pt-60 pb-30 mobile-pb-10">
+                    <div class="col-12 big-title white-text text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                        <h3>We are Localcoinbox</h3>
+                        <h2>Testimonials</h2>
                     </div>
                 </div>
-                <div class="row justify-content-center pb-60 partner-area mobile-pb-20 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo1.png" alt="" width="105" height="49" />
-                        </a>
+                <div class="row justify-content-center team-col-area core-team-area pt-40 mobile-pt-20">
+                    <div class="col-md-6 team-col pb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                        <div class="team-cont">
+                            <p>Aicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci</p>
+                            <br>
+                            <h3><em>Richard Johnson</em></h3>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo2.png" alt="" width="106" height="49" />
-                        </a>
+                    <div class="col-md-6 team-col pb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                        <div class="team-cont">
+                            <p>Aicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci</p>
+                            <br>
+                            <h3><em>Richard Johnson</em></h3>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo3.png" alt="" width="126" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo4.png" alt="" width="82" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo5.png" alt="" width="67" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo6.png" alt="" width="126" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo7.png" alt="" width="106" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo8.png" alt="" width="119" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo9.png" alt="" width="93" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo10.png" alt="" width="138" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo11.png" alt="" width="143" height="49" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-2 mb-50 partner-logo">
-                        <a href="#">
-                            <img src="frontend_assets/images/brands-logo12.png" alt="" width="142" height="49" />
-                        </a>
-                    </div>
-                </div>
+                </div>  
             </div>
         </div>
-        <!-- //end .partner -->
+        <!-- //end .our-team-container -->
 
         <!-- start contact-container -->
         <div id="contact" class="contact-container pt-40">
@@ -480,7 +434,7 @@
                         <div class="col-12 col-md-5 contact-info wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                             <div class="contact-us">
                                 <h3>Contact us</h3>
-                                <h2>Got A Question?</h2>
+                                <h2 style="color:#0275d8">Got A Question?</h2>
                                 <p>It’s never too late to get started. Buy, sell, store, and learn about peer-to-peer. </p>
                                 <ul class="contact-social">
                                     <li>
@@ -534,9 +488,9 @@
                             <div class="newsletter-content wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                                 <h2>Subscribe to Our Newsletter</h2>
                                 <div class="form-group newsletter-field">
-                                    <form target="_blank" action="https://bootstrapshaper.us6.list-manage.com/subscribe/post?u=0061a1f05f345a8f34416646c&amp;id=000949c92f" method="post" novalidate>
+                                    <form target="_blank" action="#" method="post" novalidate>
                                         <input class="form-control" type="email" name="EMAIL" placeholder="Your email" />
-                                        <input type="submit" value="" />
+                                        <input type="submit" value="Submit" />
                                     </form>
 
                                     <!-- submission error message -->

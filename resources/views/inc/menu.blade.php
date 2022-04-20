@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row header-area justify-content-between pt-50 pb-20">
             <div class="logo">
-                <a href="{{ url('/') }}"><img src="{{asset('logo.png')}}" alt="" width="416" height="39" /></a>
+                <a href="{{ url('/') }}"><img src="{{asset('logo.png')}}" alt="" /></a>
             </div>
             <div class="menu-area d-flex flex-wrap">
                 <nav class="main-menu">
