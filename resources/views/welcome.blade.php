@@ -483,7 +483,7 @@
                         </div>
                     </div>
 
-                    <div class="container">
+                    {{-- <div class="container">
                         <div class="row">
                             <div class="newsletter-content wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                                 <h2>Subscribe to Our Newsletter</h2>
@@ -498,7 +498,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -17,10 +17,10 @@
             <div class="col-12 col-md-6 col-lg-2 footer-col link-hover wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="{{ url('about') }}">About us</a></li>
+                    <li><a href="{{ url('marketplace') }}">Marketplace</a></li>
+                    <li><a href="{{ url('privacy') }}">Privacy Policy</a></li>
+                    <li><a href="{{ url('terms') }}">Terms & Condition</a></li>
                 </ul>
             </div>
             
@@ -53,9 +53,8 @@
                 <div class="pt-40 pb-20 d-flex flex-wrap justify-content-between footer-bottom-content">
                     <p class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start order-2 order-sm-2 order-md-2 order-lg-1">All rights reserved (c) {{ date('Y') }}</p>
                     <ul class="d-flex flex-wrap order-1 order-sm-1 order-md-1 order-lg-2">
-                        <li><a href="#">Terms & Condition</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Legal</a></li>
+                        <li><a href="{{ url('terms') }}">Terms & Condition</a></li>
+                        <li><a href="{{ url('privacy') }}">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>

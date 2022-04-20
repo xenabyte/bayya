@@ -18,6 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('/marketplace',  [App\Http\Controllers\WelcomeController::class, 'marketplace']);
+Route::get('/terms',  [App\Http\Controllers\WelcomeController::class, 'terms']);
+Route::get('/privacy',  [App\Http\Controllers\WelcomeController::class, 'privacy']);
+Route::get('/about',  [App\Http\Controllers\WelcomeController::class, 'about']);
 Route::post('/contactAdminLanding', [App\Http\Controllers\WelcomeController::class, 'contactAdminLanding']);
 
 

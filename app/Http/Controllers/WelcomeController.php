@@ -67,6 +67,21 @@ class WelcomeController extends Controller
         ]);
     }
 
+    public function terms()
+    {
+        return view('terms');
+    }
+
+    public function privacy()
+    {
+        return view('privacy');
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+
     public function contactAdminLanding(Request $request){
         $email = $request->email;
         $name = $request->name;
