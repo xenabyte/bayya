@@ -3,7 +3,7 @@
 @section('content')
 
 <?php  
-$mailTitle ='Reset Password';
+$mailTitle ='Verify Email';
 ?>
 
 <table id="u_content_text_3" style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
