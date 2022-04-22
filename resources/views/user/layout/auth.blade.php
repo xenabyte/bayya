@@ -5,6 +5,7 @@
         <title>{{ env('APP_NAME') }}</title>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Buy and Sell Bitcoin securely on P2P escrow, exchange your Bitcoin 24/7 on Localcoinbox">
 
         <link rel="icon" type="image/png" href="{{asset('favicon.ico')}}">
         <link rel="apple-touch-icon" href="{{asset('favicon.ico')}}">

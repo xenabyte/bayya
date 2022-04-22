@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{{ env('APP_NAME') }} | Welcome</title>
-	<meta name="description" content="">
+	<meta name="description" content="Buy and Sell Bitcoin securely on P2P escrow, exchange your Bitcoin 24/7 on Localcoinbox">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><![endif]-->
 	<!-- favicon -->
