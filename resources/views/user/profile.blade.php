@@ -243,6 +243,9 @@
                                                     <p class="text-center"><a href="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ Auth::guard('user')->user()->btc_address }}" target="_blank" title="barcode"><img id="btc" src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ Auth::guard('user')->user()->btc_address }}" alt="{{ Auth::guard('user')->user()->btc_address }}"></a></p>
                                                     <hr>
                                                 </div>
+                                                <div class="card-header">
+                                                    <h4 class="card-title text-center">Powered By Blockchain</h4>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -257,7 +260,7 @@
                                                 @csrf
                                                 <div class="form-group">
                                                     <label for="">Amount in {{ $currency }}</label>
-                                                    <input name="amount" type="number" min="0" max="{{ $controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet) }}" class="form-control" placeholder="5000 {{ $currency }}">
+                                                    <input name="amount" type="number" min="0" max="{{ $controller::toCurrency($currency, Auth::guard('user')->user()->btc_wallet) }}" class="form-control" placeholder=" {{ $currency }}">
                                                 </div>
 
                                                 <div class="form-group">

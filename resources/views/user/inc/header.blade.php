@@ -138,11 +138,7 @@
 
 
 
-							<li>
-								<a href="{{url('/user/helpCenter')}}">
-									Help Center
-								</a>
-							</li>
+							
 
 						</ul>
 					</li>

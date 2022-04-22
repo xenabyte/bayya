@@ -15,8 +15,8 @@
                         <div class="banner-cont-info text-white wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <h5 class="text-white">The True Game Changer</h5>
                             <h1 class="text-white">Localcoinbox provides you with access to a worldwide market</h1>
-                            <p class="text-white">Buy and sell your bitcoin locally,
-                            person-to-person crypto marketplace where you can buy and sell bitcoin using any payment method.
+                            <p class="text-white">Buy and sell your Bitcoin locally,
+                            person-to-person crypto marketplace where you can buy and sell Bitcoin using any payment method.
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
@@ -69,8 +69,8 @@
                             </div>
                             <div class="three-col-cont">
                                 <h3 style="color:#0275d8">A Secure Escrow-Style Payment</h3>
-                                <p>Your bitcoin is held in our secure escrow until
-                                    the trade is completed successfully, sell your bitcoin at your chosen rate.
+                                <p>Your Bitcoin is held in our secure escrow until
+                                    the trade is completed successfully, sell your Bitcoin at your chosen rate.
                                 </p>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         <h3>We are Localcoinbox</h3>
                         <h2 style="color:#0275d8">Blockchain-powered escrow service</h2>
                         <p>We deployed a smart contract that protect escrow accounts, making it difficult for Localcoinbox or hackers to withdraw funds which implies that our system is not hackable.</p>
-                        <p>Buy and sell bitcoin in real time using our secure escrow, trade with other users online near you or around the globe. Your sensitive payment details have ultimate protection from data leaks. Messages between users are end-to-end encrypted.</p>
+                        <p>Buy and sell Bitcoin in real time using our secure escrow, trade with other users online near you or around the globe. Your sensitive payment details have ultimate protection from data leaks. Messages between users are end-to-end encrypted.</p>
                         <a class="unc-btn text-white" href="{{ url('marketplace') }}"> Explore Marketplace</a>
                     </div>
                 </div>
@@ -248,7 +248,7 @@
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <div class="bnf-col-cont">
-                                        <p>You will earn bitcoins from the users who arrive to the site through your affiliate link, register and make trades.</p>
+                                        <p>You will earn Bitcoins from the users who arrive to the site through your affiliate link, register and make trades.</p>
                                     </div>
                                 </div>
                             </div>
@@ -275,8 +275,7 @@
                                 <li>General</li>
                                 <li>Escrow</li>
                                 <li>Bitcoin</li>
-                                <li>Cryptocurrency</li>
-                                <li>Blockchain</li>
+                                <li>Fees</li>
                             </ul>
                             <div class="resp-tabs-container">
                                 <div>
@@ -292,7 +291,7 @@
                                             </div>
                                             <div class="tab-col">
                                                 <h3>How to exchange on Localcoinbox?</h3>
-                                                <p>Decide how much you want to buy or sell and lock in a price. Complete the transaction. The buyer pays the seller via a selected payment method after the seller locks an agreed quantity of bitcoin in an escrow account.</p>
+                                                <p>Decide how much you want to buy or sell and lock in a price. Complete the transaction. The buyer pays the seller via a selected payment method after the seller locks an agreed quantity of Bitcoin in an escrow account.</p>
                                             </div>
                                             <div class="tab-col">
                                                 <h3>How to get benefited with Localcoinbox?</h3>
@@ -306,7 +305,7 @@
                                         <div class="d-flex flex-wrap justify-content-between tab_content">
                                             <div class="tab-col">
                                                 <h3>What is an Escrow?</h3>
-                                                <p> An escrow service is a mediator service that keeps the money for a transaction in safekeeping until the Bitcoins are handed over. Escrow protects buyers from fraudulent sellers by requiring the Bitcoin to be deposited up front, before any money changes hands</p>
+                                                <p> An escrow service is a mediator service that keeps the money for a transaction in safekeeping until the Bitcoins are handed over. Escrow protects buyers from fraudulent sellers by requiring the Bitcoin to be deposited up front, before any money changes hands.</p>
                                             </div>
                                             <div class="tab-col">
                                                 <h3>How am I protected from being scammed?</h3>
@@ -314,11 +313,11 @@
                                             </div>
                                             <div class="tab-col">
                                                 <h3>How do i recieve Bitcoins to my Localcoinbox from Escrow</h3>
-                                                <p>After payment has been made by buyer, seller will proceed to confirm if payment is from the right source, seller can then click i have recieved payment, bitcoin will be automatically released to buyer's wallet.</p>
+                                                <p>After payment has been made by buyer, seller will proceed to confirm if payment is from the right source, seller can then click i have recieved payment, Bitcoin will be automatically released to buyer's wallet.</p>
                                             </div>
                                             <div class="tab-col">
                                                 <h3>How long does a trade take?</h3>
-                                                <p>Localcoinbox does not decide that, seller will be the one to set a payment window time and if buyer can not meet up with the time, the trade will automatically cancel and bitcoin will be returned back to the seller's wallet.</p>
+                                                <p>Localcoinbox does not decide that, seller will be the one to set a payment window time and if buyer can not meet up with the time, the trade will automatically cancel and Bitcoin will be returned back to the seller's wallet.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -327,20 +326,21 @@
                                     <div class="tab_inner">
                                         <div class="d-flex flex-wrap justify-content-between tab_content">
                                             <div class="tab-col">
-                                                <h3>What is Crypto Currency ?</h3>
-                                                <p>Praesent dictum eu nibh eget pretium odo conse quamet, conon sectetur adipisicing elit, sed do eiusmod tempor incididunt utahu labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <h3>What is Bitcoin?</h3>
+                                                <p>Bitcoin is a decentralized digital currency, without a central bank or single administrator, that can be sent from user to user on the peer-to-peer Bitcoin network without the need for intermediaries.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>What exactly UniCrypt is ?</h3>
-                                                <p>Sullamco laboris nisi ut aliquip ex ea commodo conse quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <h3>How do i get Bitcoin?</h3>
+                                                <p>You can get Bitcoin by accepting it as a payment for goods and services. There are also several ways you can buy Bitcoin. P2P is one of the fastest and easiest way.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to exchange UniCrypt ?</h3>
-                                                <p>Fusce diam eros, dapibus at rutrum ac, iaculis eu or quamet, con sectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <h3>How to spend Bitccoin?</h3>
+                                                <p>There are a growing number of services and merchants accepting Bitcoin all over the world. Use Bitcoin to pay them and rate your experience to help them gain more visibility.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to get benefited with Unicrypt ?</h3>
-                                                <p>Proin sed commodo metus. Phasellus arcu nibh, luct et, con se ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labor Lorem ipsum dolor sit amet, consectetur</p>
+                                                <h3>Is Bitcoin a good investment?</h3>
+                                                <p>
+                                                The high liquidity associated with Bitcoin makes it a great investment vessel if you're looking for short-term profit. Digital currencies may also be a long-term investment due to their high market demand. Lower inflation risk.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -349,20 +349,20 @@
                                     <div class="tab_inner">
                                         <div class="d-flex flex-wrap justify-content-between tab_content">
                                             <div class="tab-col">
-                                                <h3>What is Crypto Currency ?</h3>
-                                                <p>Aenean lacinia elementum est, id finibus nunc maximus vel. Duis non ipsum sodales, fermentum nisl vel, cursus leo. Suspendisse sit amet ante feugiat, ullamcorper diam eu, mollis mi. Proin id nulla metus. </p>
+                                                <h3>Buying Bitcoin</h3>
+                                                <p>When you buy Bitcoin from another user on Localcoinbox, you are buying it at a rate determined by the users. These prices are determined by a variety of criteria, including  current market value, payment method, currency pair (Eur, Gbp, Rmb), etc. But trade on Localcoinbox is free for all users.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>What exactly UniCrypt is ?</h3>
-                                                <p>Duis elementum feugiat nisi eu sollicitudin. Nullam sit amet tincidunt dolor. Curabitur porttitor aliquam lacus, ut dictum diam fringilla ut.</p>
+                                                <h3>Selling Bitcoin</h3>
+                                                <p>At the start of the deal, this escrow amount is debited from your Localcoinbox Wallet. Bitcoin will be released to the buyer if the trade is completed successfully. If the deal is not completed because the buyer has not paid, Bitcoin will be released from escrow and returned to the Bitcoin seller, with no fee charged by Localcoinbox.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to exchange UniCrypt ?</h3>
-                                                <p>Quisque a pharetra lorem. Etiam in eros malesuada, vestibulum massa non, mollis metus. Nunc feugiat sem turpis, euismod pharetra est maximus ultrices. Nam ultrices sem ut nisi sollicitudin laoreet.</p>
+                                                <h3>Sending Bitcoin</h3>
+                                                <p>Localcoinbox charges 0.5% for every outgoing transaction either localcoinbox to localcoinbox or to an external platform.</p>
                                             </div>
                                             <div class="tab-col">
-                                                <h3>How to get benefited with Unicrypt ?</h3>
-                                                <p>Etiam porta, erat ut pretium porta, erat turpis lobortis enim, sit amet blandit felis tellus tempus felis. Quisque vitae ornare mauris. Ut eleifend massa vitae leo fermentum ullamcorper.</p>
+                                                <h3>Receiving Bitcoin</h3>
+                                                <p>Localcoinbox does not charge deposit fee which simply means for every deposit you make on the platform it is totally free.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -370,22 +370,7 @@
                                 <div>
                                     <div class="tab_inner">
                                         <div class="d-flex flex-wrap justify-content-between tab_content">
-                                            <div class="tab-col">
-                                                <h3>What is Crypto Currency ?</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra a lorem vitae consequat. Donec consequat nec felis vitae suscipit. Etiam ultricies elit id laoreet ultricies.</p>
-                                            </div>
-                                            <div class="tab-col">
-                                                <h3>What exactly UniCrypt is ?</h3>
-                                                <p>Etiam eleifend faucibus gravida. Vestibulum mattis posuere rutrum. Quisque eu diam at arcu accumsan sollicitudin nec a nibh. Nullam consequat laoreet condimentum. Sed id hendrerit ipsum</p>
-                                            </div>
-                                            <div class="tab-col">
-                                                <h3>How to exchange UniCrypt ?</h3>
-                                                <p>Sed ut lectus iaculis, faucibus quam et, fermentum quam. Praesent massa ex, egestas ut felis a, vehicula aliquet elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras malesuada accumsan urna eu iaculis.</p>
-                                            </div>
-                                            <div class="tab-col">
-                                                <h3>How to get benefited with Unicrypt ?</h3>
-                                                <p>Donec eu eros ullamcorper, dictum dolor et, viverra lacus. Nunc luctus purus quis porta sagittis. Proin egestas nunc sit amet dapibus iaculis. Phasellus ultrices bibendum urna eget aliquet. Pellentesque in leo semper, egestas metus non, accumsan enim.</p>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -402,23 +387,44 @@
             <div class="container">
                 <div class="row pt-110 mobile-pt-60 pb-30 mobile-pb-10">
                     <div class="col-12 big-title white-text text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                        <h3>We are Localcoinbox</h3>
+                        <h3>Localcoinbox has already been utilized by millions of people who have had nothing but positive things to say about us.</h3>
                         <h2>Testimonials</h2>
                     </div>
                 </div>
                 <div class="row justify-content-center team-col-area core-team-area pt-40 mobile-pt-20">
                     <div class="col-md-6 team-col pb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                         <div class="team-cont">
-                            <p>Aicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci</p>
+                        <div class="rounded-circle w-100 h-100 d-flex align-items-center justify-content-center position-relative overflow-hidden bg-gray-300"><img class="Avatar-module_img__1GQ75" src="frontend_assets/images/ab2.jpeg" height="100px" alt="MaineBitcoin"></div>
+                            <p class="text-center">I've been using Localcoinbox for over a period of time and have had great success. Easy to use website, best Bitcoin rates, excellent customer service, and a large number of trading partners. Localcoinbox is an excellent choice.</p>
                             <br>
-                            <h3><em>Richard Johnson</em></h3>
+                            <h3 class="text-center"><em>Cullen Bustillo</em></h3>
                         </div>
                     </div>
+                
                     <div class="col-md-6 team-col pb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                         <div class="team-cont">
-                            <p>Aicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci</p>
+                        <div class="rounded-circle w-100 h-100 d-flex align-items-center justify-content-center position-relative overflow-hidden bg-gray-300"><img class="Avatar-module_img__1GQ75" src="frontend_assets/images/ab.jpeg" height="100px" alt="MaineBitcoin"></div>
+                            <p class="text-center">I have been using it for a long time and have not seen any errors in it, I highly recommend it. Localcoinbox arrived to change the handling of Bitcoin use, having an initiative to facilitate the use of crypto currency, the security it offers is great, both personal and business.</p>
                             <br>
-                            <h3><em>Richard Johnson</em></h3>
+                            <h3 class="text-center"><em>Terry Kimpaye</em></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 team-col pb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                        <div class="team-cont">
+                        <div class="rounded-circle w-100 h-100 d-flex align-items-center justify-content-center position-relative overflow-hidden bg-gray-300"><img class="Avatar-module_img__1GQ75" src="frontend_assets/images/ab3.jpeg" height="100px" alt="MaineBitcoin"></div>
+                            <p class="text-center">Excellent experience as a first timer on this platform, very smooth and fast, i'm so happy i found the platform.</p>
+                            <br>
+                            <h3 class="text-center"><em>Allen Scott</em></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 team-col pb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                        <div class="team-cont">
+                        <div class="rounded-circle w-100 h-100 d-flex align-items-center justify-content-center position-relative overflow-hidden bg-gray-300"><img class="Avatar-module_img__1GQ75" src="frontend_assets/images/ab1.jpeg" height="100px" alt="MaineBitcoin"></div>
+                            <p class="text-center">¡Localcoinbox es una plataforma fantástica para comprar y vender Bitcoin! Comencé a operar como un interés secundario, Localcoinbox ha hecho que mi experiencia sea maravillosa. Aprecio lo amigable y útil que es la plataforma. El equipo de apoyo dinámico también está siempre allí en un santiamén si es necesario, lo cual agradezco.</p>
+                            <br>
+                            <h3 class="text-center"><em>Fidel Alejandro</em></h3>
                         </div>
                     </div>
                 </div>  

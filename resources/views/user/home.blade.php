@@ -109,9 +109,10 @@
                     <div class="card-body">
                         <h3>Message from CEO</h3>
                         <p class="card-text">
-                            Lorem ipsum dolor, sit amet consec tetur adipisi cing elit.
-                            Lorem ipsum dolor, sit amet consec tetur.
-                            Lorem ipsum dolor, sit amet consec tetur.
+                        I hope that your experience with Localcoinbox so far has been a pleasant one.
+                        Customer experience is at the heart of everything we do. We appreciate you.
+
+
                         </p>
                     </div>
                 </div>
