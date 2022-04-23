@@ -566,10 +566,13 @@ class HomeController extends Controller
 
         $trade = Seller::with(['seller', 'seller.reviewee', 'buyer.reviewee'])->where('hash', $hash)->first();
 
-        if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $trade->merging_id)->first()){
-            alert()->error('Invalid Trade', 'Oops')->persistent('Close');
-            return $this->sales();
+        if($trade->merge_status == 'merged'){
+            if(!$merging = Merging::with(['buyer', 'seller', 'associated_buyer', 'associated_seller'])->where('id', $trade->merging_id)->first()){
+                alert()->error('Invalid Trade', 'Oops')->persistent('Close');
+                return $this->sales();
+            }
         }
+            
         $reviews = Review::where('merging_id', $trade->merging_id)->get();
 
         $genTrades = Seller::where([
@@ -584,7 +587,7 @@ class HomeController extends Controller
             'trade' => $trade,
             'currency' => $currency,
             'genTrades' => $genTrades,
-            'order' => $merging,
+            'order' => $trade->merge_status == 'merged'? $merging : null,
             'reviews' => $reviews
         ]);
 

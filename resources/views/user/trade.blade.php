@@ -79,6 +79,7 @@
                                 <div class="card-body">
                                     <p class="card-text">
                                        <ul>
+                                           <li><strong>Trade Link: </strong><a href="{{ url('/user/trade/'.$trade->hash) }}">{{ url('/user/trade/'.$trade->hash) }}</a></li>
                                            <li><strong>Price: </strong>{{$currency}} {{number_format($controller::toCurrencyWithRate($currency, $trade->selling_amount, $trade->selling_rate), 2)}} / {{ $trade->selling_amount }} BTC  </li>
                                            <li><strong>Payment Method: </strong>{{ $trade->seller_payment_mode }}  </li>
                                            <li><strong>Payment window: </strong>{{ $trade->trade_minutes }} Minutes  </li>
